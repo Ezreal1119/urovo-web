@@ -1,138 +1,75 @@
 "use client";
 
 import * as React from "react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
-function Sidebar({ className, ...props }: React.ComponentProps<"aside">) {
+export default function AppSidebar() {
+  const [collapsed, setCollapsed] = React.useState(false);
+
   return (
     <aside
-      data-slot="sidebar"
       className={cn(
-        "hidden h-full w-65 shrink-0 border-r border-white/8 bg-[rgba(12,12,16,0.65)] supports-backdrop-filter:backdrop-blur-xl lg:block",
-        className,
+        "group flex h-full flex-col border-r border-border bg-background/60 backdrop-blur-xl transition-all duration-300",
+        collapsed ? "w-16" : "w-64",
       )}
-      {...props}
-    />
-  );
-}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between px-3 py-3">
+        {!collapsed && (
+          <span className="text-lg font-italic text-foreground">
+            How to ...
+          </span>
+        )}
 
-function SidebarContainer({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-container"
-      className={cn("flex h-full flex-col gap-6 px-4 py-5", className)}
-      {...props}
-    />
-  );
-}
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          <Menu />
+        </Button>
+      </div>
 
-function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-header"
-      className={cn("flex items-center gap-3 px-1", className)}
-      {...props}
-    />
-  );
-}
+      {/* Navigation */}
+      <nav className="flex flex-1 flex-col gap-1 px-2">
+        <SidebarItem collapsed={collapsed} label="Dashboard" href="/home" />
+        <SidebarItem collapsed={collapsed} label="Blog" href="/home" />
+        <SidebarItem collapsed={collapsed} label="Projects" href="/home" />
+        <SidebarItem collapsed={collapsed} label="Notes" href="/home" />
+      </nav>
 
-function SidebarSection({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-section"
-      className={cn("flex flex-col gap-2", className)}
-      {...props}
-    />
-  );
-}
-
-function SidebarSectionLabel({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-section-label"
-      className={cn(
-        "px-2 text-[11px] font-medium uppercase tracking-[0.12em] text-foreground/40",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
-function SidebarNav({ className, ...props }: React.ComponentProps<"nav">) {
-  return (
-    <nav
-      data-slot="sidebar-nav"
-      className={cn("flex flex-col gap-1", className)}
-      {...props}
-    />
+      {/* Footer */}
+      <div className="px-3 py-3 flex justify-center">
+        {!collapsed && (
+          <div className="text-xs text-foreground/50">© PatrickXu</div>
+        )}
+      </div>
+    </aside>
   );
 }
 
 function SidebarItem({
-  className,
-  active,
-  icon,
-  ...props
-}: React.ComponentProps<typeof Link> & {
-  active?: boolean;
-  icon?: React.ReactNode;
+  label,
+  collapsed,
+  href,
+}: {
+  label: string;
+  collapsed: boolean;
+  href: string;
 }) {
   return (
     <Link
-      data-slot="sidebar-item"
-      data-active={active}
+      href={href}
       className={cn(
-        "group flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-foreground/65 transition-[background-color,color] duration-200 hover:bg-white/5 hover:text-foreground data-[active=true]:bg-white/6 data-[active=true]:text-foreground",
-        className,
+        "flex h-10 items-center rounded-xl px-3 text-sm text-foreground/70 transition-colors hover:bg-muted/50 hover:text-foreground",
+        collapsed && "justify-center px-0",
       )}
-      {...props}
     >
-      {icon && (
-        <span className="text-foreground/40 group-hover:text-foreground/70 data-[active=true]:text-foreground">
-          {icon}
-        </span>
-      )}
-      <span className="truncate">{props.children}</span>
+      <div className="size-4 rounded bg-white/20" />
+      {!collapsed && <span className="ml-3">{label}</span>}
     </Link>
   );
 }
-
-function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-footer"
-      className={cn("mt-auto border-t border-white/8 pt-4", className)}
-      {...props}
-    />
-  );
-}
-
-function SidebarDivider({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sidebar-divider"
-      className={cn("my-2 h-px bg-white/8", className)}
-      {...props}
-    />
-  );
-}
-
-export {
-  Sidebar,
-  SidebarContainer,
-  SidebarHeader,
-  SidebarSection,
-  SidebarSectionLabel,
-  SidebarNav,
-  SidebarItem,
-  SidebarFooter,
-  SidebarDivider,
-};

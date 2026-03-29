@@ -6,6 +6,7 @@ import { Menu, Search, Bell } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { usePathname } from "next/navigation";
 
 function Navbar({ className, ...props }: React.ComponentProps<"header">) {
   return (
@@ -95,11 +97,13 @@ function NavbarBrandMark({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="navbar-brand-mark"
       className={cn(
-        "flex size-9 items-center justify-center rounded-xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] text-sm font-medium text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]",
+        "flex size-9 items-center justify-center rounded-xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]",
         className,
       )}
       {...props}
-    />
+    >
+      {props.children}
+    </div>
   );
 }
 
@@ -135,7 +139,7 @@ function NavbarLink({
       data-slot="navbar-link"
       data-active={active}
       className={cn(
-        "inline-flex h-9 items-center rounded-xl px-3 text-sm text-foreground/65 transition-[background-color,color,border-color] duration-200 hover:bg-white/5 hover:text-foreground data-[active=true]:bg-white/6 data-[active=true]:text-foreground",
+        "inline-flex h-9 items-center rounded-xl px-3 text-lg text-foreground/65 transition-[background-color,color,border-color] duration-200 hover:bg-white/5 hover:text-foreground data-[active=true]:bg-white/6 data-[active=true]:text-foreground",
         className,
       )}
       {...props}
@@ -170,6 +174,49 @@ function NavbarActions({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+function NavbarDropdownLink({
+  label,
+  children,
+  className,
+}: {
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <DropdownMenu open={open} onOpenChange={setOpen}>
+        <DropdownMenuTrigger asChild>
+          <Link
+            href="#"
+            className={cn(
+              "inline-flex h-9 items-center rounded-xl px-3 text-lg text-foreground/65 transition-[background-color,color,border-color] duration-200 hover:bg-white/5 hover:text-foreground",
+              className,
+            )}
+          >
+            {label}
+          </Link>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent
+          align="center"
+          sideOffset={10}
+          onCloseAutoFocus={(e) => e.preventDefault()}
+          className="w-56 rounded-2xl bg-[rgba(16,16,22,0.9)] p-1.5 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+        >
+          {children}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}
+
 function NavbarUserMenu() {
   return (
     <DropdownMenu>
@@ -180,7 +227,7 @@ function NavbarUserMenu() {
           className="rounded-xl border border-white/10 bg-white/3 hover:bg-white/6"
         >
           <Avatar className="size-7">
-            <AvatarImage src="/avatar.png" alt="User avatar" />
+            <AvatarImage src="/patrick_selfie.png" alt="User avatar" />
             <AvatarFallback className="bg-transparent text-xs text-foreground/80">
               PX
             </AvatarFallback>
@@ -192,29 +239,30 @@ function NavbarUserMenu() {
         className="w-56 rounded-2xl border border-white/10 bg-[rgba(16,16,22,0.9)] p-1.5 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl"
       >
         <div className="px-2.5 py-2">
-          <p className="text-sm font-medium text-foreground">Patrick Xu</p>
-          <p className="text-xs text-foreground/50">patrick@example.com</p>
+          <p className="text-sm font-medium text-foreground">
+            Created by Patrick Xu @ 2026
+          </p>
         </div>
         <DropdownMenuSeparator className="bg-white/8" />
-        <DropdownMenuItem className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground">
-          Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground">
-          Settings
-        </DropdownMenuItem>
-        <DropdownMenuItem className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground">
-          Billing
-        </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-white/8" />
-        <DropdownMenuItem className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground">
-          Log out
-        </DropdownMenuItem>
+        <div className="px-2.5 py-2 flex flex-col gap-1">
+          <p className="text-xs text-foreground/50">
+            <span className="font-bold">E-Mail</span>: patrick@urovo.com
+          </p>
+          <p className="text-xs text-foreground/50">
+            <span className="font-bold">Whatsapp</span>: +86 18807737955
+          </p>
+          <p className="text-xs text-foreground/50">
+            <span className="font-bold">Phone/Wechat</span>: 18807737955
+          </p>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
 
 function AppNavbar() {
+  const pathname = usePathname();
+
   return (
     <Navbar>
       <NavbarContainer>
@@ -228,11 +276,19 @@ function AppNavbar() {
             <span className="sr-only">Open menu</span>
           </Button>
 
-          <NavbarBrand href="/">
-            <NavbarBrandMark>PX</NavbarBrandMark>
+          <NavbarBrand href="/home">
+            <NavbarBrandMark>
+              <Image
+                src="/patrick.png"
+                alt="P@trick logo"
+                width={50}
+                height={50}
+                className="opacity-90"
+              />
+            </NavbarBrandMark>
             <NavbarBrandText>
-              <span className="text-sm font-medium tracking-tight text-foreground">
-                Patrick.dev
+              <span className="text-md font-italic tracking-tight text-foreground">
+                P@trick-Urovo
               </span>
               <span className="text-xs text-foreground/45">
                 Notes, tools, and experiments
@@ -243,12 +299,55 @@ function AppNavbar() {
 
         <NavbarCenter>
           <NavbarNav>
-            <NavbarLink href="/" active>
+            <NavbarLink href="/home" active={pathname.startsWith("/home")}>
               Home
             </NavbarLink>
-            <NavbarLink href="/blog">Blog</NavbarLink>
-            <NavbarLink href="/projects">Projects</NavbarLink>
-            <NavbarLink href="/notes">Notes</NavbarLink>
+
+            <NavbarDropdownLink label="PDA">
+              <DropdownMenuItem
+                asChild
+                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
+              >
+                <Link href="/projects/pda/RT40S">RT40S</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
+              >
+                <Link href="/projects/pda/DT50S">DT50(S)</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
+              >
+                <Link href="/projects/pda/DT66">DT66</Link>
+              </DropdownMenuItem>
+            </NavbarDropdownLink>
+
+            <NavbarDropdownLink label="POS">
+              <DropdownMenuItem
+                asChild
+                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
+              >
+                <Link href="/projects/pos/i5300">i5300(L)</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
+              >
+                <Link href="/projects/pos/i9100">i9100</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
+              >
+                <Link href="/projects/pos/i9200">i9200</Link>
+              </DropdownMenuItem>
+            </NavbarDropdownLink>
+
+            <NavbarLink href="/links" active={pathname.startsWith("/links")}>
+              Links
+            </NavbarLink>
           </NavbarNav>
         </NavbarCenter>
 
