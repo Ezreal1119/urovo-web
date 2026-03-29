@@ -9,7 +9,7 @@ export default function Home() {
       <Button />
       <Input />
       <Textarea />
-      <Card>adads</Card>
+      <Card className="border-2 border-black">dadasd</Card>
     </>
   );
 }
