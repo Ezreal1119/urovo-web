@@ -1,0 +1,296 @@
+"use client";
+
+import * as React from "react";
+import Link from "next/link";
+import { Menu, Search, Bell } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+function Navbar({ className, ...props }: React.ComponentProps<"header">) {
+  return (
+    <header
+      data-slot="navbar"
+      className={cn(
+        "sticky top-0 z-40 w-full border-b border-white/8 bg-[rgba(10,10,14,0.72)] supports-backdrop-filter:backdrop-blur-xl",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function NavbarContainer({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navbar-container"
+      className={cn(
+        "mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 md:px-6",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function NavbarLeft({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navbar-left"
+      className={cn("flex min-w-0 items-center gap-3", className)}
+      {...props}
+    />
+  );
+}
+
+function NavbarCenter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navbar-center"
+      className={cn(
+        "hidden flex-1 items-center justify-center lg:flex",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function NavbarRight({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navbar-right"
+      className={cn("flex items-center justify-end gap-2", className)}
+      {...props}
+    />
+  );
+}
+
+function NavbarBrand({
+  className,
+  ...props
+}: React.ComponentProps<typeof Link>) {
+  return (
+    <Link
+      data-slot="navbar-brand"
+      className={cn(
+        "inline-flex items-center gap-3 rounded-xl px-1 py-1 text-foreground transition-opacity duration-200 hover:opacity-90",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function NavbarBrandMark({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navbar-brand-mark"
+      className={cn(
+        "flex size-9 items-center justify-center rounded-xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] text-sm font-medium text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function NavbarBrandText({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navbar-brand-text"
+      className={cn("flex flex-col leading-none", className)}
+      {...props}
+    />
+  );
+}
+
+function NavbarNav({ className, ...props }: React.ComponentProps<"nav">) {
+  return (
+    <nav
+      data-slot="navbar-nav"
+      className={cn("flex items-center gap-1.5", className)}
+      {...props}
+    />
+  );
+}
+
+function NavbarLink({
+  className,
+  active,
+  ...props
+}: React.ComponentProps<typeof Link> & {
+  active?: boolean;
+}) {
+  return (
+    <Link
+      data-slot="navbar-link"
+      data-active={active}
+      className={cn(
+        "inline-flex h-9 items-center rounded-xl px-3 text-sm text-foreground/65 transition-[background-color,color,border-color] duration-200 hover:bg-white/5 hover:text-foreground data-[active=true]:bg-white/6 data-[active=true]:text-foreground",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function NavbarSearchButton({
+  className,
+  ...props
+}: React.ComponentProps<typeof Button>) {
+  return (
+    <Button
+      data-slot="navbar-search-button"
+      variant="outline"
+      className={cn(
+        "hidden h-9 w-55 justify-start rounded-xl border-white/10 bg-white/3 px-3 text-sm text-foreground/45 hover:bg-white/5 hover:text-foreground md:inline-flex",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function NavbarActions({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="navbar-actions"
+      className={cn("flex items-center gap-2", className)}
+      {...props}
+    />
+  );
+}
+
+function NavbarUserMenu() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          className="rounded-xl border border-white/10 bg-white/3 hover:bg-white/6"
+        >
+          <Avatar className="size-7">
+            <AvatarImage src="/avatar.png" alt="User avatar" />
+            <AvatarFallback className="bg-transparent text-xs text-foreground/80">
+              PX
+            </AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="end"
+        className="w-56 rounded-2xl border border-white/10 bg-[rgba(16,16,22,0.9)] p-1.5 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+      >
+        <div className="px-2.5 py-2">
+          <p className="text-sm font-medium text-foreground">Patrick Xu</p>
+          <p className="text-xs text-foreground/50">patrick@example.com</p>
+        </div>
+        <DropdownMenuSeparator className="bg-white/8" />
+        <DropdownMenuItem className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground">
+          Profile
+        </DropdownMenuItem>
+        <DropdownMenuItem className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground">
+          Settings
+        </DropdownMenuItem>
+        <DropdownMenuItem className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground">
+          Billing
+        </DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-white/8" />
+        <DropdownMenuItem className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground">
+          Log out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+function AppNavbar() {
+  return (
+    <Navbar>
+      <NavbarContainer>
+        <NavbarLeft>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            className="rounded-xl lg:hidden"
+          >
+            <Menu />
+            <span className="sr-only">Open menu</span>
+          </Button>
+
+          <NavbarBrand href="/">
+            <NavbarBrandMark>PX</NavbarBrandMark>
+            <NavbarBrandText>
+              <span className="text-sm font-medium tracking-tight text-foreground">
+                Patrick.dev
+              </span>
+              <span className="text-xs text-foreground/45">
+                Notes, tools, and experiments
+              </span>
+            </NavbarBrandText>
+          </NavbarBrand>
+        </NavbarLeft>
+
+        <NavbarCenter>
+          <NavbarNav>
+            <NavbarLink href="/" active>
+              Home
+            </NavbarLink>
+            <NavbarLink href="/blog">Blog</NavbarLink>
+            <NavbarLink href="/projects">Projects</NavbarLink>
+            <NavbarLink href="/notes">Notes</NavbarLink>
+          </NavbarNav>
+        </NavbarCenter>
+
+        <NavbarRight>
+          <NavbarSearchButton>
+            <Search className="mr-2 size-4" />
+            Search...
+          </NavbarSearchButton>
+
+          <NavbarActions>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="rounded-xl border border-white/10 bg-white/3 hover:bg-white/6"
+            >
+              <Bell />
+              <span className="sr-only">Notifications</span>
+            </Button>
+
+            <Button className="hidden md:inline-flex">Contact</Button>
+
+            <NavbarUserMenu />
+          </NavbarActions>
+        </NavbarRight>
+      </NavbarContainer>
+    </Navbar>
+  );
+}
+
+export {
+  Navbar,
+  NavbarContainer,
+  NavbarLeft,
+  NavbarCenter,
+  NavbarRight,
+  NavbarBrand,
+  NavbarBrandMark,
+  NavbarBrandText,
+  NavbarNav,
+  NavbarLink,
+  NavbarSearchButton,
+  NavbarActions,
+  NavbarUserMenu,
+  AppNavbar,
+};
