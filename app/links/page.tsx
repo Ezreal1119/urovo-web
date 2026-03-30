@@ -173,6 +173,25 @@ export default function LinksPage() {
                 />
               </div>
             </PageSection>
+
+            <PageSection id="others" className="scroll-mt-20">
+              <PageSectionHeader>
+                <PageSectionTitle className={`text-2xl ${playfair.className}`}>
+                  Others
+                </PageSectionTitle>
+                <PageSectionDescription>
+                  Other useful Tools you might want.
+                </PageSectionDescription>
+              </PageSectionHeader>
+
+              <div className="space-y-4">
+                <ResourceItem
+                  title="ADB"
+                  href="https://developer.android.com/tools/releases/platform-tools"
+                  description="Android Debug Bridge, which is used for debugging Android devices. [platform-tools]"
+                />
+              </div>
+            </PageSection>
           </PageStack>
         </PageMain>
       </PageContainer>

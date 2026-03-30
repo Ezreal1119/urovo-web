@@ -88,11 +88,13 @@ export function ZoomableGallery({
       if (e.key === "Escape") {
         setOpenIndex(null);
       }
+
       if (e.key === "ArrowRight") {
         setOpenIndex((prev) =>
           prev === null ? 0 : (prev + 1) % images.length,
         );
       }
+
       if (e.key === "ArrowLeft") {
         setOpenIndex((prev) =>
           prev === null ? 0 : (prev - 1 + images.length) % images.length,
@@ -113,19 +115,23 @@ export function ZoomableGallery({
         )}
       >
         {images.map((image, index) => (
-          <img
+          <div
             key={`${image.src}-${index}`}
-            src={image.src}
-            alt={image.alt ?? `Preview ${index + 1}`}
-            draggable={false}
-            onDragStart={(e) => e.preventDefault()}
-            onClick={() => setOpenIndex(index)}
-            className={cn(
-              "h-full w-full cursor-zoom-in rounded-xl border border-white/10 object-cover select-none",
-              imageClassName,
-              image.className,
-            )}
-          />
+            className="flex items-center justify-center"
+          >
+            <img
+              src={image.src}
+              alt={image.alt ?? `Preview ${index + 1}`}
+              draggable={false}
+              onDragStart={(e) => e.preventDefault()}
+              onClick={() => setOpenIndex(index)}
+              className={cn(
+                "block max-h-[320px] w-auto max-w-full cursor-zoom-in rounded-xl bg-black/20 p-2 object-contain select-none transition-transform duration-200 hover:scale-[1.02]",
+                imageClassName,
+                image.className,
+              )}
+            />
+          </div>
         ))}
       </div>
 
@@ -161,7 +167,6 @@ export function ZoomableGallery({
               <button
                 type="button"
                 onClick={(e) => {
-                  e.stopPropagation();
                   setOpenIndex((prev) =>
                     prev === null ? 0 : (prev + 1) % images.length,
                   );

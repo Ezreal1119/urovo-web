@@ -14,7 +14,8 @@ import {
 import Divider from "@/components/ui/divider";
 import { cn } from "@/lib/utils";
 import { Settings } from "lucide-react";
-import { ZoomableImage } from "./ZoomableImage";
+import { ZoomableGallery, ZoomableImage } from "./ZoomableImage";
+import ExternalLink from "@/components/ui/ExternalLink";
 
 export default function Page() {
   return (
@@ -97,11 +98,13 @@ export default function Page() {
             <div className="space-y-6">
               <StepBlock
                 title="Step 1: Open Offline Log Tool"
-                image={{
-                  src: "/log_capture/factory_menu.png",
-                  className: "h-56",
-                  imgClassName: "object-contain",
-                }}
+                images={[
+                  {
+                    src: "/log_capture/settings_factory_menu.png",
+                    alt: "Settings Factory Menu",
+                  },
+                  { src: "/log_capture/factory_menu.png", alt: "Factory menu" },
+                ]}
               >
                 <ul className="space-y-2">
                   <li>
@@ -123,7 +126,19 @@ export default function Page() {
                 </ul>
               </StepBlock>
 
-              <StepBlock title="Step 2: Configure Logs">
+              <StepBlock
+                title="Step 2: Configure Logs"
+                images={[
+                  {
+                    src: "/log_capture/mtk_debuglogger.png",
+                    alt: "MTK Debugger",
+                  },
+                  {
+                    src: "/log_capture/mtk_debuglogger_settings.png",
+                    alt: "MTK Debugger Settings",
+                  },
+                ]}
+              >
                 {" "}
                 <ul className="space-y-2">
                   <li>
@@ -136,7 +151,15 @@ export default function Page() {
                 </ul>
               </StepBlock>
 
-              <StepBlock title="Step 3: Start Recording">
+              <StepBlock
+                title="Step 3: Start Recording"
+                images={[
+                  {
+                    src: "/log_capture/mtk_debuglogger_start_record.png",
+                    alt: "MTK Debugger",
+                  },
+                ]}
+              >
                 {
                   <ul className="space-y-2">
                     <li>• Return to main page</li>
@@ -147,7 +170,7 @@ export default function Page() {
                 }
               </StepBlock>
 
-              <StepBlock title="Step 4: Reproduce Issue">
+              <StepBlock title="Step 4: Reproduce Issue" variant="highlight">
                 {" "}
                 <ul className="space-y-2">
                   <li>• Perform the problem scenario</li>
@@ -155,7 +178,15 @@ export default function Page() {
                 </ul>
               </StepBlock>
 
-              <StepBlock title="Step 5: Stop Recording">
+              <StepBlock
+                title="Step 5: Stop Recording"
+                images={[
+                  {
+                    src: "/log_capture/mtk_debuglogger_start_record.png",
+                    alt: "MTK Debugger",
+                  },
+                ]}
+              >
                 {
                   <ul className="space-y-2">
                     <li>
@@ -165,17 +196,28 @@ export default function Page() {
                 }
               </StepBlock>
 
-              <StepBlock title="Step 6: Export Logs">
+              <StepBlock
+                title="Step 6: Export Logs"
+                images={[
+                  {
+                    src: "/log_capture/debug_log_file.png",
+                    alt: "Debug Log File",
+                  },
+                ]}
+              >
                 {
                   <ul className="space-y-2">
-                    <li>• Connect device to PC</li>
                     <li>
-                      • Locate:
+                      • Connect device to PC (Make sure to switch to "File
+                      Transfer" Mode)
+                    </li>
+                    <li>
+                      • Location of Log Files:
                       <div className="mt-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 font-mono text-sm text-foreground/85">
                         debuglogger
                       </div>
                     </li>
-                    <li>• Send the folder to the analysis team</li>
+                    <li>• Send the whole Folder to the Urovo Tech team</li>
                   </ul>
                 }
               </StepBlock>
@@ -185,7 +227,7 @@ export default function Page() {
           <PageSection id="modem-log" className="scroll-mt-28">
             <PageSectionHeader>
               <div className="space-y-2">
-                <PageSectionTitle>
+                <PageSectionTitle className="font-bold">
                   Part 2: Network / Modem Logs (Optional)
                 </PageSectionTitle>
                 <PageSectionDescription>
@@ -204,7 +246,15 @@ export default function Page() {
             </div>
 
             <div className="space-y-6">
-              <StepBlock title="Step 1: Enable Developer Mode">
+              <StepBlock
+                title="Step 1: Enable Developer Mode [Note: Only applicable to PDA, POS no need]"
+                images={[
+                  {
+                    src: "/log_capture/build_number.png",
+                    alt: "Build Number",
+                  },
+                ]}
+              >
                 {
                   <ul className="space-y-2">
                     <li>
@@ -214,7 +264,8 @@ export default function Page() {
                       </div>
                     </li>
                     <li>
-                      • Tap multiple times until developer mode is enabled
+                      • Tap <strong>MULTIPLE</strong> times until developer mode
+                      is enabled
                     </li>
                     <li>
                       • You should see:
@@ -226,7 +277,19 @@ export default function Page() {
                 }
               </StepBlock>
 
-              <StepBlock title="Step 2: Enable USB Debugging">
+              <StepBlock
+                title="Step 2: Enable USB Debugging [Note: Only applicable to PDA, POS no need]"
+                images={[
+                  {
+                    src: "/log_capture/developer_options.png",
+                    alt: "Developer Options",
+                  },
+                  {
+                    src: "/log_capture/usb_debugging.png",
+                    alt: "USB Debugging",
+                  },
+                ]}
+              >
                 {
                   <ul className="space-y-2">
                     <li>
@@ -242,11 +305,57 @@ export default function Page() {
                 }
               </StepBlock>
 
-              <StepBlock title="Step 3: Connect to PC">
+              <StepBlock
+                title="Step 3: Connect to PC"
+                images={[
+                  {
+                    src: "/log_capture/adb_powershell.png",
+                    alt: "ADB Powershell",
+                  },
+                  {
+                    src: "/log_capture/adb_version.png",
+                    alt: "ADB Version",
+                  },
+                ]}
+              >
                 {
                   <ul className="space-y-2">
                     <li>• Connect device via USB</li>
-                    <li>• Make sure ADB environment is installed on the PC</li>
+                    <li>
+                      • Make sure ADB environment is installed on the PC
+                      <ul className="pl-6 space-y-1 mt-1">
+                        <li>
+                          ◦ Download{" "}
+                          <ExternalLink href="https://developer.android.com/tools/releases/platform-tools">
+                            <strong>ADB</strong>{" "}
+                          </ExternalLink>
+                          if not installed
+                        </li>
+                        <li>◦ Unzip the file, and enter the that folder</li>
+                        <li>
+                          ◦ Type <strong>"powershell"</strong> in the file path
+                          section, then press <strong>"Enter"</strong> button on
+                          the keyboard. The Powershell will pop up.
+                        </li>
+                        <li>
+                          ◦ Verify installation with{" "}
+                          <strong>".\adb --version"</strong>
+                        </li>
+                        <li>
+                          ◦ Then you can use ADB by sending command with prefix
+                          of
+                          <strong>".\adb"</strong>
+                        </li>
+                        <li>
+                          ◦ For example: use <strong>".\adb devices"</strong> to
+                          check if any Android device is connected
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      Note: if you prefer to configure the System Environment,
+                      click here.
+                    </li>
                   </ul>
                 }
               </StepBlock>
@@ -275,40 +384,83 @@ export default function Page() {
 function StepBlock({
   title,
   children,
-  image,
+  images,
+  variant = "default",
 }: {
   title: string;
   children: React.ReactNode;
-  image?: {
+  images?: {
     src: string;
+    alt?: string;
     className?: string;
-    imgClassName?: string;
-  };
+  }[];
+  variant?: "default" | "highlight";
 }) {
+  const hasImages = !!images && images.length > 0;
+  const isSingleImage = images?.length === 1;
+
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-      <h3 className="text-base font-medium text-foreground">{title}</h3>
+    <div
+      className={cn(
+        "relative rounded-2xl border bg-white/5 p-5",
+        variant === "highlight"
+          ? "border-blue-500/30 bg-blue-500/8 shadow-[0_0_0_1px_rgba(59,130,246,0.08)]"
+          : "border-white/10",
+      )}
+    >
+      {variant === "highlight" && (
+        <div className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-blue-400/80" />
+      )}
 
-      <div className="mt-4 grid gap-6 md:grid-cols-2">
-        {/* Left */}
-        <div className="text-sm leading-7 text-foreground/70">{children}</div>
+      <h3 className="flex items-center gap-2 text-base font-bold text-foreground">
+        {title}
+        {variant === "highlight" && (
+          <span className="rounded-md bg-blue-500/15 px-2 py-0.5 text-[11px] font-semibold tracking-wide text-blue-300">
+            IMPORTANT
+          </span>
+        )}
+      </h3>
 
-        {/* Right */}
-        {image && (
-          <div
-            className={cn(
-              "rounded-xl border border-white/10 overflow-hidden",
-              image.className,
-            )}
-          >
-            <ZoomableImage
-              src={image.src}
-              alt={title}
-              className={cn("w-full h-full object-cover", image.imgClassName)}
+      {!hasImages && (
+        <div className="mt-4 text-sm leading-7 text-foreground/70">
+          {children}
+        </div>
+      )}
+
+      {hasImages && isSingleImage && (
+        <div className="mt-4 grid gap-6 md:grid-cols-2 md:items-start">
+          <div className="text-sm leading-7 text-foreground/70">{children}</div>
+
+          <div className="justify-self-center">
+            <div className="rounded-xl border border-white/10 bg-black/10 p-3">
+              <div className="overflow-hidden rounded-lg border border-white/10 bg-black/20">
+                <ZoomableImage
+                  src={images[0].src}
+                  alt={images[0].alt ?? title}
+                  className={cn(
+                    "max-h-70 max-w-full w-auto object-contain",
+                    images[0].className,
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {hasImages && !isSingleImage && (
+        <div className="mt-4 grid gap-6 md:grid-cols-2 md:items-start">
+          <div className="text-sm leading-7 text-foreground/70">{children}</div>
+
+          <div className="rounded-xl border border-white/10 bg-black/10 p-4">
+            <ZoomableGallery
+              images={images}
+              gridClassName="grid-cols-1 sm:grid-cols-2 gap-4"
+              imageClassName="h-[260px] w-full rounded-xl border border-white/10 bg-black/20 p-2 object-contain"
             />
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

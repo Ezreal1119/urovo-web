@@ -12,6 +12,7 @@ import "./globals.css";
 import { AppNavbar } from "@/components/layout/Navbar";
 import { PageShell } from "@/components/layout/PageContainer";
 import AppSidebar from "@/components/layout/SideBar";
+import { AiChatDialog } from "./ai/AiChatDialog";
 const inter = Inter({
   subsets: ["latin"],
 });
@@ -39,6 +40,8 @@ export default function RootLayout({
               <main className="min-h-0 flex-1">{children}</main>
             </div>
           </div>
+
+          <AiChatDialog />
         </PageShell>
       </body>
     </html>

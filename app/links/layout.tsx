@@ -14,6 +14,7 @@ export default function Layout({
           { label: "SDK", href: "/links#sdk" },
           { label: "Windows Tools", href: "/links#tools" },
           { label: "Drivers", href: "/links#drivers" },
+          { label: "Others", href: "/links#others" },
         ]}
       />
 
