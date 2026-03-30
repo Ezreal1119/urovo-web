@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Inter,
+  Playfair_Display,
+  Space_Grotesk,
+  Roboto,
+} from "next/font/google";
 import "./globals.css";
 
 import { AppNavbar } from "@/components/layout/Navbar";
 import { PageShell } from "@/components/layout/PageContainer";
 import AppSidebar from "@/components/layout/SideBar";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
 });
 
@@ -30,17 +30,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
-    >
+    <html lang="en" className={`${inter.className} antialiased dark`}>
       <body className="h-full">
-        <PageShell className="h-screen">
-          <div className="grid h-full grid-rows-[auto_1fr]">
+        <PageShell>
+          <div className="grid min-h-screen grid-rows-[auto_1fr]">
             <AppNavbar />
-
-            <div className="flex min-h-0">
-              <AppSidebar />
+            <div className="flex min-h-0 flex-1 pt-16">
               <main className="min-h-0 flex-1">{children}</main>
             </div>
           </div>

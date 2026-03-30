@@ -13,35 +13,86 @@ import {
   CardTitle,
 } from "../ui/card";
 
-function PageShell({ className, ...props }: React.ComponentProps<"div">) {
-  const ref = React.useRef<HTMLDivElement>(null);
+function PageShell({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"div">) {
+  const targetRef = React.useRef({ x: 0, y: 0 });
+  const currentRef = React.useRef({ x: 0, y: 0 });
+  const rafRef = React.useRef<number | null>(null);
+
+  React.useEffect(() => {
+    function animate() {
+      const target = targetRef.current;
+      const current = currentRef.current;
+
+      current.x += (target.x - current.x) * 0.08;
+      current.y += (target.y - current.y) * 0.08;
+
+      document.documentElement.style.setProperty("--mouse-x", `${current.x}px`);
+      document.documentElement.style.setProperty("--mouse-y", `${current.y}px`);
+
+      rafRef.current = requestAnimationFrame(animate);
+    }
+
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, []);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const el = ref.current;
-    if (!el) return;
-
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    el.style.setProperty("--mouse-x", `${x}px`);
-    el.style.setProperty("--mouse-y", `${y}px`);
+    targetRef.current.x = e.clientX;
+    targetRef.current.y = e.clientY;
   }
 
   return (
     <div
-      ref={ref}
       data-slot="page-shell"
       onMouseMove={handleMouseMove}
-      className={cn(
-        "min-h-screen bg-background text-foreground",
-        "bg-[radial-gradient(1200px_600px_at_50%_-10%,rgba(168,85,247,0.12),transparent_55%),radial-gradient(900px_500px_at_80%_0%,rgba(59,130,246,0.10),transparent_50%),radial-gradient(420px_circle_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(236,72,153,0.10),transparent_55%)]",
-        className,
-      )}
+      className={cn("relative min-h-screen text-foreground", className)}
       {...props}
-    />
+    >
+      <div className="pointer-events-none fixed inset-0 -z-20 bg-background" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(1200px_600px_at_50%_-10%,rgba(168,85,247,0.06),transparent_55%),radial-gradient(900px_500px_at_80%_0%,rgba(59,130,246,0.05),transparent_50%),radial-gradient(420px_circle_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(236,72,153,0.05),transparent_55%)]"
+      />
+      {children}
+    </div>
   );
 }
+
+// function PageShell({
+//   className,
+//   children,
+//   ...props
+// }: React.ComponentProps<"div">) {
+//   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+//     document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
+//     document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
+//   }
+
+//   return (
+//     <div
+//       data-slot="page-shell"
+//       onMouseMove={handleMouseMove}
+//       className={cn("relative min-h-screen text-foreground", className)}
+//       {...props}
+//     >
+//       <div className="pointer-events-none fixed inset-0 -z-20 bg-background" />
+//       <div
+//         aria-hidden="true"
+//         className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(1200px_600px_at_50%_-10%,rgba(168,85,247,0.06),transparent_55%),radial-gradient(900px_500px_at_80%_0%,rgba(59,130,246,0.05),transparent_50%),radial-gradient(420px_circle_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(236,72,153,0.05),transparent_55%)]"
+//       />
+//       {children}
+//     </div>
+//   );
+// }
 
 function PageContainer({ className, ...props }: React.ComponentProps<"main">) {
   return (
@@ -103,7 +154,8 @@ function PageTitle({ className, ...props }: React.ComponentProps<"h1">) {
     <h1
       data-slot="page-title"
       className={cn(
-        "text-2xl font-medium tracking-tight text-foreground md:text-3xl",
+        "text-3xl md:text-4xl font-semibold tracking-tight",
+        "bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent",
         className,
       )}
       {...props}
