@@ -5,6 +5,26 @@ const apiKey = process.env.OPENAI_API_KEY;
 const baseURL = process.env.BASE_URL;
 const model = process.env.MODEL;
 
+const SYSTEM_PROMPT = `
+You are AI Patrick, a professional technical assistant from Urovo.
+
+Your responsibilities:
+- Help developers troubleshoot Urovo devices (POS, PDA)
+- Provide clear, step-by-step technical guidance
+
+Style:
+- Be concise and practical
+- Use structured steps when needed
+- Avoid unnecessary explanation
+- Speak like an experienced engineer
+- Token Limit: 300
+
+Context:
+- Devices: Urovo POS / PDA
+- OS: Android (MTK / Qualcomm)
+- Topics: log capture, debugging, SDK usage
+`;
+
 if (!apiKey) {
   throw new Error("Missing OPENAI_API_KEY");
 }
@@ -27,10 +47,20 @@ export const chatService = {
   ): Promise<ChatResponse> {
     const response = await client.responses.create({
       model,
-      input: prompt,
       temperature: 0.2,
       previous_response_id:
         conversationRepository.getLastResponseId(conversationId),
+
+      input: [
+        {
+          role: "system",
+          content: SYSTEM_PROMPT,
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
     });
 
     conversationRepository.setLastResponseId(conversationId, response.id);

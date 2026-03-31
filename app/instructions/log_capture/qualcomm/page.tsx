@@ -14,13 +14,11 @@ import {
 import Divider from "@/components/ui/divider";
 import { cn } from "@/lib/utils";
 import { Play, Settings, Square } from "lucide-react";
-import {
-  ZoomableGallery,
-  ZoomableImage,
-} from "../../../../components/ui/ZoomableImage";
+
 import ExternalLink from "@/components/ui/ExternalLink";
 import { CodeInline } from "@/components/ui/code";
 import { AiLink } from "@/components/ui/AiLink";
+import { ZoomableGallery, ZoomableImage } from "@/components/ui/ZoomableImage";
 
 export default function Page() {
   return (
@@ -59,7 +57,7 @@ export default function Page() {
           <PageSection id="mtk-log" className="scroll-mt-28">
             <PageSectionHeader>
               <div className="space-y-2">
-                <PageSectionTitle className="font-bold text-3xl">
+                <PageSectionTitle className="font-bold">
                   Part 1: Record Logs (MTK Devices)
                 </PageSectionTitle>
                 <PageSectionDescription>
@@ -211,7 +209,7 @@ export default function Page() {
           <PageSection id="modem-log" className="scroll-mt-28">
             <PageSectionHeader>
               <div className="space-y-2">
-                <PageSectionTitle className="font-bold text-3xl">
+                <PageSectionTitle className="font-bold">
                   Part 2: Network / Modem Logs (Optional)
                 </PageSectionTitle>
                 <PageSectionDescription>
@@ -339,10 +337,7 @@ export default function Page() {
                     </li>
                     <li>
                       Note: if you prefer to configure the System Environment,{" "}
-                      <AiLink
-                        prompt="How to configure ADB system environment on Windows?"
-                        className="font-bold"
-                      >
+                      <AiLink prompt="How to configure ADB system environment on Windows?">
                         Click here
                       </AiLink>
                     </li>

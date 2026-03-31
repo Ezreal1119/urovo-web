@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
 
 type ChatMessage = {
   id: string;
@@ -31,12 +32,12 @@ export function AiChatDialog() {
     {
       id: "welcome",
       role: "assistant",
-      content:
-        "Hi, This is AI Patrick from Urovo. How can I help you today?\n[Hey, SpongeBob! Let's go catch jellyfish!]",
+      content: "Hi, This is AI Patrick from Urovo. How can I help you today?",
     },
   ]);
   const conversationId = React.useRef(crypto.randomUUID());
   const messagesEndRef = React.useRef<HTMLDivElement | null>(null);
+  const suppressAutoFocusRef = React.useRef(false);
   React.useEffect(() => {
     const id = requestAnimationFrame(() => {
       messagesEndRef.current?.scrollIntoView({
@@ -59,6 +60,85 @@ export function AiChatDialog() {
       document.body.style.overflow = "";
     };
   }, [open]);
+  React.useEffect(() => {
+    function handleOpenAI(e: Event) {
+      const customEvent = e as CustomEvent<{ prompt?: string }>;
+      const prompt = customEvent.detail?.prompt;
+
+      if (!prompt) return;
+
+      suppressAutoFocusRef.current = true;
+
+      setInput("");
+      setOpen(true);
+
+      requestAnimationFrame(() => {
+        void handleSendWithPrompt(prompt);
+      });
+    }
+
+    window.addEventListener("open-ai-chat", handleOpenAI);
+
+    return () => {
+      window.removeEventListener("open-ai-chat", handleOpenAI);
+    };
+  }, []);
+
+  async function handleSendWithPrompt(prompt: string) {
+    const trimmed = prompt.trim();
+    if (!trimmed || isSending) return;
+
+    setInput("");
+
+    const userMessage: ChatMessage = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: trimmed,
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setIsSending(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: trimmed,
+          conversationId: conversationId.current,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
+
+      const data: ChatResponse = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: data.id,
+          role: "assistant",
+          content: data.message,
+        },
+      ]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: "Sorry, something went wrong. Please try again.",
+        },
+      ]);
+    } finally {
+      setIsSending(false);
+      setInput("");
+    }
+  }
 
   async function handleSend() {
     const trimmed = input.trim();
@@ -158,6 +238,12 @@ export function AiChatDialog() {
       </DialogTrigger>
 
       <DialogContent
+        onOpenAutoFocus={(e) => {
+          if (suppressAutoFocusRef.current) {
+            e.preventDefault();
+            suppressAutoFocusRef.current = false;
+          }
+        }}
         className="
          isolate transform-gpu
           w-[92vw]
@@ -206,7 +292,9 @@ export function AiChatDialog() {
 
                   <div className="rounded-2xl border border-white/6 bg-white/[0.04] px-4 py-3 text-sm leading-7 text-foreground/78">
                     <div className="prose prose-invert prose-sm max-w-none prose-p:my-2 prose-headings:my-3 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-pre:my-3 prose-code:text-foreground">
-                      <ReactMarkdown>{message.content}</ReactMarkdown>
+                      <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+                        {message.content}
+                      </ReactMarkdown>
                     </div>
                   </div>
                 </div>
@@ -216,7 +304,9 @@ export function AiChatDialog() {
                   className="ml-auto max-w-[72%] rounded-2xl border border-white/8 bg-white/[0.08] px-4 py-3 text-sm leading-7 text-foreground"
                 >
                   <div className="prose prose-invert prose-sm max-w-none prose-p:my-2 prose-headings:my-3 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-pre:my-3 prose-code:text-foreground">
-                    <ReactMarkdown>{message.content}</ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+                      {message.content}
+                    </ReactMarkdown>
                   </div>
                 </div>
               ),
@@ -256,7 +346,7 @@ export function AiChatDialog() {
                   onClick={() => void handleSend()}
                   disabled={!input.trim() || isSending}
                   className="
-                    h-11 rounded-xl px-5
+                    h-11 rounded-xl px-5 
                     bg-pink-500/90 text-white
                     shadow-[0_8px_24px_rgba(236,72,153,0.22)]
                     transition-all duration-200

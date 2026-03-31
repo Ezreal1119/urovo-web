@@ -15,6 +15,7 @@ import {
   PageSectionDescription,
 } from "@/components/layout/PageContainer";
 import { Playfair_Display } from "next/font/google";
+import Divider from "@/components/ui/divider";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -38,6 +39,8 @@ export default function LinksPage() {
             </div>
           </PageHeaderContent>
         </PageHeader>
+
+        <Divider />
 
         <PageMain>
           <PageStack>

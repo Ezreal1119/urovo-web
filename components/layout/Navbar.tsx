@@ -351,6 +351,10 @@ function AppNavbar() {
               </DropdownMenuItem>
             </NavbarDropdownLink>
 
+            <NavbarLink href="/ums" active={pathname.startsWith("/ums")}>
+              UMS
+            </NavbarLink>
+
             <NavbarLink href="/links" active={pathname.startsWith("/links")}>
               Links
             </NavbarLink>
