@@ -17,6 +17,7 @@ import {
 import { Playfair_Display } from "next/font/google";
 import Divider from "@/components/ui/divider";
 import { Database, Shield, Smartphone, Wrench } from "lucide-react";
+import { AiLink } from "@/components/ui/AiLink";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -100,15 +101,12 @@ export default function UmsPage() {
                   description="Perform troubleshooting, maintenance, and issue diagnosis without on-site handling."
                 />
               </div>
-              <div className="mt-6">
-                <UTMSHighlightCard />
-              </div>
             </PageSection>
 
             <section className="space-y-3 pb-5">
               <div className="space-y-2">
                 <PageSectionTitle className="font-bold">
-                  Product Overview Video
+                  UMS Overview Video
                 </PageSectionTitle>
                 <PageSectionDescription>
                   A quick visual introduction to the UMS platform.
@@ -126,14 +124,292 @@ export default function UmsPage() {
                   />
                 </div>
               </div>
+              <p className="text-xs text-foreground/40">
+                Note: You can enable subtitles by going to "Settings" →
+                "Captions" → "Auto-translate", then selecting your preferred
+                language.
+              </p>
+            </section>
+
+            <PageSection>
+              <PageSectionHeader>
+                <div className="space-y-2">
+                  <PageSectionTitle className="font-bold">
+                    UMS Related Links
+                  </PageSectionTitle>
+                </div>
+              </PageSectionHeader>
+
+              <div className="flex flex-col divide-y divide-white/5">
+                <a
+                  href="https://uhomeov.urovo.com/customerui/login"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UMS official website</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://mega.nz/file/P5B0TBQS#1IYvz9dMNetn1q0g1H5z3i3sOWDW84nwGnKngHrcOZU"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UMS User Manual</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://mega.nz/folder/XgR02JbI#KsVPAFKPHe3R0EsM09g7Kw"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UMS Agent & UMS App Market</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+              </div>
+            </PageSection>
+
+            <div className="mt-6">
+              <UTMSHighlightCard />
+            </div>
+
+            <PageSection>
+              <PageSectionHeader>
+                <div className="space-y-2">
+                  <PageSectionTitle className="font-bold">
+                    UTMS Related Links
+                  </PageSectionTitle>
+                </div>
+              </PageSectionHeader>
+
+              <div className="flex flex-col divide-y divide-white/5">
+                <a
+                  href="http://39.101.193.145:9898/customerui/login"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UTMS Demo website</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://mega.nz/file/PhQiBASL#fFhCHk0eFoQUjzD87a2g6buinm1CxuxlOerGPz7k6lg"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UTMS User Manual</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://mega.nz/folder/3loFxJZb#tt1ArBCX6w4AmPsSkpN3dw"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UTMS Agent & UTMS App Market</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+              </div>
+            </PageSection>
+
+            <Divider />
+
+            <section id="group" className="scroll-mt-20">
+              <div className="space-y-2">
+                <PageSectionTitle className={`text-5xl ${playfair.className}`}>
+                  1. Group Management
+                </PageSectionTitle>
+
+                <PageSectionDescription>
+                  Organize devices with flexible grouping, binding, and
+                  deployment control
+                </PageSectionDescription>
+
+                <p className="max-w-3xl pt-2 text-sm leading-7 text-foreground/65 md:text-base">
+                  Group Management is the foundation of device organization in
+                  UMS. It allows enterprises to structure terminals based on
+                  business hierarchy, manage device ownership, and apply
+                  configurations or deployments in a controlled and scalable
+                  way.
+                </p>
+              </div>
+
+              <section className="space-y-3 pb-5">
+                <div className="mt-6 w-full overflow-hidden rounded-2xl border border-white/10">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      src="https://www.youtube.com/embed/NibOV3mtuZ8"
+                      title="UMS Group Management Tutorial"
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-foreground/40">
+                  Note: You can enable subtitles by going to "Settings" →
+                  "Captions" → "Auto-translate", then selecting your preferred
+                  language.
+                </p>
+              </section>
+
+              <div className="mt-6 space-y-6">
+                <AppStoreBlock
+                  title="1.1 Group Structure"
+                  description="Build hierarchical groups to organize devices."
+                >
+                  <div className="space-y-3 text-sm leading-7 text-foreground/72">
+                    <p>
+                      The left panel displays the full group structure,
+                      including main groups and sub-groups.
+                    </p>
+
+                    <p>
+                      You can click any group to view its details, such as
+                      device count, bound terminals, published applications, and
+                      deployment rules.
+                    </p>
+
+                    <p>
+                      Groups can be created manually using the plus icon, or
+                      imported in batch using a predefined Excel template.
+                    </p>
+                  </div>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="1.2 Device Binding"
+                  description="Bind devices to groups in batch or manually."
+                >
+                  <div className="space-y-3 text-sm leading-7 text-foreground/72">
+                    <p>
+                      Devices can be assigned to groups either in batch or
+                      individually.
+                    </p>
+
+                    <ul className="space-y-2 pl-5 text-foreground/70">
+                      <li>
+                        <strong>Batch Import</strong> allows you to upload an
+                        Excel file containing device SNs and group names, which
+                        is also useful for large-scale reassignment.
+                      </li>
+                      <li>
+                        <strong>Manual Binding</strong> lets you add devices one
+                        by one by entering the terminal serial number directly.
+                      </li>
+                    </ul>
+
+                    <p>
+                      These methods provide flexibility for both large
+                      deployments and precise control.
+                    </p>
+                  </div>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="1.3 Deployment by Group"
+                  description="Apply configurations and execute operations based on group scope."
+                >
+                  <div className="space-y-3 text-sm leading-7 text-foreground/72">
+                    <p>
+                      Once groups are defined, all operations in UMS can be
+                      executed at the group level.
+                    </p>
+
+                    <p>
+                      For example, application deployment can be pushed to
+                      selected groups only, ensuring targeted rollout while
+                      keeping other devices unaffected.
+                    </p>
+
+                    <p>
+                      This group-based control model is essential for
+                      large-scale device management.
+                    </p>
+                  </div>
+                </AppStoreBlock>
+              </div>
             </section>
 
             <Divider />
 
-            <section>
+            <section id="app" className="scroll-mt-20">
               <div className="space-y-2">
                 <PageSectionTitle className={`text-5xl ${playfair.className}`}>
-                  1. App Store
+                  2. App Management
                 </PageSectionTitle>
 
                 <PageSectionDescription>
@@ -150,9 +426,28 @@ export default function UmsPage() {
                 </p>
               </div>
 
-              <div className="mt-10 space-y-6">
+              <section className="mt-6 space-y-3 pb-5">
+                <div className="w-full overflow-hidden rounded-2xl border border-white/10">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      src="https://www.youtube.com/embed/xLEUUJlfJdw"
+                      title="UMS Overview Video"
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-foreground/40">
+                  Note: You can enable subtitles by going to "Settings" →
+                  "Captions" → "Auto-translate", then selecting your preferred
+                  language.
+                </p>
+              </section>
+
+              <div className="mt-6 space-y-6">
                 <AppStoreBlock
-                  title="1.1 App Upload"
+                  title="2.1 App Upload"
                   description="Upload applications and manage different release types."
                 >
                   <div className="space-y-3 text-sm leading-7 text-foreground/72">
@@ -189,7 +484,7 @@ export default function UmsPage() {
                 </AppStoreBlock>
 
                 <AppStoreBlock
-                  title="1.2 App List"
+                  title="2.2 App List"
                   description="Manage published applications and App Market visibility."
                 >
                   <div className="space-y-3 text-sm leading-7 text-foreground/72">
@@ -213,7 +508,7 @@ export default function UmsPage() {
                 </AppStoreBlock>
 
                 <AppStoreBlock
-                  title="1.3 Application Deployment"
+                  title="2.3 Application Deployment"
                   description="Deploy published applications remotely to device groups."
                 >
                   <div className="space-y-3 text-sm leading-7 text-foreground/72">
@@ -235,6 +530,49 @@ export default function UmsPage() {
                       and remote uninstall, helping enterprises maintain
                       consistency and security across terminals.
                     </p>
+                  </div>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="2.4 Other features"
+                  description="Set App Whitelist or uninstall an App remotely for better security."
+                >
+                  <div className="space-y-3 text-sm leading-7 text-foreground/72">
+                    <li>
+                      Set an App Whitelist in "Application Management" of
+                      "Remote Management" section
+                      <ul className="pl-3 space-y-1 mt-1">
+                        <li>
+                          ◦ This is only effective in PDA product. POS products
+                          use signature mechanism to{" "}
+                          <AiLink
+                            prompt="What's Application signture in Android POS product? Can an App be installed without the specified signature as per PCI?"
+                            className="font-bold"
+                          >
+                            achieve this.
+                          </AiLink>
+                        </li>
+                        <li>
+                          ◦ After the application whitelist is enabled,
+                          non-whitelisted applications will be uninstalled after
+                          reboot! Please operate carefully!
+                        </li>
+                        <li>
+                          ◦ If you manually install a new application, please
+                          update the application white list, otherwise the
+                          application will fail to install.
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      Uninstall an App remotely in "Remote Management" section
+                      <ul className="pl-3 space-y-1 mt-1">
+                        <li>
+                          ◦ You can perform this for a single terminal or do it
+                          in groups.
+                        </li>
+                      </ul>
+                    </li>
                   </div>
                 </AppStoreBlock>
               </div>

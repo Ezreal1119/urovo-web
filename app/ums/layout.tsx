@@ -10,9 +10,9 @@ export default function Layout({
       <FixedSidebar
         title="Navigate to"
         items={[
-          { label: "User Manual", href: "/links#manual" },
-          { label: "SDK", href: "/links#sdk" },
-          { label: "Windows Tools", href: "/links#tools" },
+          { label: "User Intro", href: "/ums#Intro" },
+          { label: "1. Group Management", href: "/ums#group" },
+          { label: "2. App Management", href: "/ums#app" },
           { label: "Drivers", href: "/links#drivers" },
           { label: "Others", href: "/links#others" },
         ]}

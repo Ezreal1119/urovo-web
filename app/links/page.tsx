@@ -24,12 +24,12 @@ const playfair = Playfair_Display({
 export default function LinksPage() {
   return (
     <PageShell className="h-screen">
-      <PageContainer>
+      <PageContainer className="gap-0">
         <PageHeader className="border-0 bg-transparent shadow-none px-0 py-0">
           <PageHeaderContent className="flex flex-col items-start">
             <div className="space-y-4">
               <PageTitle className="text-4xl md:text-5xl text-white">
-                Links
+                Utility Links
               </PageTitle>
 
               <PageDescription className="max-w-3xl text-base leading-8 text-foreground/60">
@@ -42,7 +42,7 @@ export default function LinksPage() {
 
         <Divider />
 
-        <PageMain>
+        <PageMain className="mt-8">
           <PageStack>
             <PageSection id="manual" className="scroll-mt-20">
               <PageSectionHeader>

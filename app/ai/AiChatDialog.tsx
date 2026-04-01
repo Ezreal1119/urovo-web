@@ -35,7 +35,19 @@ export function AiChatDialog() {
       content: "Hi, This is AI Patrick from Urovo. How can I help you today?",
     },
   ]);
-  const conversationId = React.useRef(crypto.randomUUID());
+  const generateUUID = () => {
+    if (typeof crypto !== "undefined" && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+
+    return "xxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      const v = c === "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  };
+
+  const conversationId = React.useRef(generateUUID());
   const messagesEndRef = React.useRef<HTMLDivElement | null>(null);
   const suppressAutoFocusRef = React.useRef(false);
   React.useEffect(() => {
