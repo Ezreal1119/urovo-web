@@ -206,85 +206,6 @@ export default function UmsPage() {
               </div>
             </PageSection>
 
-            <div className="mt-6">
-              <UTMSHighlightCard />
-            </div>
-
-            <PageSection>
-              <PageSectionHeader>
-                <div className="space-y-2">
-                  <PageSectionTitle className="font-bold">
-                    UTMS Related Links
-                  </PageSectionTitle>
-                </div>
-              </PageSectionHeader>
-
-              <div className="flex flex-col divide-y divide-white/5">
-                <a
-                  href="http://39.101.193.145:9898/customerui/login"
-                  target="_blank"
-                  className="
-                    group flex items-center justify-between
-                    py-4
-                    text-base font-medium
-                    text-foreground/80
-
-                    transition-all duration-200
-                    hover:text-white
-                    hover:bg-white/[0.03]
-                    px-2 -mx-2 rounded-xl
-                  "
-                >
-                  <span>UTMS Demo website</span>
-                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
-                    →
-                  </span>
-                </a>
-
-                <a
-                  href="https://mega.nz/file/PhQiBASL#fFhCHk0eFoQUjzD87a2g6buinm1CxuxlOerGPz7k6lg"
-                  target="_blank"
-                  className="
-                    group flex items-center justify-between
-                    py-4
-                    text-base font-medium
-                    text-foreground/80
-
-                    transition-all duration-200
-                    hover:text-white
-                    hover:bg-white/[0.03]
-                    px-2 -mx-2 rounded-xl
-                  "
-                >
-                  <span>UTMS User Manual</span>
-                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
-                    →
-                  </span>
-                </a>
-
-                <a
-                  href="https://mega.nz/folder/3loFxJZb#tt1ArBCX6w4AmPsSkpN3dw"
-                  target="_blank"
-                  className="
-                    group flex items-center justify-between
-                    py-4
-                    text-base font-medium
-                    text-foreground/80
-
-                    transition-all duration-200
-                    hover:text-white
-                    hover:bg-white/[0.03]
-                    px-2 -mx-2 rounded-xl
-                  "
-                >
-                  <span>UTMS Agent & UTMS App Market</span>
-                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
-                    →
-                  </span>
-                </a>
-              </div>
-            </PageSection>
-
             <Divider />
 
             <section id="group" className="scroll-mt-20">
@@ -577,6 +498,344 @@ export default function UmsPage() {
                 </AppStoreBlock>
               </div>
             </section>
+
+            <Divider />
+
+            <section id="remote" className="scroll-mt-20">
+              <div className="space-y-2">
+                <PageSectionTitle className={`text-5xl ${playfair.className}`}>
+                  3. Remote Management
+                </PageSectionTitle>
+
+                <PageSectionDescription>
+                  Monitor devices, execute operations remotely, and deploy
+                  configurations at scale
+                </PageSectionDescription>
+
+                <p className="max-w-3xl pt-2 text-sm leading-7 text-foreground/65 md:text-base">
+                  Remote Management is the operational core of UMS. It provides
+                  real-time device visibility, batch operations, remote file
+                  extraction, and large-scale configuration deployment for
+                  enterprise terminals.
+                </p>
+              </div>
+
+              <section className="space-y-3 pb-5">
+                <div className="mt-6 w-full overflow-hidden rounded-2xl border border-white/10">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      src="https://www.youtube.com/embed/UtHbkkDFMsk"
+                      title="UMS Remote Management Tutorial"
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-foreground/40">
+                  Note: You can enable subtitles by going to "Settings" →
+                  "Captions" → "Auto-translate", then selecting your preferred
+                  language.
+                </p>
+              </section>
+
+              <div className="mt-10 space-y-6">
+                <AppStoreBlock
+                  title="3.1 Device Monitoring"
+                  description="View terminal status and key device information at a glance."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>
+                      • Real-time online status, network status, and battery
+                      level
+                    </li>
+                    <li>• Filter devices by SN or model</li>
+                    <li>
+                      • Detailed device info: firmware version, location, memory
+                      & storage
+                    </li>
+                    <li>• Batch export device information via Batch Manage</li>
+                  </ul>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="3.2 Remote Operations"
+                  description="Execute actions on devices individually or in groups."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>• Freeze / unfreeze devices</li>
+                    <li>• Send messages or files</li>
+                    <li>• Install or uninstall applications</li>
+                    <li>• Move devices between groups</li>
+                    <li>• Reboot, power off, or ring devices</li>
+                    <li>• Extract system logs remotely</li>
+                    <li>
+                      • View task results in Remote Log (success / failed /
+                      running)
+                    </li>
+                  </ul>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="3.3 Remote Log & File Extraction"
+                  description="Extract logs and files from devices remotely."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>• Create log extraction tasks</li>
+                    <li>• Support UMS log and system log</li>
+                    <li>• Extract specified files via file path</li>
+                    <li>
+                      • Download uploaded files directly from the platform
+                    </li>
+                  </ul>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="3.4 Restore & Configuration"
+                  description="Reset devices and deploy configurations remotely."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>• Reset devices remotely</li>
+                    <li>• Remove lock password if forgotten</li>
+                    <li>• Push WiFi SSID and password</li>
+                    <li>• Configure WiFi whitelist</li>
+                    <li>• Deploy APN settings</li>
+                    <li>• Send Android intents remotely</li>
+                    <li>• Manage app deployment and App whitelist</li>
+                  </ul>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="3.5 Advanced Remote Control"
+                  description="Advanced control over device behavior and system customization."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>• Geofencing and location-based device locking</li>
+                    <li>• Email alerts for out-of-area devices</li>
+                    <li>• Configure polling interval and log retention</li>
+                    <li>• State Management with U Stage integration</li>
+                    <li>• Customize boot animation and launcher</li>
+                    <li>• Set kiosk mode and auto-start applications</li>
+                  </ul>
+                </AppStoreBlock>
+              </div>
+            </section>
+
+            <Divider />
+
+            <section id="account" className="scroll-mt-20">
+              <div className="space-y-2">
+                <PageSectionTitle className={`text-5xl ${playfair.className}`}>
+                  4. Account Management
+                </PageSectionTitle>
+
+                <PageSectionDescription>
+                  Manage users, permissions, and multi-organization access
+                  control
+                </PageSectionDescription>
+
+                <p className="max-w-3xl pt-2 text-sm leading-7 text-foreground/65 md:text-base">
+                  Account Management in UMS allows you to manage operator
+                  access, distribute devices across organizations, and enforce
+                  strict permission isolation between different parties.
+                </p>
+              </div>
+
+              <section className="space-y-3 pb-5">
+                <div className="mt-6 w-full overflow-hidden rounded-2xl border border-white/10">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      src="https://www.youtube.com/embed/nkPxqLHZeBM"
+                      title="UMS Account Management Tutorial"
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-foreground/40">
+                  Note: You can enable subtitles by going to "Settings" →
+                  "Captions" → "Auto-translate", then selecting your preferred
+                  language.
+                </p>
+              </section>
+
+              <div className="mt-10 space-y-6">
+                <AppStoreBlock
+                  title="4.1 Operator Accounts"
+                  description="Create and manage internal users with permission control."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>• Create operator accounts via email invitation</li>
+                    <li>• Account activation through email confirmation</li>
+                    <li>• Configure permissions to control access scope</li>
+                    <li>
+                      • Transfer administrator permission to another account
+                    </li>
+                    <li>• Remove unused operator accounts anytime</li>
+                  </ul>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="4.2 Sub-Account & Device Distribution"
+                  description="Distribute terminals to different organizations with isolation."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>• Create controlled or independent sub-accounts</li>
+                    <li>• Sub-accounts can only access assigned devices</li>
+                    <li>• Ensure isolation between different organizations</li>
+                    <li>• Distribute devices via Device Manager</li>
+                    <li>
+                      • Support manual and batch distribution (template upload)
+                    </li>
+                    <li>• Replace device ownership between sub-accounts</li>
+                    <li>• Unbind devices from sub-accounts when needed</li>
+                  </ul>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="4.3 Controlled vs Independent Sub-Accounts"
+                  description="Different levels of platform access and operational control."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>
+                      • Controlled: parent account can access via "To Manage"
+                    </li>
+                    <li>
+                      • Independent: no parent access to the sub-account
+                      platform
+                    </li>
+                    <li>
+                      • Controlled: restricted application upload capability
+                    </li>
+                    <li>
+                      • Independent: can upload and publish applications freely
+                    </li>
+                    <li>
+                      • Independent: requires email during account creation
+                    </li>
+                    <li>
+                      • Controlled: no email required, operator accounts created
+                      inside
+                    </li>
+                  </ul>
+                </AppStoreBlock>
+
+                <AppStoreBlock
+                  title="4.4 Application Control (Controlled Accounts)"
+                  description="Define how sub-accounts manage and publish applications."
+                >
+                  <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                    <li>
+                      • Mode 1: Full control of publishing (select from all
+                      uploaded apps)
+                    </li>
+                    <li>
+                      • Mode 2: Fully synchronized with parent publish list
+                      (read-only)
+                    </li>
+                    <li>
+                      • Mode 3: Custom publish list (limited to parent's
+                      published apps)
+                    </li>
+                    <li>
+                      • Mode 4: Fully controlled by parent (no modification
+                      allowed)
+                    </li>
+                    <li>• Default mode: Mode 4 (fully controlled by parent)</li>
+                  </ul>
+                </AppStoreBlock>
+              </div>
+            </section>
+
+            <Divider />
+
+            <section id="utms" className="scroll-mt-20">
+              <div className="space-y-2">
+                <PageSectionTitle className={`text-5xl ${playfair.className}`}>
+                  5. UTMS (Private UMS)
+                </PageSectionTitle>
+              </div>
+            </section>
+
+            <div className="mt-6">
+              <UTMSHighlightCard />
+            </div>
+
+            <PageSection>
+              <PageSectionHeader>
+                <div className="space-y-2">
+                  <PageSectionTitle className="font-bold">
+                    UTMS Related Links
+                  </PageSectionTitle>
+                </div>
+              </PageSectionHeader>
+
+              <div className="flex flex-col divide-y divide-white/5">
+                <a
+                  href="http://39.101.193.145:9898/customerui/login"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UTMS Demo website</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://mega.nz/file/PhQiBASL#fFhCHk0eFoQUjzD87a2g6buinm1CxuxlOerGPz7k6lg"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UTMS User Manual</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://mega.nz/folder/3loFxJZb#tt1ArBCX6w4AmPsSkpN3dw"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UTMS Agent & UTMS App Market</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+              </div>
+            </PageSection>
           </PageStack>
         </PageMain>
       </PageContainer>

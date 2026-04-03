@@ -1,6 +1,7 @@
 import { Adb, AdbDaemonTransport } from "@yume-chan/adb";
 import { AdbDaemonWebUsbDeviceManager } from "@yume-chan/adb-daemon-webusb";
 import AdbWebCredentialStore from "@yume-chan/adb-credential-web";
+import type { ReadableStream } from "@yume-chan/stream-extra";
 
 export type DeviceInfo = {
   serialNo: string;
@@ -23,7 +24,7 @@ export class WebAdbService {
 
     if (!usb) {
       throw new Error(
-        "WebUSB is not available in this browser or context. Please use Chrome/Edge on localhost or HTTPSS.",
+        "WebUSB is not available in this browser or context. Please use Chrome/Edge on localhost or HTTPS.",
       );
     }
 
@@ -79,16 +80,19 @@ export class WebAdbService {
   }
 
   async getDeviceInfo(): Promise<DeviceInfo> {
-    const [serialNo, buildNumber, vendorModel, project] = await Promise.all([
-      this.getProp("ro.serialno"),
-      this.getProp("ro.vendor.build.id"),
-      this.getProp("ro.product.vendor.model"),
-      this.getProp("pwv.project"),
-    ]);
+    const [serialNo, buildNumber, customBuild, vendorModel, project] =
+      await Promise.all([
+        this.getProp("ro.serialno"),
+        this.getProp("ro.vendor.build.id"),
+        this.getProp("ro.ufs.custom"),
+        this.getProp("ro.product.vendor.model"),
+        this.getProp("pwv.project"),
+      ]);
 
     return {
       serialNo: serialNo || "-",
-      buildNumber: buildNumber || "-",
+      buildNumber:
+        [buildNumber, customBuild].filter(Boolean).join(" / ") || "-",
       model: [vendorModel, project].filter(Boolean).join(" / ") || "-",
     };
   }
@@ -103,5 +107,101 @@ export class WebAdbService {
 
   async powerOff(): Promise<void> {
     await this.run("reboot -p");
+  }
+
+  async installApk(
+    file: File,
+    options?: {
+      onStageChange?: (stage: "uploading" | "installing") => void;
+    },
+  ): Promise<string> {
+    const adb = this.ensureAdb();
+
+    const fileName = file.name;
+    const remotePath = `/data/local/tmp/${fileName}`;
+
+    options?.onStageChange?.("uploading");
+
+    const sync = await adb.sync();
+
+    try {
+      await sync.write({
+        filename: remotePath,
+        file: file.stream() as never as import("@yume-chan/stream-extra").ReadableStream<Uint8Array>,
+      });
+    } finally {
+      await sync.dispose();
+    }
+
+    options?.onStageChange?.("installing");
+
+    const result = await adb.subprocess.noneProtocol.spawnWaitText(
+      `pm install -r "${remotePath}"`,
+    );
+
+    return result.trim();
+  }
+
+  async pushFile(
+    file: File,
+    remoteDir: string,
+    options?: {
+      onStageChange?: (stage: "uploading") => void;
+    },
+  ): Promise<string> {
+    const adb = this.ensureAdb();
+
+    const fileName = file.name;
+    const normalizedDir = remoteDir.endsWith("/") ? remoteDir : `${remoteDir}/`;
+    const remotePath = `${normalizedDir}${fileName}`;
+
+    options?.onStageChange?.("uploading");
+
+    const sync = await adb.sync();
+
+    try {
+      await sync.write({
+        filename: remotePath,
+        file: file.stream() as never as import("@yume-chan/stream-extra").ReadableStream<Uint8Array>,
+      });
+    } finally {
+      await sync.dispose();
+    }
+
+    return remotePath;
+  }
+
+  async pullFile(remotePath: string): Promise<Uint8Array> {
+    const adb = this.ensureAdb();
+    const sync = await adb.sync();
+
+    try {
+      const stream = sync.read(remotePath);
+      const reader = stream.getReader();
+
+      const chunks: Uint8Array[] = [];
+      let totalLength = 0;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (!value) continue;
+
+        chunks.push(value);
+        totalLength += value.length;
+      }
+
+      const result = new Uint8Array(totalLength);
+      let offset = 0;
+
+      for (const chunk of chunks) {
+        result.set(chunk, offset);
+        offset += chunk.length;
+      }
+
+      return result;
+    } finally {
+      await sync.dispose();
+    }
   }
 }

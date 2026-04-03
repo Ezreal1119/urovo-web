@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "P@trick-Urovo",
+  title: "Urovo-Tech",
   description: "Demo layout built with custom layout primitives",
   icons: {
     icon: "/patrick.png",

@@ -10,11 +10,12 @@ export default function Layout({
       <FixedSidebar
         title="Navigate to"
         items={[
-          { label: "User Intro", href: "/ums#Intro" },
+          { label: "UMS Intro", href: "/ums#Intro" },
           { label: "1. Group Management", href: "/ums#group" },
           { label: "2. App Management", href: "/ums#app" },
-          { label: "Drivers", href: "/links#drivers" },
-          { label: "Others", href: "/links#others" },
+          { label: "3. Remote Management", href: "/ums#remote" },
+          { label: "4. Account Management", href: "/ums#account" },
+          { label: "5. UTMS(Private UMS)", href: "/ums#utms" },
         ]}
       />
 
