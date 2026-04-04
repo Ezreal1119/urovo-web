@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import { AppNavbar } from "@/components/layout/Navbar";
+import { AppNavbar } from "@/components/layout/app-navbar";
 import { PageShell } from "@/components/layout/PageContainer";
 import { AiChatDialog } from "./ai/AiChatDialog";
 const inter = Inter({
