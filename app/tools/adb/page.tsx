@@ -7,10 +7,6 @@ import {
   PageHeader,
   PageHeaderContent,
   PageMain,
-  PageSection,
-  PageSectionDescription,
-  PageSectionHeader,
-  PageSectionTitle,
   PageShell,
   PageStack,
   PageTitle,
@@ -18,12 +14,10 @@ import {
 import Divider from "@/components/ui/divider";
 import {
   Cable,
-  Circle,
   Download,
   Power,
   RefreshCw,
   RotateCcw,
-  ShieldAlert,
   Terminal,
   Upload,
 } from "lucide-react";
@@ -35,24 +29,23 @@ import {
 } from "@/lib/apkSignatureDetector";
 import { useConsoleStore } from "@/lib/consoleStore";
 import { FileExplorerPanel } from "./FileExplorerPanel";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-type DeviceStatus = "disconnected" | "connecting" | "connected" | "sideload";
-
-type DeviceInfo = {
-  serialNo: string;
-  buildNumber: string;
-  customBuild: string;
-};
+import {
+  ActionButton,
+  FileActionRow,
+  InfoRow,
+  InstallStatusBanner,
+  StatusDot,
+  ToolCard,
+} from "./_components/adb-tool-ui";
+import {
+  AdbLogSavedDialog,
+  AdbRecoveryGuideDialog,
+  AdbUsbGuideDialog,
+} from "./_components/adb-dialogs";
+import { getLogTimestamp } from "./_lib/getLogTimestamp";
+import { isValidAdbCommand } from "./_lib/isValidAdbCommand";
+import type { DeviceInfo, DeviceStatus } from "./_lib/types";
 
 export default function Page() {
   const adbServiceRef = React.useRef<WebAdbService | null>(null);
@@ -71,10 +64,6 @@ export default function Page() {
   const [isRunningCommand, setIsRunningCommand] = React.useState(false);
   const [apkFile, setApkFile] = React.useState<File | null>(null);
   const [firmwareFile, setFirmwareFile] = React.useState<File | null>(null);
-  const [consoleLines, setConsoleLines] = React.useState<string[]>([
-    "[system] Web ADB panel initialized.",
-    "[hint] Connect a device to begin.",
-  ]);
   const [isRecordingLog, setIsRecordingLog] = React.useState(false);
   const [logSavedDialogOpen, setLogSavedDialogOpen] = React.useState(false);
   const [isLogcatRunning, setIsLogcatRunning] = React.useState(false);
@@ -96,15 +85,6 @@ export default function Page() {
   const [firmwareMessage, setFirmwareMessage] = React.useState(
     "No firmware task running.",
   );
-
-  const consoleRef = React.useRef<HTMLDivElement | null>(null);
-
-  React.useEffect(() => {
-    consoleRef.current?.scrollTo({
-      top: consoleRef.current.scrollHeight,
-      behavior: "smooth",
-    });
-  }, [consoleLines]);
 
   React.useEffect(() => {
     const usb = (navigator as Navigator & { usb?: EventTarget }).usb;
@@ -534,70 +514,6 @@ export default function Page() {
       appendConsole("[logcat] Started.");
       appendConsole("[logcat] -------- beginning of main");
     }
-  }
-
-  function clearConsole() {
-    setConsoleLines(["[system] Console cleared."]);
-  }
-  function isValidAdbCommand(command: string) {
-    const trimmed = command.trim();
-
-    if (!trimmed) {
-      return { valid: false, reason: "Command is empty." };
-    }
-
-    const blockedPrefixes = [
-      "kill-server",
-      "start-server",
-      "pair",
-      "tcpip",
-      "usb",
-      "connect",
-      "disconnect",
-      "mdns",
-      "root",
-      "unroot",
-    ];
-
-    const allowedPrefixes = [
-      "shell ",
-      "reboot",
-      "reboot ",
-      "push ",
-      "pull ",
-      "install ",
-      "uninstall ",
-      "logcat",
-      "bugreport",
-      "wait-for-",
-      "jdwp",
-      "reverse ",
-      "forward ",
-    ];
-
-    if (
-      blockedPrefixes.some(
-        (prefix) => trimmed === prefix || trimmed.startsWith(prefix + " "),
-      )
-    ) {
-      return {
-        valid: false,
-        reason: `Command "${trimmed}" is blocked in this panel.`,
-      };
-    }
-
-    if (
-      allowedPrefixes.some(
-        (prefix) => trimmed === prefix.trim() || trimmed.startsWith(prefix),
-      )
-    ) {
-      return { valid: true, reason: "" };
-    }
-
-    return {
-      valid: false,
-      reason: `Command "${trimmed}" is not in the allowed adb command list.`,
-    };
   }
 
   async function handleRunCommand() {
@@ -1209,453 +1125,17 @@ export default function Page() {
             <FileExplorerPanel isConnected={status === "connected"} />
           </PageStack>
         </PageMain>
-        <Dialog open={recoveryGuideOpen} onOpenChange={setRecoveryGuideOpen}>
-          <DialogContent
-            className="
-              !w-[88vw] !max-w-[1200px]
-              !h-[72vh]
-              p-0
-              overflow-hidden
-              rounded-3xl
-              border border-white/10
-              bg-[rgba(10,10,14,0.92)]
-              text-foreground
-              shadow-[0_24px_80px_rgba(0,0,0,0.45)]
-              backdrop-blur-2xl
-            "
-          >
-            <div className="grid h-full grid-cols-[0.78fr_1.22fr]">
-              <div className="flex flex-col justify-between border-r border-white/10 bg-white/[0.02] px-6 py-6">
-                <div className="space-y-5">
-                  <div className="space-y-3">
-                    <DialogTitle className="text-3xl font-semibold tracking-tight text-white">
-                      Recovery Mode Instruction
-                    </DialogTitle>
-
-                    <DialogDescription className="max-w-sm text-sm leading-7 text-foreground/55">
-                      The device is rebooting into recovery mode. Follow the
-                      steps below on the device to enter the recovery menu and
-                      continue the next action.
-                    </DialogDescription>
-                  </div>
-
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-6 text-foreground/65">
-                    <div className="text-xs font-medium uppercase tracking-[0.14em] text-foreground/35">
-                      Note
-                    </div>
-                    <p className="mt-2">
-                      Some models may require several attempts before the
-                      recovery menu is shown.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-6">
-                  <Button
-                    onClick={() => setRecoveryGuideOpen(false)}
-                    className="h-11 rounded-xl px-5"
-                  >
-                    Got it
-                  </Button>
-                </div>
-              </div>
-
-              <div className="min-h-0 overflow-y-auto px-7 py-7">
-                <div className="mb-5 text-base font-medium text-blue-300">
-                  Recovery Steps
-                </div>
-
-                <ul className="space-y-5">
-                  <li className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-4 py-4">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-blue-300/70" />
-                    <span className="text-foreground/75">
-                      Wait until you see{" "}
-                      <span className="font-medium text-white">
-                        "Press power key to reboot device"
-                      </span>
-                      .
-                    </span>
-                  </li>
-
-                  <li className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-4 py-4">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-blue-300/70" />
-                    <div className="space-y-3">
-                      <span className="text-foreground/75">
-                        Enter the recovery menu using the volume buttons in the
-                        following order:
-                      </span>
-
-                      <ul className="space-y-2 text-[13px] text-foreground/70">
-                        <li className="flex items-center gap-2">
-                          <span className="size-1 rounded-full bg-white/40" />
-                          <span className="font-mono text-white">
-                            + - + - + + - -
-                          </span>
-                          <span className="text-foreground/40">
-                            (most common)
-                          </span>
-                        </li>
-
-                        <li className="flex items-center gap-2">
-                          <span className="size-1 rounded-full bg-white/40" />
-                          <span className="font-mono text-white">
-                            - + - + - - - -
-                          </span>
-                          <span className="text-foreground/40">
-                            (try this if the first fails)
-                          </span>
-                        </li>
-
-                        <li className="flex items-center gap-2">
-                          <span className="size-1 rounded-full bg-white/40" />
-                          <span className="font-mono text-white">
-                            <strong>For DT50(S):</strong> + + - - + - + + + + -
-                            - - -
-                          </span>
-                        </li>
-                      </ul>
-
-                      <p className="text-xs text-foreground/40">
-                        Please press the buttons slowly in order.
-                      </p>
-                    </div>
-                  </li>
-
-                  <li className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-4 py-4">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-blue-300/70" />
-                    <span className="text-foreground/75">
-                      Use{" "}
-                      <span className="font-medium text-white">
-                        Volume Up / Down
-                      </span>{" "}
-                      to navigate the menu, and use{" "}
-                      <span className="font-medium text-white">Power</span> for
-                      selection.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
-
-        <Dialog open={usbGuideOpen} onOpenChange={setUsbGuideOpen}>
-          <DialogContent
-            className="
-              !w-[88vw] !max-w-[1000px]
-              !h-[60vh]
-              p-0
-              overflow-hidden
-              rounded-3xl
-              border border-white/10
-              bg-[rgba(10,10,14,0.92)]
-              text-foreground
-              shadow-[0_24px_80px_rgba(0,0,0,0.45)]
-              backdrop-blur-2xl
-            "
-          >
-            <div className="grid h-full grid-cols-[0.9fr_1.1fr]">
-              {/* Left */}
-              <div className="flex flex-col justify-between border-r border-white/10 bg-white/[0.02] px-7 py-7">
-                <div className="space-y-5">
-                  <div className="space-y-3">
-                    <DialogTitle className="text-3xl font-semibold text-white">
-                      USB Connection Issue
-                    </DialogTitle>
-
-                    <DialogDescription className="text-sm leading-7 text-foreground/55">
-                      The device is currently occupied or the USB connection is
-                      unstable. Follow the steps to reconnect the device
-                      properly.
-                    </DialogDescription>
-                  </div>
-
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-foreground/65">
-                    <div className="text-xs uppercase tracking-[0.14em] text-foreground/35">
-                      Common Causes
-                    </div>
-
-                    <ul className="mt-3 space-y-2 text-xs">
-                      <li>• Another ADB tool is using the device</li>
-                      <li>• Previous connection was not released</li>
-                      <li>• USB connection became unstable</li>
-                      <li>• Device is reconnecting / rebooting</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-6">
-                  <Button
-                    onClick={() => setUsbGuideOpen(false)}
-                    className="h-11 rounded-xl px-5"
-                  >
-                    Got it
-                  </Button>
-                </div>
-              </div>
-
-              {/* Right */}
-              <div className="flex flex-col justify-center px-7 py-7">
-                <div className="space-y-6">
-                  <div className="text-base font-medium text-blue-300">
-                    Retry Steps
-                  </div>
-
-                  <div className="flex items-center justify-center gap-3 text-sm">
-                    <StepBox label="Unplug USB" />
-                    <Arrow />
-                    <StepBox label="Wait 2s" />
-                    <Arrow />
-                    <StepBox label="Plug Again" />
-                    <Arrow />
-                    <StepBox label="Click Connect" />
-                  </div>
-
-                  <div className="text-xs text-foreground/50 text-center">
-                    If it still fails, close other ADB tools or refresh the
-                    page.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
-
-        <Dialog open={logSavedDialogOpen} onOpenChange={setLogSavedDialogOpen}>
-          <DialogContent
-            className="
-      !w-[88vw] !max-w-[760px]
-      p-0
-      overflow-hidden
-      rounded-3xl
-      border border-white/10
-      bg-[rgba(10,10,14,0.92)]
-      text-foreground
-      shadow-[0_24px_80px_rgba(0,0,0,0.45)]
-      backdrop-blur-2xl
-    "
-          >
-            <div className="space-y-5 px-6 py-6">
-              <div className="space-y-2">
-                <DialogTitle className="text-2xl font-semibold text-white">
-                  Log Saved
-                </DialogTitle>
-
-                <DialogDescription className="text-sm leading-7 text-foreground/55">
-                  The log recording has been stopped. The files were saved to
-                  the device path below.
-                </DialogDescription>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-foreground/72">
-                <div className="text-xs uppercase tracking-[0.14em] text-foreground/35">
-                  Save Path
-                </div>
-                <div className="mt-2 font-mono text-white">
-                  /sdcard/ULog/logs/adb/
-                </div>
-              </div>
-
-              <div className="flex items-center justify-end gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => setLogSavedDialogOpen(false)}
-                  className="rounded-xl border-white/10 bg-white/[0.03] hover:bg-white/[0.06]"
-                >
-                  Close
-                </Button>
-
-                <Button
-                  onClick={() => {
-                    setLogSavedDialogOpen(false);
-                    handleDownloadLogcat();
-                  }}
-                  className="rounded-xl"
-                >
-                  Download Logcat
-                </Button>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
+        <AdbRecoveryGuideDialog
+          open={recoveryGuideOpen}
+          onOpenChange={setRecoveryGuideOpen}
+        />
+        <AdbUsbGuideDialog open={usbGuideOpen} onOpenChange={setUsbGuideOpen} />
+        <AdbLogSavedDialog
+          open={logSavedDialogOpen}
+          onOpenChange={setLogSavedDialogOpen}
+          onDownloadLogcat={handleDownloadLogcat}
+        />
       </PageContainer>
     </PageShell>
   );
-}
-
-function StepBox({ label }: { label: string }) {
-  return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-center text-white">
-      {label}
-    </div>
-  );
-}
-
-function Arrow() {
-  return <span className="text-foreground/30">→</span>;
-}
-
-function ToolCard({
-  title,
-  description,
-  children,
-}: {
-  title: string;
-  description: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 md:px-6 md:py-6">
-      <div className="space-y-1.5">
-        <h3 className="text-xl font-semibold tracking-tight text-white">
-          {title}
-        </h3>
-        <p className="text-sm leading-7 text-foreground/55">{description}</p>
-      </div>
-
-      <div className="mt-5">{children}</div>
-    </div>
-  );
-}
-
-function ActionButton({
-  icon: Icon,
-  label,
-  onClick,
-  disabled,
-  className,
-}: {
-  icon: React.ElementType;
-  label: string;
-  onClick: () => void;
-  disabled?: boolean;
-  className?: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-foreground/80 transition-all duration-200 hover:bg-white/[0.07] hover:text-white disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer",
-        className,
-      )}
-    >
-      <Icon className="size-4 opacity-80" />
-      {label}
-    </button>
-  );
-}
-
-function FileActionRow({
-  file,
-  placeholder,
-  buttonLabel,
-  accept,
-  onChange,
-}: {
-  file: File | null;
-  placeholder: string;
-  buttonLabel: string;
-  accept: string;
-  onChange: (file: File | null) => void;
-}) {
-  const inputId = React.useId();
-
-  return (
-    <div className="flex flex-col gap-3 md:flex-row">
-      <div className="flex-1 min-w-0 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-foreground/55">
-        <div className="truncate">{file ? file.name : placeholder}</div>
-      </div>
-
-      <div className="shrink-0">
-        <label
-          htmlFor={inputId}
-          className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-foreground/80 transition-all duration-200 hover:bg-white/[0.07] hover:text-white"
-        >
-          <Upload className="size-4 opacity-80" />
-          {buttonLabel}
-        </label>
-        <input
-          id={inputId}
-          type="file"
-          accept={accept}
-          className="hidden"
-          onChange={(e) => onChange(e.target.files?.[0] ?? null)}
-        />
-      </div>
-    </div>
-  );
-}
-
-function InstallStatusBanner({
-  status,
-  message,
-}: {
-  status: "idle" | "uploading" | "installing" | "success" | "error";
-  message: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "rounded-2xl border px-4 py-3 text-sm transition-all",
-        status === "idle" &&
-          "border-white/10 bg-white/[0.02] text-foreground/50",
-        status === "uploading" &&
-          "border-blue-500/30 bg-blue-500/[0.06] text-blue-300",
-        status === "installing" &&
-          "border-amber-500/30 bg-amber-500/[0.06] text-amber-300",
-        status === "success" &&
-          "border-emerald-500/30 bg-emerald-500/[0.06] text-emerald-300",
-        status === "error" &&
-          "border-red-500/30 bg-red-500/[0.06] text-red-300",
-      )}
-    >
-      <div className="flex items-center justify-between gap-4">
-        <span className="text-xs uppercase tracking-wider opacity-70">
-          {status}
-        </span>
-        <span className="truncate">{message}</span>
-      </div>
-    </div>
-  );
-}
-
-function InfoRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3">
-      <span className="text-foreground/45">{label}</span>
-      <span className="text-right text-white">{value}</span>
-    </div>
-  );
-}
-
-function StatusDot({ status }: { status: DeviceStatus }) {
-  return (
-    <span
-      className={cn(
-        "inline-flex size-3 rounded-full",
-        status === "connected" &&
-          "bg-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.6)]",
-        status === "sideload" &&
-          "bg-amber-400 shadow-[0_0_14px_rgba(251,191,36,0.55)]",
-        status === "disconnected" && "bg-white/20",
-      )}
-    >
-      <Circle className="hidden" />
-    </span>
-  );
-}
-
-function getLogTimestamp() {
-  const now = new Date();
-
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, "0");
-  const dd = String(now.getDate()).padStart(2, "0");
-  const hh = String(now.getHours()).padStart(2, "0");
-  const mi = String(now.getMinutes()).padStart(2, "0");
-  const ss = String(now.getSeconds()).padStart(2, "0");
-
-  return `${yyyy}-${mm}-${dd}_${hh}_${mi}_${ss}`;
 }

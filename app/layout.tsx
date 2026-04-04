@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Inter,
-  Playfair_Display,
-  Space_Grotesk,
-  Roboto,
-} from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { AppNavbar } from "@/components/layout/Navbar";
 import { PageShell } from "@/components/layout/PageContainer";
-import AppSidebar from "@/components/layout/SideBar";
 import { AiChatDialog } from "./ai/AiChatDialog";
 const inter = Inter({
   subsets: ["latin"],

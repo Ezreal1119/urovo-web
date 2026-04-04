@@ -67,33 +67,6 @@ function PageShell({
   );
 }
 
-// function PageShell({
-//   className,
-//   children,
-//   ...props
-// }: React.ComponentProps<"div">) {
-//   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-//     document.documentElement.style.setProperty("--mouse-x", `${e.clientX}px`);
-//     document.documentElement.style.setProperty("--mouse-y", `${e.clientY}px`);
-//   }
-
-//   return (
-//     <div
-//       data-slot="page-shell"
-//       onMouseMove={handleMouseMove}
-//       className={cn("relative min-h-screen text-foreground", className)}
-//       {...props}
-//     >
-//       <div className="pointer-events-none fixed inset-0 -z-20 bg-background" />
-//       <div
-//         aria-hidden="true"
-//         className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(1200px_600px_at_50%_-10%,rgba(168,85,247,0.06),transparent_55%),radial-gradient(900px_500px_at_80%_0%,rgba(59,130,246,0.05),transparent_50%),radial-gradient(420px_circle_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(236,72,153,0.05),transparent_55%)]"
-//       />
-//       {children}
-//     </div>
-//   );
-// }
-
 function PageContainer({ className, ...props }: React.ComponentProps<"main">) {
   return (
     <main

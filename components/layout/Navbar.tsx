@@ -754,7 +754,7 @@ function AppNavbar() {
               UMS
             </NavbarLink>
 
-            <NavbarLink href="/tools" active={pathname.startsWith("tools")}>
+            <NavbarLink href="/tools" active={pathname.startsWith("/tools")}>
               Tools
             </NavbarLink>
 
