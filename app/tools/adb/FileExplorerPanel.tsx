@@ -15,6 +15,12 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  Dialog,
+} from "@/components/ui/dialog";
 
 type ExplorerItem = {
   name: string;
@@ -26,7 +32,7 @@ type ExplorerItem = {
 
 const ROOT_PATH = "/sdcard/";
 
-export function FileExplorerPanel() {
+export function FileExplorerPanel({ isConnected }: { isConnected: boolean }) {
   const [currentPath, setCurrentPath] = React.useState(ROOT_PATH);
   const [search, setSearch] = React.useState("");
   const [selectedName, setSelectedName] = React.useState<string | null>(null);
@@ -38,30 +44,29 @@ export function FileExplorerPanel() {
   const [isDeleting, setIsDeleting] = React.useState(false);
   const prevConnectedRef = React.useRef(false);
   const isComposingRef = React.useRef(false);
-  React.useEffect(() => {
-    if (!isMounted) return;
-
-    const timer = window.setInterval(() => {
-      const connectedNow = !!(window as any).adbService;
-      const connectedBefore = prevConnectedRef.current;
-
-      if (!connectedBefore && connectedNow) {
-        void loadDirectory(ROOT_PATH);
-      }
-
-      prevConnectedRef.current = connectedNow;
-    }, 800);
-
-    return () => window.clearInterval(timer);
-  }, [isMounted]);
-
   const uploadInputRef = React.useRef<HTMLInputElement | null>(null);
+  const [previewOpen, setPreviewOpen] = React.useState(false);
+  const [previewTitle, setPreviewTitle] = React.useState("");
+  const [previewContent, setPreviewContent] = React.useState("");
+  const [isPreviewLoading, setIsPreviewLoading] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const isConnected = isMounted && !!(window as any).adbService;
+  React.useEffect(() => {
+    if (!isMounted) return;
+
+    if (isConnected) {
+      void loadDirectory(ROOT_PATH);
+    } else {
+      setItems([]);
+      setSelectedName(null);
+      setSearch("");
+      setCurrentPath(ROOT_PATH);
+      setIsLoading(false);
+    }
+  }, [isConnected, isMounted]);
 
   const pathSegments = React.useMemo(() => {
     const relative = currentPath.startsWith(ROOT_PATH)
@@ -139,7 +144,7 @@ export function FileExplorerPanel() {
 
   async function handleDownload() {
     if (typeof window === "undefined") return;
-    if (!selectedItem || selectedItem.type !== "file") return;
+    if (!selectedItem) return;
 
     const adbService = (window as any).adbService;
 
@@ -153,10 +158,26 @@ export function FileExplorerPanel() {
       return;
     }
 
-    const remotePath = `${currentPath}${selectedItem.name}`;
-
     try {
       setIsDownloading(true);
+
+      let remotePath = `${currentPath}${selectedItem.name}`;
+      let downloadName = selectedItem.name;
+      let tempZipPath: string | null = null;
+
+      if (selectedItem.type === "folder") {
+        const safeFolderName = selectedItem.name.replace(/[^\w.-]+/g, "_");
+        const tempZipPath = `/sdcard/Download/${safeFolderName}_${Date.now()}.tar`;
+
+        const zipCommand =
+          `cd ${shellEscape(currentPath)} && ` +
+          `tar -cf ${shellEscape(tempZipPath)} ${shellEscape(selectedItem.name)}`;
+
+        await adbService.run(zipCommand);
+
+        remotePath = tempZipPath;
+        downloadName = `${selectedItem.name}.tar`;
+      }
 
       const fileData: Uint8Array = await adbService.pullFile(remotePath);
       const normalized = new Uint8Array(fileData);
@@ -164,14 +185,12 @@ export function FileExplorerPanel() {
 
       if ("showSaveFilePicker" in window) {
         const handle = await (window as any).showSaveFilePicker({
-          suggestedName: selectedItem.name,
+          suggestedName: downloadName,
           types: [
             {
               description: "Downloaded File",
               accept: {
-                "application/octet-stream": [
-                  getFileExtension(selectedItem.name),
-                ],
+                "application/octet-stream": [getFileExtension(downloadName)],
               },
             },
           ],
@@ -184,11 +203,19 @@ export function FileExplorerPanel() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = selectedItem.name;
+        a.download = downloadName;
         document.body.appendChild(a);
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
+      }
+
+      if (tempZipPath) {
+        try {
+          await adbService.run(`rm -f ${shellEscape(tempZipPath)}`);
+        } catch (error) {
+          console.error("[download] failed to delete temp zip:", error);
+        }
       }
 
       console.log(`[download] Downloaded ${remotePath}`);
@@ -228,6 +255,46 @@ export function FileExplorerPanel() {
       console.error("[delete] failed:", error);
     } finally {
       setIsDeleting(false);
+    }
+  }
+
+  async function handlePreviewFile(item: ExplorerItem) {
+    if (typeof window === "undefined") return;
+    if (item.type !== "file") return;
+
+    const adbService = (window as any).adbService;
+    if (!adbService) {
+      console.error("ADB not connected");
+      return;
+    }
+
+    if (!isLikelyTextFile(item.name)) {
+      setPreviewTitle(item.name);
+      setPreviewContent(
+        "Preview is only supported for text-like files at the moment.",
+      );
+      setPreviewOpen(true);
+      return;
+    }
+
+    const remotePath = `${currentPath}${item.name}`;
+
+    try {
+      setIsPreviewLoading(true);
+      setPreviewTitle(item.name);
+      setPreviewContent("");
+      setPreviewOpen(true);
+
+      const command = `cat ${shellEscape(remotePath)}`;
+      const output = await adbService.run(command);
+
+      setPreviewContent(output || "(Empty file)");
+    } catch (error) {
+      console.error("[preview] failed:", error);
+      setPreviewContent("Failed to load file content.");
+      setPreviewOpen(true);
+    } finally {
+      setIsPreviewLoading(false);
     }
   }
 
@@ -397,12 +464,7 @@ export function FileExplorerPanel() {
                   onClick={() => {
                     void handleDownload();
                   }}
-                  disabled={
-                    !isConnected ||
-                    !selectedItem ||
-                    selectedItem.type !== "file" ||
-                    isDownloading
-                  }
+                  disabled={!isConnected || !selectedItem || isDownloading}
                 />
                 <ExplorerActionButton
                   icon={Trash2}
@@ -454,8 +516,12 @@ export function FileExplorerPanel() {
                     onClick={(e) => {
                       setSelectedName(item.name);
 
-                      if (e.detail === 2 && item.type === "folder") {
-                        handleEnterFolder(item.name);
+                      if (e.detail === 2) {
+                        if (item.type === "folder") {
+                          handleEnterFolder(item.name);
+                        } else {
+                          void handlePreviewFile(item);
+                        }
                       }
                     }}
                     className={cn(
@@ -522,6 +588,50 @@ export function FileExplorerPanel() {
           </div>
         </div>
       </div>
+      <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
+        <DialogContent
+          className="
+      !w-[88vw] !max-w-[1100px]
+      !h-[78vh]
+      p-0
+      overflow-hidden
+      rounded-3xl
+      border border-white/10
+      bg-[rgba(10,10,14,0.92)]
+      text-foreground
+      shadow-[0_24px_80px_rgba(0,0,0,0.45)]
+      backdrop-blur-2xl
+    "
+        >
+          <DialogTitle className="sr-only">File Preview</DialogTitle>
+          <DialogDescription className="sr-only">
+            Preview text file content from the device.
+          </DialogDescription>
+
+          <div className="flex h-full min-h-0 flex-col">
+            <div className="border-b border-white/10 px-6 py-4">
+              <div className="text-sm font-semibold text-white">
+                File Preview
+              </div>
+              <div className="mt-1 truncate text-xs text-foreground/45">
+                {previewTitle}
+              </div>
+            </div>
+
+            <div className="min-h-0 flex-1 overflow-auto px-6 py-5">
+              {isPreviewLoading ? (
+                <div className="flex h-full items-center justify-center text-sm text-foreground/40">
+                  Loading file content...
+                </div>
+              ) : (
+                <pre className="whitespace-pre-wrap break-words font-mono text-sm leading-6 text-foreground/80">
+                  {previewContent}
+                </pre>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
@@ -627,4 +737,40 @@ function getFileExtension(fileName: string): string {
     return ".bin";
   }
   return fileName.slice(lastDot);
+}
+
+function isLikelyTextFile(fileName: string) {
+  const lower = fileName.toLowerCase();
+
+  return [
+    ".txt",
+    ".log",
+    ".xml",
+    ".json",
+    ".csv",
+    ".md",
+    ".ini",
+    ".conf",
+    ".cfg",
+    ".prop",
+    ".properties",
+    ".html",
+    ".htm",
+    ".js",
+    ".ts",
+    ".tsx",
+    ".jsx",
+    ".css",
+    ".java",
+    ".kt",
+    ".kts",
+    ".sh",
+    ".py",
+    ".yml",
+    ".yaml",
+  ].some((ext) => lower.endsWith(ext));
+}
+
+function shellEscape(value: string) {
+  return `'${value.replace(/'/g, `'\\''`)}'`;
 }

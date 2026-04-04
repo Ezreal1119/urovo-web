@@ -57,7 +57,7 @@ export default function LinksPage() {
               <div className="space-y-4">
                 <ResourceItem
                   title="Firmware_upgrade"
-                  href="https://mega.nz/file/TtZnHSYb#dKCT3-yCwnuU1FO52A9hTmeSERdCrO0hdUbFrDfFgRE"
+                  href="https://mega.nz/file/vsZwgC5b#s0s3zWc8Sljh6WCz91lHOE8GSYUPzFKqCNfxdHcpn2I"
                   description="Instruction on how to upgrade firmware of UROVO products. Four methods are provided. Please read README.txt for details."
                 />
               </div>

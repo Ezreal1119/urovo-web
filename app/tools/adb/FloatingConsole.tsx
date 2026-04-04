@@ -111,14 +111,18 @@ function ConsoleDialog({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 backdrop-blur-sm">
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 backdrop-blur-sm"
+      onClick={onClose}
+    >
       <div
         className="
-          relative flex h-[72vh] w-[92vw] max-w-5xl flex-col overflow-hidden
-          rounded-3xl border border-white/10
-          bg-[linear-gradient(180deg,rgba(10,10,14,0.96),rgba(12,12,18,0.94))]
-          shadow-[0_24px_80px_rgba(0,0,0,0.55)]
-        "
+      relative flex h-[72vh] w-[92vw] max-w-5xl flex-col overflow-hidden
+      rounded-3xl border border-white/10
+      bg-[linear-gradient(180deg,rgba(10,10,14,0.96),rgba(12,12,18,0.94))]
+      shadow-[0_24px_80px_rgba(0,0,0,0.55)]
+    "
+        onClick={(e) => e.stopPropagation()}
       >
         <div
           aria-hidden="true"

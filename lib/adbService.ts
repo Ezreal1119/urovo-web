@@ -6,7 +6,7 @@ import type { ReadableStream } from "@yume-chan/stream-extra";
 export type DeviceInfo = {
   serialNo: string;
   buildNumber: string;
-  model: string;
+  customBuild: string;
 };
 
 export class WebAdbService {
@@ -90,10 +90,12 @@ export class WebAdbService {
       ]);
 
     return {
-      serialNo: serialNo || "-",
-      buildNumber:
-        [buildNumber, customBuild].filter(Boolean).join(" / ") || "-",
-      model: [vendorModel, project].filter(Boolean).join(" / ") || "-",
+      serialNo:
+        [serialNo, [vendorModel, project].join("/")]
+          .filter(Boolean)
+          .join(" - ") || "-",
+      buildNumber: buildNumber || "-",
+      customBuild: customBuild || "-",
     };
   }
 
@@ -203,5 +205,30 @@ export class WebAdbService {
     } finally {
       await sync.dispose();
     }
+  }
+
+  async pushFileToPath(
+    file: File,
+    remotePath: string,
+    options?: {
+      onStageChange?: (stage: "uploading") => void;
+    },
+  ): Promise<string> {
+    const adb = this.ensureAdb();
+
+    options?.onStageChange?.("uploading");
+
+    const sync = await adb.sync();
+
+    try {
+      await sync.write({
+        filename: remotePath,
+        file: file.stream() as never as import("@yume-chan/stream-extra").ReadableStream<Uint8Array>,
+      });
+    } finally {
+      await sync.dispose();
+    }
+
+    return remotePath;
   }
 }

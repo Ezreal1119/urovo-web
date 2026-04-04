@@ -256,14 +256,16 @@ export function AiChatDialog() {
             suppressAutoFocusRef.current = false;
           }
         }}
+        onCloseAutoFocus={(e) => {
+          e.preventDefault();
+        }}
         className="
-         isolate transform-gpu
+          isolate transform-gpu
           w-[92vw]
           sm:max-w-5xl
           h-[68vh]
           p-0
           overflow-hidden
-
           rounded-3xl
           border border-white/10
           bg-[linear-gradient(180deg,rgba(10,10,12,0.92),rgba(10,10,12,0.96))]
