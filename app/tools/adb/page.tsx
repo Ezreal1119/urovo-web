@@ -47,11 +47,14 @@ import { getLogTimestamp } from "./_lib/getLogTimestamp";
 import { isValidAdbCommand } from "./_lib/isValidAdbCommand";
 import type { DeviceInfo, DeviceStatus } from "./_lib/types";
 
+type AdbStatus = "idle" | "connecting" | "connected" | "error";
+
 export default function Page() {
   const adbServiceRef = React.useRef<WebAdbService | null>(null);
   const appendConsole = useConsoleStore((s) => s.append);
 
   const [status, setStatus] = React.useState<DeviceStatus>("disconnected");
+  const [adbStatus, setAdbStatus] = React.useState<AdbStatus>("idle");
   const [apkInfo, setApkInfo] = React.useState<ApkSignatureResult | null>(null);
   const [recoveryGuideOpen, setRecoveryGuideOpen] = React.useState(false);
   const [usbGuideOpen, setUsbGuideOpen] = React.useState(false);
@@ -85,6 +88,10 @@ export default function Page() {
   const [firmwareMessage, setFirmwareMessage] = React.useState(
     "No firmware task running.",
   );
+
+  React.useEffect(() => {
+    console.log(adbStatus);
+  }, [adbStatus]);
 
   React.useEffect(() => {
     const usb = (navigator as Navigator & { usb?: EventTarget }).usb;
@@ -139,6 +146,7 @@ export default function Page() {
 
   function markDisconnected(reason?: string) {
     setStatus("disconnected");
+    setAdbStatus("idle");
     setShowUsbHint(false);
     setIsLogcatRunning(false);
     setDeviceInfo({
@@ -159,6 +167,7 @@ export default function Page() {
       setUsbGuideOpen(false);
 
       setStatus("connecting");
+      setAdbStatus("connecting");
 
       if (!adbServiceRef.current) {
         adbServiceRef.current = new WebAdbService();
@@ -169,6 +178,7 @@ export default function Page() {
       (window as any).adbService = adbServiceRef.current;
 
       setStatus("connected");
+      setAdbStatus("connected");
       appendConsole("[adb] Device connected.");
 
       const info = await adbServiceRef.current.getDeviceInfo();
@@ -179,6 +189,7 @@ export default function Page() {
       appendConsole(`[device] Model: ${info.customBuild}`);
     } catch (error) {
       setStatus("disconnected");
+      setAdbStatus("error");
       setUsbGuideOpen(true);
 
       appendConsole(
@@ -196,6 +207,7 @@ export default function Page() {
     } finally {
       delete (window as any).adbService;
       setStatus("disconnected");
+      setAdbStatus("idle");
       setShowUsbHint(false);
       setIsLogcatRunning(false);
       setDeviceInfo({
