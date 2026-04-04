@@ -14,6 +14,7 @@ import {
   HardDrive,
   X,
 } from "lucide-react";
+import { useAdbService } from "@/app/tools/adb/_lib/adb-context";
 import { cn } from "@/lib/utils";
 import {
   DialogContent,
@@ -49,6 +50,7 @@ export function FileExplorerPanel({ isConnected }: { isConnected: boolean }) {
   const [previewTitle, setPreviewTitle] = React.useState("");
   const [previewContent, setPreviewContent] = React.useState("");
   const [isPreviewLoading, setIsPreviewLoading] = React.useState(false);
+  const adbService = useAdbService();
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -92,8 +94,6 @@ export function FileExplorerPanel({ isConnected }: { isConnected: boolean }) {
   async function loadDirectory(path: string) {
     if (typeof window === "undefined") return;
 
-    const adbService = (window as any).adbService;
-
     if (!adbService) {
       setItems([]);
       setIsLoading(false);
@@ -121,8 +121,6 @@ export function FileExplorerPanel({ isConnected }: { isConnected: boolean }) {
   async function handleUpload(file: File) {
     if (typeof window === "undefined") return;
 
-    const adbService = (window as any).adbService;
-
     if (!adbService) {
       console.error("ADB not connected");
       return;
@@ -145,8 +143,6 @@ export function FileExplorerPanel({ isConnected }: { isConnected: boolean }) {
   async function handleDownload() {
     if (typeof window === "undefined") return;
     if (!selectedItem) return;
-
-    const adbService = (window as any).adbService;
 
     if (!adbService) {
       console.error("ADB not connected");
@@ -229,8 +225,6 @@ export function FileExplorerPanel({ isConnected }: { isConnected: boolean }) {
   async function handleDelete() {
     if (!selectedItem) return;
 
-    const adbService = (window as any).adbService;
-
     if (!adbService) {
       console.error("ADB not connected");
       return;
@@ -262,7 +256,6 @@ export function FileExplorerPanel({ isConnected }: { isConnected: boolean }) {
     if (typeof window === "undefined") return;
     if (item.type !== "file") return;
 
-    const adbService = (window as any).adbService;
     if (!adbService) {
       console.error("ADB not connected");
       return;

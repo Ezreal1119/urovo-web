@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useAdbService } from "@/app/tools/adb/_lib/adb-context";
 import { useConsoleStore } from "@/lib/consoleStore";
 import { cn } from "@/lib/utils";
 import { TerminalSquare, X, Trash2, Play } from "lucide-react";
@@ -64,6 +65,7 @@ function ConsoleDialog({ onClose }: { onClose: () => void }) {
 
   const logRef = React.useRef<HTMLDivElement | null>(null);
   const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const adbService = useAdbService();
 
   React.useEffect(() => {
     inputRef.current?.focus();
@@ -89,8 +91,6 @@ function ConsoleDialog({ onClose }: { onClose: () => void }) {
 
   async function handleExec() {
     if (!cmd.trim()) return;
-
-    const adbService = (window as any).adbService;
 
     if (!adbService) {
       appendConsole("[error] adb not connected");

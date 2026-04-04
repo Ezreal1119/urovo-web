@@ -232,3 +232,13 @@ export class WebAdbService {
     return remotePath;
   }
 }
+
+let _override: WebAdbService | null = null;
+
+export function setAdbServiceOverride(service: WebAdbService | null): void {
+  _override = service;
+}
+
+export function getCurrentAdbService(): WebAdbService | null {
+  return _override ?? (window as any).adbService ?? null;
+}
