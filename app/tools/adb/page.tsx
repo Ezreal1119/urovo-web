@@ -28,6 +28,7 @@ import {
   detectUrovoSignature,
 } from "@/lib/apkSignatureDetector";
 import { useConsoleStore } from "@/lib/consoleStore";
+import { toast } from "sonner";
 import { FileExplorerPanel } from "./FileExplorerPanel";
 import Link from "next/link";
 import {
@@ -376,6 +377,7 @@ export default function Page() {
 
     if (!adbServiceRef.current || status !== "connected") {
       appendConsole("[error] No device connected.");
+      toast.error("No device connected");
       return;
     }
 
@@ -385,6 +387,7 @@ export default function Page() {
         suggestedDownloadBaseName: suggestedBaseName,
       });
       appendConsole(`[download] ${labelForConsole}: saved ${suggestedBaseName}.tar`);
+      toast.success(`Saved ${suggestedBaseName}.tar`);
     } catch (e) {
       const isAbort =
         e instanceof DOMException
@@ -392,11 +395,17 @@ export default function Page() {
           : e instanceof Error && e.name === "AbortError";
       if (isAbort) {
         appendConsole(`[download] ${labelForConsole}: save cancelled.`);
+        toast("Save cancelled");
         return;
       }
       const message =
         e instanceof Error ? e.message : "Download failed.";
       appendConsole(`[error] ${labelForConsole}: ${message}`);
+      if (message.startsWith("Remote folder does not exist:")) {
+        toast.error(message);
+      } else {
+        toast.error(`${labelForConsole}: ${message}`);
+      }
     }
   }
 

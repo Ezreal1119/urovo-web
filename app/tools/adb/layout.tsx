@@ -3,6 +3,7 @@
 import { AdbServiceProvider } from "@/app/tools/adb/_lib/adb-context";
 import { FloatingConsole } from "@/app/tools/adb/FloatingConsole";
 import { getCurrentAdbService } from "@/lib/adbService";
+import { Toaster } from "sonner";
 
 export default function Layout({
   children,
@@ -16,6 +17,7 @@ export default function Layout({
     <AdbServiceProvider value={adbService}>
       {children}
       <FloatingConsole />
+      <Toaster />
     </AdbServiceProvider>
   );
 }
