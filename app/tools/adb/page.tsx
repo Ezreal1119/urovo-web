@@ -239,6 +239,7 @@ export default function Page() {
     }
 
     try {
+      appendConsole("[log] Detecting device type...");
       const isMtkDevice = await detectIsMtkDevice();
 
       let command = "";
