@@ -344,8 +344,29 @@ export default function Page() {
     }
   }
 
-  function handleRecordSystemLog() {
-    appendConsole("[system-log] Feature not implemented yet.");
+  async function handleRecordSystemLog() {
+    if (!adbServiceRef.current || status !== "connected") {
+      appendConsole("[error] No device connected.");
+      return;
+    }
+
+    try {
+      const isMtkDevice = await detectIsMtkDevice();
+      const command = isMtkDevice
+        ? "am start -n com.debug.loggerui/com.debug.loggerui.MainActivity"
+        : "am start -n com.un.logredirect/com.un.logredirect.LogRedirectorSettings";
+
+      appendConsole("[system-log] Launching Debug Logger...");
+      appendConsole(`[shell] ${command}`);
+
+      await adbServiceRef.current.run(command);
+
+      toast("Please start the recorder on the terminal to capture System Log.");
+      appendConsole("[system-log] Debug logger opened.");
+    } catch {
+      appendConsole("[error] Failed to open Debug Logger.");
+      toast.error("Failed to open Debug Logger.");
+    }
   }
 
   async function handleDownloadLogcat() {
@@ -741,7 +762,7 @@ export default function Page() {
                 >
                   HERE
                 </Link>{" "}
-                for firmware upgrade.
+                for firmware upgrade. <strong>(Check ADB approach)</strong>
               </PageDescription>
             </div>
           </PageHeaderContent>
