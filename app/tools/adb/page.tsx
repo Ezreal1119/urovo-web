@@ -270,15 +270,16 @@ export default function Page() {
       appendConsole("[log] Starting log recording...");
       appendConsole(`[shell] ${command}`);
 
+      setIsRecordingLog(true);
       const result = await adbServiceRef.current.run(command);
 
       if (result) {
         result.split("\n").forEach((line) => appendConsole(line));
       }
 
-      setIsRecordingLog(true);
       appendConsole("[log] Recording started.");
     } catch (error) {
+      setIsRecordingLog(false);
       appendConsole(
         `[error] ${
           error instanceof Error
@@ -321,16 +322,18 @@ export default function Page() {
       appendConsole("[log] Stopping log recording...");
       appendConsole(`[shell] ${command}`);
 
+      setIsRecordingLog(false);
+      setLogSavedDialogOpen(true);
       const result = await adbServiceRef.current.run(command);
 
       if (result) {
         result.split("\n").forEach((line) => appendConsole(line));
       }
 
-      setIsRecordingLog(false);
-      setLogSavedDialogOpen(true);
       appendConsole("[log] Recording stopped.");
     } catch (error) {
+      setIsRecordingLog(true);
+      setLogSavedDialogOpen(false);
       appendConsole(
         `[error] ${
           error instanceof Error
