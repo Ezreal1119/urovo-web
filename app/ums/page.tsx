@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import {
   PageShell,
   PageContainer,
@@ -134,7 +132,7 @@ export default function UmsPage() {
             <PageSection>
               <PageSectionHeader>
                 <div className="space-y-2">
-                  <PageSectionTitle className="font-bold">
+                  <PageSectionTitle className="font-bold text-xl">
                     UMS Related Links
                   </PageSectionTitle>
                 </div>
@@ -765,7 +763,7 @@ export default function UmsPage() {
             <PageSection>
               <PageSectionHeader>
                 <div className="space-y-2">
-                  <PageSectionTitle className="font-bold">
+                  <PageSectionTitle className="font-bold text-xl">
                     UTMS Related Links
                   </PageSectionTitle>
                 </div>

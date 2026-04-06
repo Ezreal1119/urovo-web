@@ -44,7 +44,7 @@ export function NavbarContactDialog({
       <DialogContent
         className="
           !w-[88vw] !max-w-[1180px]
-          !h-[72vh]
+          h-[85vh] max-h-[85vh]
           p-0
           overflow-hidden
           rounded-3xl
@@ -60,79 +60,87 @@ export function NavbarContactDialog({
           Send a message with title, content, and email.
         </DialogDescription>
 
-        <div className="grid h-full grid-cols-[0.82fr_1.18fr]">
+        <div className="grid h-full min-h-0 grid-cols-[0.82fr_1.18fr]">
           {/* Left panel */}
-          <div className="flex flex-col justify-between border-r border-white/10 bg-white/[0.02] px-7 py-7">
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <h3 className="text-3xl font-semibold tracking-tight text-white">
-                  Contact Me
-                </h3>
+          <div className="grid min-h-0 grid-rows-[1fr_auto] border-r border-white/10 bg-white/[0.02]">
+            {/* Scrollable content */}
+            <div className="min-h-0 overflow-y-auto px-7 py-7">
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <h3 className="text-3xl font-semibold tracking-tight text-white">
+                    Contact Me
+                  </h3>
 
-                <p className="max-w-sm text-sm leading-7 text-foreground/55">
-                  Send me a message for project discussion, business
-                  communication, or technical collaboration.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-6 text-foreground/65">
-                <div className="text-xs font-medium uppercase tracking-[0.14em] text-foreground/35">
-                  Direct Contact
+                  <p className="max-w-sm text-sm leading-7 text-foreground/55">
+                    Send me a message for project discussion, business
+                    communication, or technical collaboration.
+                  </p>
                 </div>
 
-                <div className="mt-3 space-y-2">
-                  <div>
-                    <div className="text-xs text-foreground/35">Email</div>
-                    <div className="text-sm text-white">patrick@urovo.com</div>
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-6 text-foreground/65">
+                  <div className="text-xs font-medium uppercase tracking-[0.14em] text-foreground/35">
+                    Direct Contact
                   </div>
 
-                  <div>
-                    <div className="text-xs text-foreground/35">WhatsApp</div>
-                    <div className="text-sm text-white">+86 18807737955</div>
-                  </div>
-
-                  <div>
-                    <div className="text-xs text-foreground/35">
-                      Phone / WeChat
+                  <div className="mt-3 space-y-2">
+                    <div>
+                      <div className="text-xs text-foreground/35">Email</div>
+                      <div className="text-sm text-white">
+                        patrick@urovo.com
+                      </div>
                     </div>
-                    <div className="text-sm text-white">18807737955</div>
+
+                    <div>
+                      <div className="text-xs text-foreground/35">WhatsApp</div>
+                      <div className="text-sm text-white">+86 18807737955</div>
+                    </div>
+
+                    <div>
+                      <div className="text-xs text-foreground/35">
+                        Phone / WeChat
+                      </div>
+                      <div className="text-sm text-white">18807737955</div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] px-4 py-4 text-sm leading-6 text-foreground/70">
-                <div className="text-xs font-medium uppercase tracking-[0.14em] text-blue-300">
-                  Note
+                <div className="rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] px-4 py-4 text-sm leading-6 text-foreground/70">
+                  <div className="text-xs font-medium uppercase tracking-[0.14em] text-blue-300">
+                    Note
+                  </div>
+                  <p className="mt-2">
+                    Please leave a clear title and enough project context so I
+                    can reply efficiently.
+                  </p>
                 </div>
-                <p className="mt-2">
-                  Please leave a clear title and enough project context so I can
-                  reply efficiently.
-                </p>
-              </div>
 
-              {submitted && (
-                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.06] px-4 py-3 text-sm text-emerald-300">
-                  Submitted successfully.
-                </div>
-              )}
+                {submitted && (
+                  <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.06] px-4 py-3 text-sm text-emerald-300">
+                    Submitted successfully.
+                  </div>
+                )}
+              </div>
             </div>
 
-            <div className="flex items-center gap-3 pt-6">
-              <Button
-                variant="outline"
-                onClick={() => onOpenChange(false)}
-                className="h-11 rounded-xl border-white/10 bg-white/[0.03] px-5 hover:bg-white/[0.06]"
-              >
-                Cancel
-              </Button>
+            {/* Fixed footer */}
+            <div className="shrink-0 border-t border-white/10 bg-[rgba(10,10,14,0.92)] px-7 py-5">
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="outline"
+                  onClick={() => onOpenChange(false)}
+                  className="h-11 rounded-xl border-white/10 bg-white/[0.03] px-5 hover:bg-white/[0.06]"
+                >
+                  Cancel
+                </Button>
 
-              <Button
-                onClick={handleSubmit}
-                disabled={isDisabled}
-                className="h-11 rounded-xl px-5"
-              >
-                Submit
-              </Button>
+                <Button
+                  onClick={handleSubmit}
+                  disabled={isDisabled}
+                  className="h-11 rounded-xl px-5"
+                >
+                  Submit
+                </Button>
+              </div>
             </div>
           </div>
 

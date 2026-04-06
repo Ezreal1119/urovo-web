@@ -18,7 +18,7 @@ export default function Layout({
         ]}
       />
 
-      <main className="ml-64 flex justify-center">
+      <main className="ml-52 flex justify-center">
         <div className="w-full max-w-5xl px-8">{children}</div>
       </main>
     </div>

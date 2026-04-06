@@ -11,15 +11,15 @@ export default function Layout({
         title="Navigate to"
         items={[
           { label: "UMS Intro", href: "/ums#Intro" },
-          { label: "1. Group Management", href: "/ums#group" },
-          { label: "2. App Management", href: "/ums#app" },
-          { label: "3. Remote Management", href: "/ums#remote" },
-          { label: "4. Account Management", href: "/ums#account" },
-          { label: "5. UTMS(Private UMS)", href: "/ums#utms" },
+          { label: "1. Group Manage", href: "/ums#group" },
+          { label: "2. App Manage", href: "/ums#app" },
+          { label: "3. Remote Manage", href: "/ums#remote" },
+          { label: "4. Account Manage", href: "/ums#account" },
+          { label: "5. UTMS(Private)", href: "/ums#utms" },
         ]}
       />
 
-      <main className="ml-64 flex justify-center">
+      <main className="ml-52 flex justify-center">
         <div className="w-full max-w-5xl px-8">{children}</div>
       </main>
     </div>

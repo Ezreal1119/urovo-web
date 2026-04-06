@@ -95,7 +95,7 @@ export function FixedSidebar({
   return (
     <aside
       className={cn(
-        "fixed top-16 left-0 z-40 h-[calc(100vh-4rem)] w-64",
+        "fixed top-16 left-0 z-40 h-[calc(100vh-4rem)] w-52",
         "group flex flex-col border-r border-border bg-background/60 backdrop-blur-xl transition-all duration-300",
       )}
     >

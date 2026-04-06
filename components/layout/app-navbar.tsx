@@ -115,13 +115,6 @@ export function AppNavbar() {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
-                <NavbarDropdownLink
-                  label="Tools"
-                  items={[
-                    { href: "/tools/adb", label: "Web ADB Tool" },
-                  ]}
-                />
-
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
                     <NavbarLink href="/links" active={pathname.startsWith("/links")}>
@@ -129,6 +122,14 @@ export function AppNavbar() {
                     </NavbarLink>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
+
+                <NavbarDropdownLink
+                  label="Tools"
+                  items={[
+                    { href: "/tools/adb", label: "Web ADB Tool" },
+                  ]}
+                />
+
               </NavigationMenuList>
             </NavigationMenu>
           </NavbarNav>
