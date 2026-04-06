@@ -16,6 +16,7 @@ import { Playfair_Display } from "next/font/google";
 import Divider from "@/components/ui/divider";
 import { Database, Shield, Smartphone, Wrench } from "lucide-react";
 import { AiLink } from "@/components/ui/AiLink";
+import Link from "next/link";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -154,14 +155,35 @@ export default function UmsPage() {
                     px-2 -mx-2 rounded-xl
                   "
                 >
-                  <span>UMS official website</span>
+                  <span>UMS Official Website</span>
                   <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
                     →
                   </span>
                 </a>
 
                 <a
-                  href="https://mega.nz/file/P5B0TBQS#1IYvz9dMNetn1q0g1H5z3i3sOWDW84nwGnKngHrcOZU"
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/ums/Introduction_to_UMS_20251208192518.pdf"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UMS Introduction</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/ums/the_guide_book_of_UMS-v3.9.5.pdf"
                   target="_blank"
                   className="
                     group flex items-center justify-between
@@ -182,7 +204,7 @@ export default function UmsPage() {
                 </a>
 
                 <a
-                  href="https://mega.nz/folder/XgR02JbI#KsVPAFKPHe3R0EsM09g7Kw"
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/ums/UMS_2.10.6.20251126_aurovo_release_I9000_V3_20251202153732_signed.apk"
                   target="_blank"
                   className="
                     group flex items-center justify-between
@@ -196,7 +218,32 @@ export default function UmsPage() {
                     px-2 -mx-2 rounded-xl
                   "
                 >
-                  <span>UMS Agent & UMS App Market</span>
+                  <span>
+                    <strong>[APK]</strong> UMS Agent
+                  </span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/ums/AppMarket_1.3.6.20240910_20240910091844_release_I9000_V2_signed.apk"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>
+                    <strong>[APK]</strong> UMS App Market
+                  </span>
                   <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
                     →
                   </span>
@@ -294,6 +341,20 @@ export default function UmsPage() {
                     <p>
                       These methods provide flexibility for both large
                       deployments and precise control.
+                    </p>
+
+                    <p>
+                      <strong>Please note</strong>: UMS doesn't support users
+                      binding terminals to UMS account by themselves currently.
+                      Please fill in this{" "}
+                      <a
+                        href="https://cdn.patrick-shenzhen.org/urovo/mdm/ums/device_import_template.xlsx"
+                        target="_blank"
+                        className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                      >
+                        Form
+                      </a>{" "}
+                      and send to UROVO's responsible Sales.
                     </p>
                   </div>
                 </AppStoreBlock>
@@ -792,7 +853,28 @@ export default function UmsPage() {
                 </a>
 
                 <a
-                  href="https://mega.nz/file/PhQiBASL#fFhCHk0eFoQUjzD87a2g6buinm1CxuxlOerGPz7k6lg"
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/utms/UTMS_Quick_Operation_Guide_V2.0.pptx"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>UTMS Introduction</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/utms/UTMS_User_Manual_V2.9.9.pdf"
                   target="_blank"
                   className="
                     group flex items-center justify-between
@@ -813,7 +895,7 @@ export default function UmsPage() {
                 </a>
 
                 <a
-                  href="https://mega.nz/folder/3loFxJZb#tt1ArBCX6w4AmPsSkpN3dw"
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/utms/Privatization_deployment_introduce_of_UTMS.pdf"
                   target="_blank"
                   className="
                     group flex items-center justify-between
@@ -827,7 +909,53 @@ export default function UmsPage() {
                     px-2 -mx-2 rounded-xl
                   "
                 >
-                  <span>UTMS Agent & UTMS App Market</span>
+                  <span>UTMS Deployment Requirements</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/utms/UTMS_2.0.11.20250307_aurovo_release_20250307171427_I9000_V2.apk"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>
+                    <strong>[APK]</strong> UTMS Agent
+                  </span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/utms/Appmarket_UTMS_v19_2.0.6.20250117_I9000_V2_20250117102454_signed.apk"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>
+                    <strong>[APK]</strong> UTMS App Market
+                  </span>
                   <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
                     →
                   </span>

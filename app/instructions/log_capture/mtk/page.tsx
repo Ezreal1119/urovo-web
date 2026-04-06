@@ -310,9 +310,13 @@ export default function Page() {
                       <ul className="pl-6 space-y-1 mt-1">
                         <li>
                           ◦ Download{" "}
-                          <ExternalLink href="https://developer.android.com/tools/releases/platform-tools">
+                          <a
+                            href="https://developer.android.com/tools/releases/platform-tools"
+                            target="_blank"
+                            className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                          >
                             <strong>ADB</strong>{" "}
-                          </ExternalLink>
+                          </a>
                           if not installed
                         </li>
                         <li>◦ Unzip the file, and enter the that folder</li>

@@ -22,22 +22,53 @@ export function NavbarContactDialog({
   const [content, setContent] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!title.trim() || !content.trim() || !email.trim()) return;
 
-    setSubmitted(true);
+    try {
+      setIsSubmitting(true);
+      setErrorMessage("");
 
-    setTimeout(() => {
-      setTitle("");
-      setContent("");
-      setEmail("");
-      setSubmitted(false);
-      onOpenChange(false);
-    }, 1200);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          content,
+          email,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data?.error || "Failed to submit.");
+      }
+
+      setSubmitted(true);
+
+      setTimeout(() => {
+        setTitle("");
+        setContent("");
+        setEmail("");
+        setSubmitted(false);
+        onOpenChange(false);
+      }, 1200);
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : "Failed to submit.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
-
-  const isDisabled = !title.trim() || !content.trim() || !email.trim();
+  const isDisabled =
+    !title.trim() || !content.trim() || !email.trim() || isSubmitting;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -110,13 +141,18 @@ export function NavbarContactDialog({
                   </div>
                   <p className="mt-2">
                     Please leave a clear title and enough project context so I
-                    can reply efficiently.
+                    can reply efficiently. Thank you!
                   </p>
                 </div>
 
                 {submitted && (
                   <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.06] px-4 py-3 text-sm text-emerald-300">
                     Submitted successfully.
+                  </div>
+                )}
+                {errorMessage && (
+                  <div className="rounded-2xl border border-red-500/20 bg-red-500/[0.06] px-4 py-3 text-sm text-red-300">
+                    {errorMessage}
                   </div>
                 )}
               </div>
@@ -138,7 +174,7 @@ export function NavbarContactDialog({
                   disabled={isDisabled}
                   className="h-11 rounded-xl px-5"
                 >
-                  Submit
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               </div>
             </div>
@@ -156,6 +192,18 @@ export function NavbarContactDialog({
                 </p>
               </div>
 
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground/75">
+                  Email
+                </label>
+                <Input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="h-12 rounded-2xl border-white/10 bg-white/[0.04] text-foreground placeholder:text-foreground/35 mt-1"
+                />
+              </div>
+
               <div className="grid grid-cols-1 gap-5">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground/75">
@@ -165,7 +213,7 @@ export function NavbarContactDialog({
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Enter the title"
-                    className="h-12 rounded-2xl border-white/10 bg-white/[0.04] text-foreground placeholder:text-foreground/35"
+                    className="h-12 rounded-2xl border-white/10 bg-white/[0.04] text-foreground placeholder:text-foreground/35 mt-1"
                   />
                 </div>
 
@@ -177,19 +225,7 @@ export function NavbarContactDialog({
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Enter your message"
-                    className="min-h-[260px] rounded-2xl border-white/10 bg-white/[0.04] text-foreground placeholder:text-foreground/35"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground/75">
-                    Email
-                  </label>
-                  <Input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="h-12 rounded-2xl border-white/10 bg-white/[0.04] text-foreground placeholder:text-foreground/35"
+                    className="min-h-[260px] rounded-2xl border-white/10 bg-white/[0.04] text-foreground placeholder:text-foreground/35 mt-1"
                   />
                 </div>
               </div>

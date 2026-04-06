@@ -83,7 +83,10 @@ export function AppNavbar() {
               <NavigationMenuList className="gap-1.5">
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <NavbarLink href="/home" active={pathname.startsWith("/home")}>
+                    <NavbarLink
+                      href="/home"
+                      active={pathname.startsWith("/home")}
+                    >
                       Home
                     </NavbarLink>
                   </NavigationMenuLink>
@@ -107,9 +110,17 @@ export function AppNavbar() {
                   ]}
                 />
 
+                <NavbarDropdownLink
+                  label="Tools"
+                  items={[{ href: "/tools/adb", label: "Web ADB Tool" }]}
+                />
+
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <NavbarLink href="/ums" active={pathname.startsWith("/ums")}>
+                    <NavbarLink
+                      href="/ums"
+                      active={pathname.startsWith("/ums")}
+                    >
                       UMS
                     </NavbarLink>
                   </NavigationMenuLink>
@@ -117,19 +128,14 @@ export function AppNavbar() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <NavbarLink href="/links" active={pathname.startsWith("/links")}>
+                    <NavbarLink
+                      href="/links"
+                      active={pathname.startsWith("/links")}
+                    >
                       Links
                     </NavbarLink>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
-
-                <NavbarDropdownLink
-                  label="Tools"
-                  items={[
-                    { href: "/tools/adb", label: "Web ADB Tool" },
-                  ]}
-                />
-
               </NavigationMenuList>
             </NavigationMenu>
           </NavbarNav>
