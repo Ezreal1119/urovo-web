@@ -31,12 +31,10 @@ async function remoteDirectoryExists(
   adb: WebAdbService,
   absolutePath: string,
 ): Promise<boolean> {
-  try {
-    await adb.run(`test -d ${shellEscape(absolutePath)}`);
-    return true;
-  } catch {
-    return false;
-  }
+  const out = await adb.run(
+    `if test -d ${shellEscape(absolutePath)}; then echo EXISTS; else echo MISSING; fi`,
+  );
+  return out.trim() === "EXISTS";
 }
 
 /**

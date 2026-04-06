@@ -397,7 +397,6 @@ export default function Page() {
       const message =
         e instanceof Error ? e.message : "Download failed.";
       appendConsole(`[error] ${labelForConsole}: ${message}`);
-      console.error(e);
     }
   }
 
