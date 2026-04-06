@@ -43,6 +43,7 @@ import {
   AdbRecoveryGuideDialog,
   AdbUsbGuideDialog,
 } from "./_components/adb-dialogs";
+import { downloadRemoteFolderToDisk } from "./_lib/downloadRemoteFolder";
 import { getLogTimestamp } from "./_lib/getLogTimestamp";
 import { isValidAdbCommand } from "./_lib/isValidAdbCommand";
 import type { DeviceInfo, DeviceStatus } from "./_lib/types";
@@ -342,20 +343,62 @@ export default function Page() {
     appendConsole("[system-log] Feature not implemented yet.");
   }
 
-  function handleDownloadLogcat() {
-    appendConsole("[download] Logcat download is not implemented yet.");
+  async function handleDownloadLogcat() {
+    await downloadLogFolderFromDevice(
+      "/sdcard/ULog/logs/adb",
+      "Logcat",
+      "logcat",
+    );
   }
 
-  function handleDownloadSystemLog() {
-    appendConsole("[download] System Log download is not implemented yet.");
+  async function handleDownloadSystemLog() {
+    await downloadLogFolderFromDevice(
+      "/sdcard/debuglogger",
+      "SystemLog",
+      "system log",
+    );
   }
 
-  function handleDownloadEmvLog() {
-    appendConsole("[download] EMV Log download is not implemented yet.");
+  async function handleDownloadEmvLog() {
+    await downloadLogFolderFromDevice("/sdcard/UROPE", "EMVLog", "EMV log");
   }
 
-  function handleDownloadUmsLog() {
-    appendConsole("[download] UMS Log download is not implemented yet.");
+  async function handleDownloadUmsLog() {
+    await downloadLogFolderFromDevice("/sdcard/UHome", "UMSLog", "UMS log");
+  }
+
+  async function downloadLogFolderFromDevice(
+    folderPath: string,
+    suggestedBaseName: string,
+    labelForConsole: string,
+  ) {
+    if (typeof window === "undefined") return;
+
+    if (!adbServiceRef.current || status !== "connected") {
+      appendConsole("[error] No device connected.");
+      return;
+    }
+
+    try {
+      await downloadRemoteFolderToDisk(adbServiceRef.current, {
+        absoluteFolderPath: folderPath,
+        suggestedDownloadBaseName: suggestedBaseName,
+      });
+      appendConsole(`[download] ${labelForConsole}: saved ${suggestedBaseName}.tar`);
+    } catch (e) {
+      const isAbort =
+        e instanceof DOMException
+          ? e.name === "AbortError"
+          : e instanceof Error && e.name === "AbortError";
+      if (isAbort) {
+        appendConsole(`[download] ${labelForConsole}: save cancelled.`);
+        return;
+      }
+      const message =
+        e instanceof Error ? e.message : "Download failed.";
+      appendConsole(`[error] ${labelForConsole}: ${message}`);
+      console.error(e);
+    }
   }
 
   async function handleInstallApk() {
