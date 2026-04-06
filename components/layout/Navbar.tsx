@@ -12,6 +12,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 function Navbar({ className, ...props }: React.ComponentProps<"header">) {
   return (
@@ -171,44 +177,41 @@ function NavbarActions({ className, ...props }: React.ComponentProps<"div">) {
 
 function NavbarDropdownLink({
   label,
-  children,
+  items,
   className,
 }: {
   label: string;
-  children: React.ReactNode;
+  items: Array<{ href: string; label: string }>;
   className?: string;
 }) {
-  const [open, setOpen] = React.useState(false);
-
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <DropdownMenu open={open} onOpenChange={setOpen}>
-        <DropdownMenuTrigger asChild>
-          <Link
-            href="#"
-            className={cn(
-              "inline-flex h-9 items-center rounded-xl px-3 text-lg text-foreground/65 transition-[background-color,color,border-color] duration-200 hover:bg-white/5 hover:text-foreground",
-              className,
-            )}
-          >
-            {label}
-          </Link>
-        </DropdownMenuTrigger>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger
+        className={cn(
+          "inline-flex h-9 items-center rounded-xl px-3 text-lg text-foreground/65 transition-[background-color,color,border-color] duration-200 hover:bg-white/5 hover:text-foreground data-[state=open]:bg-white/6 data-[state=open]:text-foreground",
+          className,
+        )}
+      >
+        {label}
+      </NavigationMenuTrigger>
 
-        <DropdownMenuContent
-          align="center"
-          sideOffset={0}
-          onCloseAutoFocus={(e) => e.preventDefault()}
-          className="w-56 rounded-2xl bg-[rgba(16,16,22,0.9)] p-1.5 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl"
-        >
-          {children}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+      <NavigationMenuContent className="w-56 rounded-2xl border border-white/10 bg-[rgba(16,16,22,0.9)] p-1.5 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+        <ul className="grid gap-1">
+          {items.map((item) => (
+            <li key={item.href}>
+              <NavigationMenuLink asChild>
+                <Link
+                  href={item.href}
+                  className="block rounded-xl px-2.5 py-2 text-foreground/80 transition-colors hover:bg-white/6 hover:text-foreground focus:bg-white/6 focus:text-foreground outline-none"
+                >
+                  {item.label}
+                </Link>
+              </NavigationMenuLink>
+            </li>
+          ))}
+        </ul>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
   );
 }
 

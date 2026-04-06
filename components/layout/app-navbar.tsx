@@ -1,14 +1,18 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { Menu, Search, Bell } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Playfair_Display } from "next/font/google";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
-import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 import { NavbarContactDialog } from "@/components/layout/navbar-contact-dialog";
 import { NavbarSearchDialog } from "@/components/layout/navbar-search-dialog";
 import {
@@ -75,63 +79,58 @@ export function AppNavbar() {
 
         <NavbarCenter>
           <NavbarNav>
-            <NavbarLink href="/home" active={pathname.startsWith("/home")}>
-              Home
-            </NavbarLink>
+            <NavigationMenu>
+              <NavigationMenuList className="gap-1.5">
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <NavbarLink href="/home" active={pathname.startsWith("/home")}>
+                      Home
+                    </NavbarLink>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
 
-            <NavbarDropdownLink label="PDA">
-              <DropdownMenuItem
-                asChild
-                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
-              >
-                <Link href="/projects/pda/RT40S">RT40S</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                asChild
-                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
-              >
-                <Link href="/projects/pda/DT50S">DT50(S)</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                asChild
-                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
-              >
-                <Link href="/projects/pda/DT66">DT66</Link>
-              </DropdownMenuItem>
-            </NavbarDropdownLink>
+                <NavbarDropdownLink
+                  label="PDA"
+                  items={[
+                    { href: "/projects/pda/RT40S", label: "RT40S" },
+                    { href: "/projects/pda/DT50S", label: "DT50(S)" },
+                    { href: "/projects/pda/DT66", label: "DT66" },
+                  ]}
+                />
 
-            <NavbarDropdownLink label="POS">
-              <DropdownMenuItem
-                asChild
-                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
-              >
-                <Link href="/projects/pos/i5300">i5300(L)</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                asChild
-                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
-              >
-                <Link href="/projects/pos/i9100">i9100</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                asChild
-                className="rounded-xl text-foreground/80 focus:bg-white/6 focus:text-foreground"
-              >
-                <Link href="/projects/pos/i9200">i9200</Link>
-              </DropdownMenuItem>
-            </NavbarDropdownLink>
+                <NavbarDropdownLink
+                  label="POS"
+                  items={[
+                    { href: "/projects/pos/i5300", label: "i5300(L)" },
+                    { href: "/projects/pos/i9100", label: "i9100" },
+                    { href: "/projects/pos/i9200", label: "i9200" },
+                  ]}
+                />
 
-            <NavbarLink href="/ums" active={pathname.startsWith("/ums")}>
-              UMS
-            </NavbarLink>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <NavbarLink href="/ums" active={pathname.startsWith("/ums")}>
+                      UMS
+                    </NavbarLink>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
 
-            <NavbarLink href="/tools" active={pathname.startsWith("/tools")}>
-              Tools
-            </NavbarLink>
+                <NavbarDropdownLink
+                  label="Tools"
+                  items={[
+                    { href: "/tools/adb", label: "Web ADB Tool" },
+                  ]}
+                />
 
-            <NavbarLink href="/links" active={pathname.startsWith("/links")}>
-              Links
-            </NavbarLink>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <NavbarLink href="/links" active={pathname.startsWith("/links")}>
+                      Links
+                    </NavbarLink>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </NavbarNav>
         </NavbarCenter>
 
