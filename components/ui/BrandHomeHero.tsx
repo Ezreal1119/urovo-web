@@ -64,11 +64,11 @@ function EntryCard({
 
 export function BrandHomeHero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative min-h-[calc(100vh-64px)] overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(130,110,255,0.12),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(70,120,255,0.10),transparent_26%),radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.04),transparent_30%)]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-8 md:px-8 md:pb-20 md:pt-12">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div className="relative mx-auto max-w-[100rem] px-6 py-6 md:px-8 md:py-8">
+        <div className="w-full grid items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           {/* Left copy */}
           <div className="min-w-0 space-y-8">
             <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-foreground/45">
@@ -187,7 +187,7 @@ export function BrandHomeHero() {
             </div>
           </div>
         </div>
-        <div className="mt-12 text-center text-xs text-foreground/40">
+        <div className="pt-4 text-center text-xs text-foreground/40">
           © PatrickXu
         </div>
       </div>
