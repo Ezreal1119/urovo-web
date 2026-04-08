@@ -411,7 +411,9 @@ export default function Page() {
         absoluteFolderPath: folderPath,
         suggestedDownloadBaseName: suggestedBaseName,
       });
-      appendConsole(`[download] ${labelForConsole}: saved ${suggestedBaseName}.tar`);
+      appendConsole(
+        `[download] ${labelForConsole}: saved ${suggestedBaseName}.tar`,
+      );
       toast.success(`Saved ${suggestedBaseName}.tar`);
     } catch (e) {
       const isAbort =
@@ -423,8 +425,7 @@ export default function Page() {
         toast("Save cancelled");
         return;
       }
-      const message =
-        e instanceof Error ? e.message : "Download failed.";
+      const message = e instanceof Error ? e.message : "Download failed.";
       appendConsole(`[error] ${labelForConsole}: ${message}`);
       if (message.startsWith("Remote folder does not exist:")) {
         toast.error(message);
@@ -763,6 +764,17 @@ export default function Page() {
                   HERE
                 </Link>{" "}
                 for firmware upgrade. <strong>(Check ADB approach)</strong>
+                <br />
+                You can also download{" "}
+                <a
+                  href="https://developer.android.com/tools/releases/platform-tools"
+                  target="_blank"
+                  className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                >
+                  ADB
+                </a>{" "}
+                directly from Android official website, which is not needed for
+                this tool.
               </PageDescription>
             </div>
           </PageHeaderContent>
@@ -1082,10 +1094,8 @@ export default function Page() {
                     />
                   </div>
 
-                  <div className="rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] px-4 py-4 text-sm leading-7 text-foreground/72">
-                    <p className="font-medium text-blue-300">Upgrade Flow</p>
-
-                    <ul className="mt-3 space-y-2">
+                  <div className="rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] px-4 py-4 text-xs leading-7 text-foreground/72">
+                    <ul className="space-y-1">
                       <li className="flex items-center gap-2">
                         <span className="size-1.5 rounded-full bg-blue-300/70 shrink-0" />
                         <span>
@@ -1101,6 +1111,19 @@ export default function Page() {
                           start upgrading, the device will restart.
                         </span>
                       </li>
+
+                      <li className="flex items-center gap-2">
+                        <span className="size-1.5 rounded-full bg-blue-300/70 shrink-0" />
+                        <span>
+                          <strong>Step 3:</strong> You might need to{" "}
+                          <strong>Reset</strong> the device to make the upgrade
+                          fully effective.
+                        </span>
+                      </li>
+                      <p>
+                        (Settings -{">"} System -{">"} Reset options -{">"}{" "}
+                        Erase all data -{">"} Erase everything & Reboot)
+                      </p>
                     </ul>
                   </div>
                 </div>

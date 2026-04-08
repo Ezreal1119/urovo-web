@@ -90,7 +90,7 @@ export function AdbRecoveryGuideDialog({
                 <span className="text-foreground/75">
                   Wait until you see{" "}
                   <span className="font-medium text-white">
-                    {"\"Press power key to reboot device\""}
+                    {'"Press power key to reboot device"'}
                   </span>
                   .
                 </span>
@@ -126,8 +126,8 @@ export function AdbRecoveryGuideDialog({
                     <li className="flex items-center gap-2">
                       <span className="size-1 rounded-full bg-white/40" />
                       <span className="font-mono text-white">
-                        <strong>For DT50(S):</strong> + + - - + - + + + + -
-                        - - -
+                        <strong>For DT50(S):</strong> + + - - + - + + + + - - -
+                        -
                       </span>
                     </li>
                   </ul>
@@ -238,7 +238,8 @@ export function AdbUsbGuideDialog({
               </div>
 
               <div className="text-xs text-foreground/50 text-center">
-                If it still fails, close other ADB tools or refresh the page.
+                If it still fails, close other ADB tools(e.g. "adb kill-server",
+                close Android Studio)
               </div>
             </div>
           </div>

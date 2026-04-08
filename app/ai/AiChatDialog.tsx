@@ -235,6 +235,7 @@ export function AiChatDialog() {
             hover:bg-white/[0.12]
             hover:shadow-[0_16px_50px_rgba(0,0,0,0.45)]
             hover:-translate-y-0.5
+            cursor-pointer
           "
         >
           <span className="tracking-[0.01em]">Ask AI</span>
@@ -365,6 +366,7 @@ export function AiChatDialog() {
                     shadow-[0_8px_24px_rgba(236,72,153,0.22)]
                     transition-all duration-200
                     hover:bg-pink-500 hover:shadow-[0_10px_30px_rgba(236,72,153,0.28)]
+                    cursor-pointer
                   "
                 >
                   {isSending ? "Sending..." : "Send"}

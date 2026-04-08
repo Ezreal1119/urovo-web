@@ -77,37 +77,42 @@ export default function LinksPage() {
               <div className="space-y-4">
                 <ResourceItem
                   title="POS"
-                  href="https://mega.nz/file/qxojlZAL#PSZc4n0weIgltLkyXQ3Q-4tRFmT1EAQ4DYmeq5Ify-c"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/UrovoPosSdk_New_v1.0.24.7z"
                   description="Android SDK (including demo code and API document) for UROVO POS. [UrovoPosSdk_New_v1.0.24]"
                 />
                 <ResourceItem
                   title="PDA"
-                  href="https://mega.nz/file/29RD2TxL#w2cLbJiXF1EHw3OlVXmOeuPaxFRXvcu-8e182uADB58"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/SDK_ReleaseforAndroid_v4.2.0618.rar"
                   description="Android SDK (including demo code and API document) for UROVO PDA. [SDK_ReleaseforAndroid_v4.2.0618]"
                 />
                 <ResourceItem
-                  title="K388Pro"
-                  href="https://mega.nz/file/KxJDwQjQ#K1SL41nq9QFonmvobrmhrePxiw5KQ3z1oYG1i__f98g"
-                  description="Android SDK (including demo code and API document) for UROVO K388Pro. [K388-Print]"
+                  title="Scanner"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/Scanner-SDK-20241121.zip"
+                  description="Note: This SDK can not be imported together with PDA SDK, will crash otherwise. [Scanner-SDK-20241121.zip]"
                 />
                 <ResourceItem
                   title="RFID"
-                  href="https://mega.nz/file/7gIhCZDa#3R0WCknLVr27UA7jT3SJR7q1fXDLsYypQWgXctKb9_M"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/UHF_SDK_Development_Documentation_v2.5.1230.zip"
                   description="Android SDK (including demo code and API document) for UROVO RFID module. [UHF_SDK_v2.5.1230]"
                 />
                 <ResourceItem
+                  title="K388Pro"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/K388-Print.rar"
+                  description="Android SDK (including demo code and API document) for UROVO K388Pro. [K388-Print]"
+                />
+                <ResourceItem
                   title="FingerPrint"
-                  href="https://mega.nz/file/29hynawb#VL-phT3i396GxdDqKxIkDGSPcPFyPsINNqkDFgAtOJg"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/Aratek_TrustFinger_SDK_For_Android_v3.3.0.3_2024.11.29.zip"
                   description="Android SDK (including demo code and API document) for UROVO fingerprint module. [Aratek_TrustFinger_v3.3.0.3_2024.11.29]"
                 />
                 <ResourceItem
                   title="D81Plus-D91_Non_RFID"
-                  href="https://mega.nz/file/qwQ3SKyD#sUsje5IGAkv_QgehqgVcs0sFzyD6aMgftPQ_BYHyN8Q"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/D81Plus-D91_2412.zip"
                   description="Android SDK (including demo code and API document) for UROVO D81Plus. [D81Plus-D91_2412]"
                 />
                 <ResourceItem
                   title="D81R_RFID"
-                  href="https://mega.nz/file/2xojBa6Z#6fSqUzs4RQl0F5rjQ4D9C5v5_lQIUVvqAXBoerE17Zc"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/D81R-RFID_2412.zip"
                   description="Android SDK (including demo code and API document) for UROVO D81R. [D81R-RFID_2412]"
                 />
               </div>
@@ -161,17 +166,17 @@ export default function LinksPage() {
               <div className="space-y-4">
                 <ResourceItem
                   title="MTK_driver"
-                  href="https://mega.nz/file/LgomlKgL#454LYevFl4tY8e1gu0JONP6GyiCwO7q3w1lVJNymY98"
+                  href="https://cdn.patrick-shenzhen.org/urovo/drivers/MTK-Driver-v5.2307.zip"
                   description="Driver for UROVO MTK terminals. [MTK-Driver-v5.2307]"
                 />
                 <ResourceItem
                   title="Qualcomm_driver"
-                  href="https://mega.nz/file/v85AmKzI#I-uBy6RxZDCShjiL1Jin5JAX_il6MA840P0taO6iYZQ"
+                  href="https://cdn.patrick-shenzhen.org/urovo/drivers/Qualcomm_USB_Driver_v1.0.zip"
                   description="Driver for UROVO Qualcomm terminals. [Qualcomm_USB_Driver_v1.0]"
                 />
                 <ResourceItem
                   title="UniSoc_driver"
-                  href="https://mega.nz/file/nlBUFSRB#2TkLdIIUaX_VPPtKRx5123QONsgYEZ7RApXOcZ1_NLs"
+                  href="https://cdn.patrick-shenzhen.org/urovo/drivers/Driver_R4.20.4201.zip"
                   description="Driver for UROVO UniSoc terminals. [Driver_R4.20.4201]"
                 />
               </div>

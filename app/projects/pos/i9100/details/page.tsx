@@ -25,61 +25,86 @@ export default function UmsPage() {
   return (
     <PageShell className="min-h-screen">
       <PageContainer className="gap-0">
-        <PageHeader className="border-0 bg-transparent px-0 py-0 shadow-none">
-          <PageHeaderContent className="flex flex-col items-start">
-            <div className="space-y-4">
-              <PageTitle className="text-4xl text-white md:text-5xl">
-                i9100 (Commercial Smart POS)
-              </PageTitle>
+        <section className="relative overflow-hidden rounded-[32px] border border-white/10">
+          {/* Scene image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/products/pos/i9100/i9100_Scene.jpg')",
+            }}
+          />
 
-              <PageDescription className="max-w-3xl text-base leading-8 text-foreground/60">
-                Breaking through commercial boundaries for all-powerful smart
-                POS terminal.
-              </PageDescription>
-            </div>
-          </PageHeaderContent>
-        </PageHeader>
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,12,0.72),rgba(8,8,12,0.9))]" />
+
+          {/* Soft highlight */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(255,255,255,0.06),transparent_24%),radial-gradient(circle_at_85%_20%,rgba(59,130,246,0.08),transparent_22%)]" />
+
+          {/* Content */}
+          <div className="relative z-10 px-6 py-8 md:px-8 md:py-10">
+            <PageHeader className="border-0 bg-transparent px-0 py-0 shadow-none">
+              <PageHeaderContent className="flex flex-col items-start">
+                <div className="space-y-4">
+                  <PageTitle className="text-4xl text-white md:text-5xl">
+                    i9100 (Commercial Smart POS)
+                  </PageTitle>
+
+                  <PageDescription className="max-w-3xl text-base leading-8 text-foreground/60">
+                    Breaking through commercial boundaries for all-powerful
+                    smart POS terminal.
+                  </PageDescription>
+                </div>
+              </PageHeaderContent>
+            </PageHeader>
+
+            <Divider />
+
+            <PageMain className="mt-8">
+              <PageStack className="gap-12">
+                <PageSection>
+                  <PageSectionHeader>
+                    <div className="space-y-2">
+                      <PageSectionTitle className="font-bold">
+                        Core Capabilities
+                      </PageSectionTitle>
+                      <PageSectionDescription>
+                        Key areas that define UROVO's most classic POS.
+                      </PageSectionDescription>
+                    </div>
+                  </PageSectionHeader>
+
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <CapabilityBlock
+                      icon={Shield}
+                      title="Performance & Stable"
+                      description="A high-performance quad-core processor and Android 13 operating system."
+                    />
+                    <CapabilityBlock
+                      icon={Wrench}
+                      title="Fast Printing"
+                      description="40-mm diameter compartment that supports fast thermal printing."
+                    />
+                    <CapabilityBlock
+                      icon={Database}
+                      title="Large Display"
+                      description="HD resolution rate with backlight and brightness level control for a clear view."
+                    />
+                    <CapabilityBlock
+                      icon={Smartphone}
+                      title="Financial Certifications"
+                      description="PCI PTS 6.x, EMV L1&L2, EMV Contactless L1, PayPass, and PayWave."
+                    />
+                  </div>
+                </PageSection>
+              </PageStack>
+            </PageMain>
+          </div>
+        </section>
 
         <Divider />
 
         <PageMain className="mt-8">
           <PageStack className="gap-12">
-            <PageSection>
-              <PageSectionHeader>
-                <div className="space-y-2">
-                  <PageSectionTitle className="font-bold">
-                    Core Capabilities
-                  </PageSectionTitle>
-                  <PageSectionDescription>
-                    Key areas that define UROVO's most classic POS.
-                  </PageSectionDescription>
-                </div>
-              </PageSectionHeader>
-
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <CapabilityBlock
-                  icon={Shield}
-                  title="Performance & Stable"
-                  description="A high-performance quad-core processor and Android 13 operating system."
-                />
-                <CapabilityBlock
-                  icon={Wrench}
-                  title="Fast Printing"
-                  description="40-mm diameter compartment that supports fast thermal printing."
-                />
-                <CapabilityBlock
-                  icon={Database}
-                  title="Large Display"
-                  description="HD resolution rate with backlight and brightness level control for a clear view."
-                />
-                <CapabilityBlock
-                  icon={Smartphone}
-                  title="Financial Certifications"
-                  description="PCI PTS 6.x, EMV L1&L2, EMV Contactless L1, PayPass, and PayWave."
-                />
-              </div>
-            </PageSection>
-
             <section className="space-y-3 pb-5">
               <div className="space-y-2">
                 <PageSectionTitle className="font-bold">
@@ -180,6 +205,48 @@ export default function UmsPage() {
                 </a>
 
                 <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/products/i9100/i9100_Service_Manual_V2.0-20260407144707.pdf"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>i9100 Maintenance Manual</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/products/i9100/i9100_Safe_Mode_Clear_Instruction_2025.docx"
+                  target="_blank"
+                  className="
+                    group flex items-center justify-between
+                    py-4
+                    text-base font-medium
+                    text-foreground/80
+
+                    transition-all duration-200
+                    hover:text-white
+                    hover:bg-white/[0.03]
+                    px-2 -mx-2 rounded-xl
+                  "
+                >
+                  <span>i9100 Safe Mode Clear Manual</span>
+                  <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
+                    →
+                  </span>
+                </a>
+
+                <a
                   href="https://cdn.patrick-shenzhen.org/urovo/sdk/UrovoPosSdk_New_v1.0.24.7z"
                   target="_blank"
                   className="
@@ -215,7 +282,9 @@ export default function UmsPage() {
                     px-2 -mx-2 rounded-xl
                   "
                 >
-                  <span>i9100 FingerPrinter SDK (if applicable)</span>
+                  <span>
+                    <strong>[Optional]</strong> i9100 FingerPrinter SDK
+                  </span>
                   <span className="opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-80">
                     →
                   </span>
@@ -228,28 +297,18 @@ export default function UmsPage() {
             <section id="group" className="scroll-mt-20">
               <div className="space-y-2">
                 <PageSectionTitle className={`text-5xl ${playfair.className}`}>
-                  1. Group Management
+                  1. Maintenance
                 </PageSectionTitle>
-
-                <PageSectionDescription>
-                  Organize devices with flexible grouping, binding, and
-                  deployment control
-                </PageSectionDescription>
-
-                <p className="max-w-3xl pt-2 text-sm leading-7 text-foreground/65 md:text-base">
-                  Group Management is the foundation of device organization in
-                  UMS. It allows enterprises to structure terminals based on
-                  business hierarchy, manage device ownership, and apply
-                  configurations or deployments in a controlled and scalable
-                  way.
-                </p>
               </div>
 
+              <p className="max-w-3xl pt-4 text-sm leading-7 text-foreground/65 md:text-xl">
+                i9100 Disassemble Manual
+              </p>
               <section className="space-y-3 pb-5">
                 <div className="mt-6 w-full overflow-hidden rounded-2xl border border-white/10">
                   <div className="aspect-video w-full">
                     <iframe
-                      src="https://www.youtube.com/embed/NibOV3mtuZ8"
+                      src="https://www.youtube.com/embed/D0GA4ZHtZvo"
                       title="UMS Group Management Tutorial"
                       className="h-full w-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -264,82 +323,28 @@ export default function UmsPage() {
                 </p>
               </section>
 
-              <div className="mt-6 space-y-6">
-                <AppStoreBlock
-                  title="1.1 Group Structure"
-                  description="Build hierarchical groups to organize devices."
-                >
-                  <div className="space-y-3 text-sm leading-7 text-foreground/72">
-                    <p>
-                      The left panel displays the full group structure,
-                      including main groups and sub-groups.
-                    </p>
+              <p className="max-w-3xl pt-4 text-sm leading-7 text-foreground/65 md:text-xl">
+                i9100 Assemble Manual
+              </p>
 
-                    <p>
-                      You can click any group to view its details, such as
-                      device count, bound terminals, published applications, and
-                      deployment rules.
-                    </p>
-
-                    <p>
-                      Groups can be created manually using the plus icon, or
-                      imported in batch using a predefined Excel template.
-                    </p>
+              <section className="space-y-3 pb-5">
+                <div className="mt-6 w-full overflow-hidden rounded-2xl border border-white/10">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      src="https://www.youtube.com/embed/D0GA4ZHtZvo"
+                      title="UMS Group Management Tutorial"
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
                   </div>
-                </AppStoreBlock>
-
-                <AppStoreBlock
-                  title="1.2 Device Binding"
-                  description="Bind devices to groups in batch or manually."
-                >
-                  <div className="space-y-3 text-sm leading-7 text-foreground/72">
-                    <p>
-                      Devices can be assigned to groups either in batch or
-                      individually.
-                    </p>
-
-                    <ul className="space-y-2 pl-5 text-foreground/70">
-                      <li>
-                        <strong>Batch Import</strong> allows you to upload an
-                        Excel file containing device SNs and group names, which
-                        is also useful for large-scale reassignment.
-                      </li>
-                      <li>
-                        <strong>Manual Binding</strong> lets you add devices one
-                        by one by entering the terminal serial number directly.
-                      </li>
-                    </ul>
-
-                    <p>
-                      These methods provide flexibility for both large
-                      deployments and precise control.
-                    </p>
-                  </div>
-                </AppStoreBlock>
-
-                <AppStoreBlock
-                  title="1.3 Deployment by Group"
-                  description="Apply configurations and execute operations based on group scope."
-                >
-                  <div className="space-y-3 text-sm leading-7 text-foreground/72">
-                    <p>
-                      Once groups are defined, all operations in UMS can be
-                      executed at the group level.
-                    </p>
-
-                    <p>
-                      For example, application deployment can be pushed to
-                      selected groups only, ensuring targeted rollout while
-                      keeping other devices unaffected.
-                    </p>
-
-                    <p>
-                      This group-based control model is essential for
-                      large-scale device management.
-                    </p>
-                  </div>
-                </AppStoreBlock>
-              </div>
+                </div>
+                <p className="text-xs text-foreground/40">
+                  Note: You can enable subtitles by going to "Settings" →
+                  "Captions" → "Auto-translate", then selecting your preferred
+                  language.
+                </p>
+              </section>
             </section>
 
             <Divider />
@@ -870,7 +875,7 @@ function CapabilityBlock({
   description: string;
 }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5">
+    <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm px-5 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
       <div className="flex items-start gap-3">
         <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
           <Icon className="size-5 text-foreground/75" />

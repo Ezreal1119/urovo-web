@@ -104,9 +104,11 @@ export function AppNavbar() {
                 <NavbarDropdownLink
                   label="POS"
                   items={[
-                    { href: "/projects/pos/i5300", label: "i5300(L)" },
-                    { href: "/projects/pos/i9100", label: "i9100" },
+                    { href: "/projects/pos/i9600", label: "i9600" },
                     { href: "/projects/pos/i9200", label: "i9200" },
+                    { href: "/projects/pos/i9100", label: "i9100" },
+                    { href: "/projects/pos/i5300", label: "i5300" },
+                    { href: "/projects/pos/i5300l", label: "i5300L" },
                   ]}
                 />
 
@@ -158,7 +160,7 @@ export function AppNavbar() {
             </Button> */}
 
             <Button
-              className="hidden md:inline-flex"
+              className="hidden md:inline-flex cursor-pointer"
               onClick={() => setContactOpen(true)}
             >
               Contact

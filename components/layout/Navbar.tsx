@@ -159,6 +159,7 @@ function NavbarSearchButton({
       className={cn(
         "hidden h-9 w-55 justify-start rounded-xl border-white/10 bg-white/3 px-3 text-sm text-foreground/45 hover:bg-white/5 hover:text-foreground md:inline-flex",
         className,
+        "cursor-pointer",
       )}
       {...props}
     />
@@ -222,7 +223,7 @@ function NavbarUserMenu() {
         <Button
           variant="ghost"
           size="icon-sm"
-          className="rounded-xl border border-white/10 bg-white/3 hover:bg-white/6"
+          className="rounded-xl border border-white/10 bg-white/3 hover:bg-white/6 cursor-pointer"
         >
           <Avatar className="size-7">
             <AvatarImage src="/patrick_selfie.png" alt="User avatar" />
