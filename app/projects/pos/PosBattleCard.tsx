@@ -19,15 +19,15 @@ const POS_PRODUCTS: PosProduct[] = [
     name: "i9600",
     eyebrow: "Premium POS",
     description:
-      "A larger-format Android POS platform for richer interaction, stronger business presentation, and multi-scenario commercial usage.",
+      "Dual-screen smart POS with flagship power, seamless interaction, and ultra-sleek design.",
     image: "/products/pos/i9600/i9600.png",
   },
   {
     slug: "i9200",
     name: "i9200",
-    eyebrow: "Premium POS",
+    eyebrow: "Lightweight POS",
     description:
-      "A larger-format Android POS platform for richer interaction, stronger business presentation, and multi-scenario commercial usage.",
+      "Smart Mobile Terminal Ultra-Light, Flagship Power in your palm.",
     image: "/products/pos/i9200/i9200.png",
   },
   {

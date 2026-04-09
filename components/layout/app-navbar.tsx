@@ -31,6 +31,7 @@ import {
   NavbarSearchButton,
   NavbarUserMenu,
 } from "./Navbar";
+import { NavbarSignInDialog } from "./navbar-sign-in-dialog";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -40,6 +41,27 @@ export function AppNavbar() {
   const pathname = usePathname();
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [contactOpen, setContactOpen] = React.useState(false);
+  const [signInOpen, setSignInOpen] = React.useState(false);
+  const [signedIn, setSignedIn] = React.useState<boolean | null>(null);
+
+  const checkAuthStatus = React.useCallback(async () => {
+    try {
+      const res = await fetch("/api/auth/me", {
+        method: "GET",
+        credentials: "include",
+        cache: "no-store",
+      });
+
+      const data = await res.json();
+      setSignedIn(Boolean(data?.signedIn));
+    } catch {
+      setSignedIn(false);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    void checkAuthStatus();
+  }, [checkAuthStatus]);
 
   return (
     <Navbar>
@@ -166,12 +188,28 @@ export function AppNavbar() {
               Contact
             </Button>
 
-            <NavbarUserMenu />
+            {signedIn ? (
+              <NavbarUserMenu />
+            ) : (
+              <Button
+                className="hidden md:inline-flex cursor-pointer"
+                onClick={() => setSignInOpen(true)}
+              >
+                Sign in
+              </Button>
+            )}
           </NavbarActions>
         </NavbarRight>
       </NavbarContainer>
       <NavbarSearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
       <NavbarContactDialog open={contactOpen} onOpenChange={setContactOpen} />
+      <NavbarSignInDialog
+        open={signInOpen}
+        onOpenChange={setSignInOpen}
+        onSuccess={() => {
+          void checkAuthStatus();
+        }}
+      />
     </Navbar>
   );
 }

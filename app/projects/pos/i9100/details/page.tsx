@@ -16,12 +16,17 @@ import { Playfair_Display } from "next/font/google";
 import Divider from "@/components/ui/divider";
 import { Database, Shield, Smartphone, Wrench } from "lucide-react";
 import { AiLink } from "@/components/ui/AiLink";
+import { requireSignIn } from "@/lib/require-sign-in";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
-export default function UmsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function DetailPage() {
+  await requireSignIn("/auth-required");
+
   return (
     <PageShell className="min-h-screen">
       <PageContainer className="gap-0">
@@ -331,7 +336,7 @@ export default function UmsPage() {
                 <div className="mt-6 w-full overflow-hidden rounded-2xl border border-white/10">
                   <div className="aspect-video w-full">
                     <iframe
-                      src="https://www.youtube.com/embed/D0GA4ZHtZvo"
+                      src="https://www.youtube.com/embed/WjVoQvA2T2Y"
                       title="UMS Group Management Tutorial"
                       className="h-full w-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

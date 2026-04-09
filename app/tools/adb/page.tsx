@@ -757,13 +757,15 @@ export default function Page() {
                 <strong>Financial POS</strong> (unless in Debug mode).
                 <br />
                 Please refer to{" "}
-                <Link
-                  href="/links#manual"
+                <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/manuals/How_to_upgrade_firmware-OS_UFS_SE.zip"
+                  target="_blank"
                   className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
                 >
                   HERE
-                </Link>{" "}
-                for firmware upgrade. <strong>(Check ADB approach)</strong>
+                </a>{" "}
+                for firmware upgrade of Financial POS.{" "}
+                <strong>(Check ADB approach)</strong>
                 <br />
                 You can also download{" "}
                 <a

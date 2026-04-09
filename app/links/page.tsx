@@ -57,8 +57,8 @@ export default function LinksPage() {
               <div className="space-y-4">
                 <ResourceItem
                   title="Firmware_upgrade"
-                  href="https://mega.nz/file/vsZwgC5b#s0s3zWc8Sljh6WCz91lHOE8GSYUPzFKqCNfxdHcpn2I"
-                  description="Instruction on how to upgrade firmware of UROVO products. Four methods are provided. Please read README.txt for details."
+                  href="https://cdn.patrick-shenzhen.org/urovo/manuals/How_to_upgrade_firmware-OS_UFS_SE.zip"
+                  description="Instruction on how to upgrade firmware of UROVO POS/PDA. Four methods are provided. Please read README.txt for details."
                 />
               </div>
             </PageSection>

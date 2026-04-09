@@ -8,7 +8,7 @@ const page = () => {
         <ProductHero
           productPreview="Smart POS Product Preview"
           title="i9200"
-          subtitle="High-security, all-in-one payment solution with powerful Android performance."
+          subtitle="Smart Mobile Terminal Ultra-Light, Flagship Power in your palm."
           image="/products/pos/i9200/i9200_All_in_One.png"
         />
       </PageShell>

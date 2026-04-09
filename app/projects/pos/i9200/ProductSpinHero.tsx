@@ -21,12 +21,15 @@ export function ProductHero({
   image,
 }: ProductHeroProps) {
   const highlights = [
-    { label: "Processor", value: "Quad-core A53 2.0 GHz" },
+    {
+      label: "Processor",
+      value: "Quad-core 2.0 GHz (Octa-core supported)",
+    },
     { label: "OS", value: "Android 13" },
-    { label: "Memory", value: "2GB + 16GB" },
-    { label: "Display", value: '5.5" 720×1280' },
-    { label: "Printer", value: "58mm Thermal Printer; 60-70 mm/s" },
-    { label: "Payment", value: "Magstripe / IC / NFC" },
+    { label: "Memory", value: "2GB + 16GB (3GB + 32GB supported)" },
+    { label: "Display", value: '5.5" 720×1440' },
+    { label: "Printer", value: "58mm Thermal Printer; 60-80 mm/s" },
+    { label: "Payment", value: "Magstripe / IC / NFC (Financial)" },
   ];
 
   return (
@@ -52,7 +55,7 @@ export function ProductHero({
               </h2>
 
               <Link
-                href="/projects/pos/i9100/details"
+                href="/projects/pos/i9200"
                 className="group mt-2 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500/80 to-purple-500/80 px-4 py-2 text-sm font-medium text-white shadow-[0_10px_30px_rgba(99,102,241,0.25)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_16px_40px_rgba(99,102,241,0.35)]"
               >
                 More
