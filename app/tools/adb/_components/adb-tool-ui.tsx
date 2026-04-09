@@ -3,7 +3,9 @@
 import * as React from "react";
 import { Circle, Upload } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { DeviceStatus, InstallTaskStatus } from "../_lib/types";
+import type { DeviceStatus } from "../_lib/types";
+
+const ACTION_ROW_BUTTON_CLASS = "h-12 w-[220px] shrink-0 box-border";
 
 export function ToolCard({
   title,
@@ -73,19 +75,23 @@ export function FileActionRow({
   const inputId = React.useId();
 
   return (
-    <div className="flex flex-col gap-3 md:flex-row">
-      <div className="flex-1 min-w-0 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-foreground/55">
+    <div className="flex items-center gap-3">
+      <div className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground/55">
         <div className="truncate">{file ? file.name : placeholder}</div>
       </div>
 
       <div className="shrink-0">
         <label
           htmlFor={inputId}
-          className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-foreground/80 transition-all duration-200 hover:bg-white/[0.07] hover:text-white"
+          className={cn(
+            "inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm font-medium text-foreground/80 transition-all duration-200 hover:bg-white/[0.07] hover:text-white",
+            ACTION_ROW_BUTTON_CLASS,
+          )}
         >
           <Upload className="size-4 opacity-80" />
           {buttonLabel}
         </label>
+
         <input
           id={inputId}
           type="file"
@@ -101,32 +107,42 @@ export function FileActionRow({
 export function InstallStatusBanner({
   status,
   message,
+  className,
 }: {
-  status: InstallTaskStatus;
-  message: string;
+  status: "idle" | "uploading" | "success" | "error" | "installing";
+  message?: string;
+  className?: string;
 }) {
+  const toneClass =
+    status === "success"
+      ? "border-emerald-500/20 bg-emerald-500/[0.06] text-emerald-300"
+      : status === "error"
+        ? "border-red-500/20 bg-red-500/[0.06] text-red-300"
+        : status === "uploading" || status === "installing"
+          ? "border-blue-500/20 bg-blue-500/[0.06] text-blue-300"
+          : "border-white/10 bg-white/[0.03] text-foreground/60";
+
+  const displayText =
+    message?.trim() ||
+    (status === "idle"
+      ? "No firmware task running."
+      : status === "uploading"
+        ? "Uploading firmware package..."
+        : status === "installing"
+          ? "Triggering firmware upgrade..."
+          : status === "success"
+            ? "Upgrade completed successfully."
+            : "Upgrade failed.");
+
   return (
     <div
       className={cn(
-        "rounded-2xl border px-4 py-3 text-sm transition-all",
-        status === "idle" &&
-          "border-white/10 bg-white/[0.02] text-foreground/50",
-        status === "uploading" &&
-          "border-blue-500/30 bg-blue-500/[0.06] text-blue-300",
-        status === "installing" &&
-          "border-amber-500/30 bg-amber-500/[0.06] text-amber-300",
-        status === "success" &&
-          "border-emerald-500/30 bg-emerald-500/[0.06] text-emerald-300",
-        status === "error" &&
-          "border-red-500/30 bg-red-500/[0.06] text-red-300",
+        "flex h-12 items-center rounded-2xl border px-4 text-sm",
+        toneClass,
+        className,
       )}
     >
-      <div className="flex items-center justify-between gap-4">
-        <span className="text-xs uppercase tracking-wider opacity-70">
-          {status}
-        </span>
-        <span className="truncate">{message}</span>
-      </div>
+      <span className="block min-w-0 truncate">{displayText}</span>
     </div>
   );
 }

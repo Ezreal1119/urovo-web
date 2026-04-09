@@ -90,6 +90,7 @@ export default function Page() {
   const [firmwareMessage, setFirmwareMessage] = React.useState(
     "No firmware task running.",
   );
+  const [isUpgradingFirmware, setIsUpgradingFirmware] = React.useState(false);
 
   React.useEffect(() => {
     console.log(adbStatus);
@@ -652,19 +653,19 @@ export default function Page() {
     }
   }
 
-  async function handlePushFirmware() {
+  async function handlePushFirmware(): Promise<boolean> {
     if (!firmwareFile) {
       appendConsole("[error] No firmware package selected.");
       setFirmwareStatus("error");
       setFirmwareMessage("No firmware package selected.");
-      return;
+      return false;
     }
 
     if (!adbServiceRef.current || status !== "connected") {
       appendConsole("[error] No device connected.");
       setFirmwareStatus("error");
       setFirmwareMessage("No device connected.");
-      return;
+      return false;
     }
 
     try {
@@ -688,6 +689,8 @@ export default function Page() {
       setFirmwareMessage(
         "Firmware package uploaded to /sdcard/Download/patch.zip",
       );
+
+      return true;
     } catch (error) {
       const message =
         error instanceof Error
@@ -697,17 +700,18 @@ export default function Page() {
       appendConsole(`[error] ${message}`);
       setFirmwareStatus("error");
       setFirmwareMessage(message);
+      return false;
     } finally {
       setIsPushingFirmware(false);
     }
   }
 
-  async function handleTriggerFirmwareUpgrade() {
+  async function handleTriggerFirmwareUpgrade(): Promise<boolean> {
     if (!adbServiceRef.current || status !== "connected") {
       appendConsole("[error] No device connected.");
       setFirmwareStatus("error");
       setFirmwareMessage("No device connected.");
-      return;
+      return false;
     }
 
     try {
@@ -728,6 +732,7 @@ export default function Page() {
 
       setFirmwareStatus("success");
       setFirmwareMessage("Upgrade broadcast sent successfully.");
+      return true;
     } catch (error) {
       const message =
         error instanceof Error
@@ -737,8 +742,53 @@ export default function Page() {
       appendConsole(`[error] ${message}`);
       setFirmwareStatus("error");
       setFirmwareMessage(message);
+      return false;
     } finally {
       setIsTriggeringFirmware(false);
+    }
+  }
+
+  async function handleFirmwareUpgradeFlow() {
+    if (!firmwareFile) {
+      appendConsole("[error] No firmware package selected.");
+      setFirmwareStatus("error");
+      setFirmwareMessage("No firmware package selected.");
+      return;
+    }
+
+    if (!adbServiceRef.current || status !== "connected") {
+      appendConsole("[error] No device connected.");
+      setFirmwareStatus("error");
+      setFirmwareMessage("No device connected.");
+      return;
+    }
+
+    try {
+      setIsUpgradingFirmware(true);
+
+      appendConsole("[firmware] Starting full upgrade flow...");
+
+      const pushSucceeded = await handlePushFirmware();
+      if (!pushSucceeded) {
+        appendConsole("[firmware] Upgrade flow stopped because push failed.");
+        return;
+      }
+
+      appendConsole("[firmware] Push completed. Triggering upgrade...");
+
+      const triggerSucceeded = await handleTriggerFirmwareUpgrade();
+      if (!triggerSucceeded) {
+        appendConsole(
+          "[firmware] Upgrade flow stopped because trigger failed.",
+        );
+        return;
+      }
+
+      appendConsole("[firmware] Full upgrade flow completed successfully.");
+      setFirmwareStatus("success");
+      setFirmwareMessage("FW pushed SUCCESS. Please wait till device reboots.");
+    } finally {
+      setIsUpgradingFirmware(false);
     }
   }
 
@@ -756,7 +806,7 @@ export default function Page() {
                 Note: Unfortunately, this tool doesn't support{" "}
                 <strong>Financial POS</strong> (unless in Debug mode).
                 <br />
-                Please refer to{" "}
+                For Firmware upgrade in this case, Please refer to{" "}
                 <a
                   href="https://cdn.patrick-shenzhen.org/urovo/manuals/How_to_upgrade_firmware-OS_UFS_SE.zip"
                   target="_blank"
@@ -764,7 +814,6 @@ export default function Page() {
                 >
                   HERE
                 </a>{" "}
-                for firmware upgrade of Financial POS.{" "}
                 <strong>(Check ADB approach)</strong>
                 <br />
                 You can also download{" "}
@@ -1054,7 +1103,7 @@ export default function Page() {
 
               <ToolCard
                 title="Firmware Upgrade"
-                description="Push a firmware package to the device and trigger the system upgrade broadcast."
+                description="Push a firmware package to the device and start upgrading."
               >
                 <div className="space-y-4">
                   <FileActionRow
@@ -1065,64 +1114,57 @@ export default function Page() {
                     onChange={setFirmwareFile}
                   />
 
-                  <InstallStatusBanner
-                    status={firmwareStatus}
-                    message={firmwareMessage}
-                  />
+                  <div className="flex items-center gap-3">
+                    <InstallStatusBanner
+                      status={firmwareStatus}
+                      message={firmwareMessage}
+                      className="min-w-0 flex-1"
+                    />
 
-                  <div className="grid grid-cols-2 gap-3">
                     <ActionButton
                       icon={Upload}
-                      label={isPushingFirmware ? "Pushing..." : "Push Firmware"}
+                      label={
+                        isUpgradingFirmware ? "Upgrading..." : "Start Upgrade"
+                      }
                       onClick={() => {
-                        void handlePushFirmware();
+                        void handleFirmwareUpgradeFlow();
                       }}
                       disabled={
                         !firmwareFile ||
                         status !== "connected" ||
-                        isPushingFirmware
+                        isUpgradingFirmware ||
+                        isPushingFirmware ||
+                        isTriggeringFirmware
                       }
-                      className="w-full"
-                    />
-
-                    <ActionButton
-                      icon={Download}
-                      label="Trigger Upgrade"
-                      onClick={() => {
-                        void handleTriggerFirmwareUpgrade();
-                      }}
-                      disabled={status !== "connected" || isTriggeringFirmware}
-                      className="w-full"
+                      className="h-12 w-[220px] shrink-0 box-border"
                     />
                   </div>
 
-                  <div className="rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] px-4 py-4 text-xs leading-7 text-foreground/72">
-                    <ul className="space-y-1">
-                      <li className="flex items-center gap-2">
-                        <span className="size-1.5 rounded-full bg-blue-300/70 shrink-0" />
+                  <div className="rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] px-4 py-2 text-xs leading-7 text-foreground/72">
+                    <ul className="space-y-0.5">
+                      <li className="flex items-start gap-1">
+                        <span className="mt-3 size-1.5 shrink-0 rounded-full bg-blue-300/70" />
                         <span>
-                          <strong>Step 1:</strong> Select the filmware zip file
-                          and Click "Push Firmware"
+                          <strong>Step 0:</strong> Connect the device first.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-1">
+                        <span className="mt-3 size-1.5 shrink-0 rounded-full bg-blue-300/70" />
+                        <span>
+                          <strong>Step 1:</strong> Select the Firmware zip file
+                          and click "Start Upgrade".
                         </span>
                       </li>
 
-                      <li className="flex items-center gap-2">
-                        <span className="size-1.5 rounded-full bg-blue-300/70 shrink-0" />
+                      <li className="flex items-start gap-1">
+                        <span className="mt-3 size-1.5 shrink-0 rounded-full bg-blue-300/70" />
                         <span>
-                          <strong>Step 2:</strong> Click "Trigger Upgrade" to
-                          start upgrading, the device will restart.
-                        </span>
-                      </li>
-
-                      <li className="flex items-center gap-2">
-                        <span className="size-1.5 rounded-full bg-blue-300/70 shrink-0" />
-                        <span>
-                          <strong>Step 3:</strong> You might need to{" "}
+                          <strong>Step 2:</strong> You might need to{" "}
                           <strong>Reset</strong> the device to make the upgrade
                           fully effective.
                         </span>
                       </li>
-                      <p>
+                      <p className="text-foreground/60">
                         (Settings -{">"} System -{">"} Reset options -{">"}{" "}
                         Erase all data -{">"} Erase everything & Reboot)
                       </p>
