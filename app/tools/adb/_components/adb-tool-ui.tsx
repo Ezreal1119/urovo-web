@@ -5,7 +5,7 @@ import { Circle, Upload } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { DeviceStatus } from "../_lib/types";
 
-const ACTION_ROW_BUTTON_CLASS = "h-12 w-[220px] shrink-0 box-border";
+const ACTION_ROW_BUTTON_CLASS = "h-12 w-[200px] shrink-0 box-border";
 
 export function ToolCard({
   title,

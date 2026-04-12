@@ -10,7 +10,7 @@ export default function Layout({
       <FixedSidebar
         title="Navigate to"
         items={[
-          { label: "UMS Intro", href: "/ums#Intro" },
+          { label: "UMS Intro", href: "/ums#intro" },
           { label: "1. Group Manage", href: "/ums#group" },
           { label: "2. App Manage", href: "/ums#app" },
           { label: "3. Remote Manage", href: "/ums#remote" },
@@ -20,7 +20,7 @@ export default function Layout({
       />
 
       <main className="ml-52 flex justify-center">
-        <div className="w-full max-w-5xl px-8">{children}</div>
+        <div className="w-full max-w-6xl px-8">{children}</div>
       </main>
     </div>
   );

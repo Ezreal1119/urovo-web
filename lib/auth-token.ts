@@ -2,7 +2,7 @@
 import { SignJWT, jwtVerify } from "jose";
 
 export const COOKIE_NAME = "auth_token";
-export const MAX_AGE_SECONDS = 60 * 60 * 8; // 8 hours
+export const MAX_AGE_SECONDS = 60 * 60 * 2;
 
 function getSecretKey() {
   const secret = process.env.PROTECTED_SITE_PASSWORD;

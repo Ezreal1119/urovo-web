@@ -9,6 +9,16 @@ export type DeviceInfo = {
   customBuild: string;
 };
 
+export class AdbConnectionError extends Error {
+  code: "SOCKET_OPEN_FAIL" | "UNKNOWN";
+
+  constructor(code: "SOCKET_OPEN_FAIL" | "UNKNOWN", message: string) {
+    super(message);
+    this.name = "AdbConnectionError";
+    this.code = code;
+  }
+}
+
 export class WebAdbService {
   private manager: AdbDaemonWebUsbDeviceManager | null = null;
   private credentialStore: AdbWebCredentialStore;
@@ -32,25 +42,38 @@ export class WebAdbService {
   }
 
   async connect(): Promise<void> {
-    if (!this.manager) {
-      this.manager = new AdbDaemonWebUsbDeviceManager(this.getUsb() as any);
+    try {
+      if (!this.manager) {
+        this.manager = new AdbDaemonWebUsbDeviceManager(this.getUsb() as any);
+      }
+
+      const device = await this.manager.requestDevice();
+
+      if (!device) {
+        throw new Error("No device selected");
+      }
+
+      const connection = await device.connect();
+
+      this.transport = await AdbDaemonTransport.authenticate({
+        serial: device.serial,
+        connection,
+        credentialStore: this.credentialStore,
+      });
+
+      this.adb = new Adb(this.transport);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+
+      if (message.toLowerCase().includes("socket open fail")) {
+        throw new AdbConnectionError(
+          "SOCKET_OPEN_FAIL",
+          "ADB socket open failed. Please check USB mode, authorization, and whether the device is occupied by another tool.",
+        );
+      }
+
+      throw new AdbConnectionError("UNKNOWN", message);
     }
-
-    const device = await this.manager.requestDevice();
-
-    if (!device) {
-      throw new Error("No device selected");
-    }
-
-    const connection = await device.connect();
-
-    this.transport = await AdbDaemonTransport.authenticate({
-      serial: device.serial,
-      connection,
-      credentialStore: this.credentialStore,
-    });
-
-    this.adb = new Adb(this.transport);
   }
 
   async disconnect(): Promise<void> {

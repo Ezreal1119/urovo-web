@@ -1,11 +1,5 @@
-import AppPageContainer from "@/components/layout/AppPageContainer";
-import { BrandHomeHero } from "@/components/ui/BrandHomeHero";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  // return <AppPageContainer />;
-  return (
-    <main>
-      <BrandHomeHero />
-    </main>
-  );
+  redirect("/home");
 }

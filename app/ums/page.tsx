@@ -26,6 +26,8 @@ export default function UmsPage() {
   return (
     <PageShell className="min-h-screen">
       <PageContainer className="gap-0">
+        <div id="intro" className="block h-10 -mt-10" aria-hidden />
+
         <PageHeader className="border-0 bg-transparent px-0 py-0 shadow-none">
           <PageHeaderContent className="flex flex-col items-start">
             <div className="space-y-4">
@@ -250,6 +252,42 @@ export default function UmsPage() {
                 </a>
               </div>
             </PageSection>
+
+            <AppStoreBlock
+              title="UMS Account Registration"
+              description="Create a UMS account to access device management and remote control features."
+            >
+              <ul className="space-y-2 text-sm leading-7 text-foreground/72">
+                <li>
+                  • Go to the UMS official website{" "}
+                  <a
+                    href="https://uhomeov.urovo.com/customerui/login"
+                    target="_blank"
+                    className="font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                  >
+                    HERE
+                  </a>
+                  .
+                </li>
+
+                <li>• Click “Sign Up”.</li>
+
+                <li>
+                  • Enter your{" "}
+                  <span className="text-white/85">E-mail address</span> and{" "}
+                  <span className="text-white/85">password</span> for login.
+                </li>
+
+                <li>
+                  • Fill in all required fields to complete the registration.
+                </li>
+
+                <li>
+                  • After your application is reviewed and approved by the UMS
+                  team, you can log in to your account.
+                </li>
+              </ul>
+            </AppStoreBlock>
 
             <Divider />
 

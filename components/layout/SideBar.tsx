@@ -74,6 +74,7 @@ function SidebarItem({
   return (
     <Link
       href={href}
+      draggable={false}
       className={cn(
         "flex h-10 items-center rounded-xl px-3 text-sm text-foreground/70 transition-colors hover:bg-muted/50 hover:text-foreground",
         collapsed && "justify-center px-0",
@@ -127,6 +128,7 @@ function FixedSidebarItem({ label, href }: { label: string; href: string }) {
   return (
     <Link
       href={href}
+      draggable={false}
       className={cn(
         "flex h-10 items-center rounded-xl px-3 text-sm text-foreground/70 transition-colors hover:bg-muted/50 hover:text-foreground",
       )}

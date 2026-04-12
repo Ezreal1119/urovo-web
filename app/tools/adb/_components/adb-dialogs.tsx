@@ -2,11 +2,13 @@
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { XIcon } from "lucide-react";
 
 function StepBox({ label }: { label: string }) {
   return (
@@ -312,6 +314,238 @@ export function AdbLogSavedDialog({
             >
               Download Logcat
             </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function AdbSocketFailDialog({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent
+        showCloseButton={false}
+        className="
+          !w-[92vw] !max-w-[720px]
+          p-0
+          overflow-hidden
+          rounded-3xl
+          border border-white/10
+          bg-[rgba(10,10,14,0.94)]
+          text-foreground
+          shadow-[0_24px_80px_rgba(0,0,0,0.45)]
+          backdrop-blur-2xl
+        "
+      >
+        <DialogTitle className="sr-only">Firmware Upgrade Guide</DialogTitle>
+        <DialogDescription className="sr-only">
+          This terminal does not support Web ADB socket connection.
+        </DialogDescription>
+
+        <DialogClose asChild>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            className="
+              absolute right-4 top-4 z-50
+              text-foreground/40
+              hover:text-white
+              transition
+            "
+          >
+            <XIcon />
+            <span className="sr-only">Close</span>
+          </Button>
+        </DialogClose>
+        <div className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(130,110,255,0.10),transparent_30%),radial-gradient(circle_at_80%_80%,rgba(70,120,255,0.08),transparent_28%)]" />
+
+          <div className="relative z-10 px-7 py-7 md:px-8 md:py-8">
+            <div className="space-y-6">
+              <div className="space-y-5">
+                <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-foreground/45">
+                  Connection Limitation
+                </div>
+
+                <h3 className="max-w-[16ch] text-3xl font-semibold tracking-tight text-white md:text-4xl">
+                  Web ADB Unavailable
+                </h3>
+
+                <p className="text-sm text-foreground/50">
+                  This device doesn't support Web Socket connection.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                <div className="space-y-2">
+                  <div className="text-xs uppercase tracking-[0.14em] text-foreground/35">
+                    Firmware Upgrade Guide
+                  </div>
+
+                  <p className="text-sm leading-7 text-foreground/68">
+                    This terminal doesn't support Web ADB. Please refer to the
+                    firmware upgrade guide below instead.{" "}
+                    <a
+                      href="https://cdn.patrick-shenzhen.org/urovo/manuals/How_to_upgrade_firmware-OS_UFS_SE.zip"
+                      target="_blank"
+                      className="font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                    >
+                      Click Here
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function AdbUsbDebugGuideDialog({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent
+        showCloseButton={false}
+        className="
+          !w-[92vw] !max-w-[760px]
+          p-0
+          overflow-hidden
+          rounded-3xl
+          border border-white/10
+          bg-[rgba(10,10,14,0.94)]
+          text-foreground
+          shadow-[0_24px_80px_rgba(0,0,0,0.45)]
+          backdrop-blur-2xl
+        "
+      >
+        <DialogTitle className="sr-only">USB Debugging Guide</DialogTitle>
+        <DialogDescription className="sr-only">
+          USB debugging needs to be enabled before connecting a PDA with Web
+          ADB.
+        </DialogDescription>
+
+        <DialogClose asChild>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            className="
+              absolute right-4 top-4 z-50
+              text-foreground/40
+              hover:text-white
+              transition
+            "
+          >
+            <XIcon />
+            <span className="sr-only">Close</span>
+          </Button>
+        </DialogClose>
+
+        <div className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(130,110,255,0.10),transparent_30%),radial-gradient(circle_at_80%_80%,rgba(70,120,255,0.08),transparent_28%)]" />
+
+          <div className="relative z-10 px-7 py-7 md:px-8 md:py-8">
+            <div className="space-y-6">
+              <div className="space-y-5">
+                <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-foreground/45">
+                  USB Debugging Required
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="max-w-[18ch] text-2xl font-semibold tracking-tight text-white md:text-3xl">
+                    Enable USB Debugging
+                  </h3>
+
+                  <p className="max-w-2xl text-sm leading-7 text-foreground/60">
+                    If you are using a PDA, you need to turn on{" "}
+                    <span className="font-medium text-white/85">
+                      USB debugging
+                    </span>{" "}
+                    in Developer Options before connecting again. Otherwise,
+                    ignore this dialog.
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                <div className="space-y-3">
+                  <div className="text-xs uppercase tracking-[0.14em] text-foreground/35">
+                    Setup Steps
+                  </div>
+
+                  <ol className="space-y-3 text-sm leading-7 text-foreground/72">
+                    <li className="flex gap-3">
+                      <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-xs text-foreground/55">
+                        1
+                      </span>
+                      <span>
+                        Go to <span className="text-white/85">Settings</span> →{" "}
+                        <span className="text-white/85">About phone</span>.
+                      </span>
+                    </li>
+
+                    <li className="flex gap-3">
+                      <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-xs text-foreground/55">
+                        2
+                      </span>
+                      <span>
+                        Keep tapping{" "}
+                        <span className="text-white/85">"Build Number"</span>{" "}
+                        until you see the message:{" "}
+                        <span className="text-white/85">
+                          You are now a developer!
+                        </span>
+                      </span>
+                    </li>
+
+                    <li className="flex gap-3">
+                      <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-xs text-foreground/55">
+                        3
+                      </span>
+                      <span>
+                        Go back to{" "}
+                        <span className="text-white/85">Settings</span> →{" "}
+                        <span className="text-white/85">System</span> →{" "}
+                        <span className="text-white/85">Developer options</span>
+                        .
+                      </span>
+                    </li>
+
+                    <li className="flex gap-3">
+                      <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-xs text-foreground/55">
+                        4
+                      </span>
+                      <span>
+                        Find{" "}
+                        <span className="text-white/85">"USB debugging"</span>{" "}
+                        and enable it.
+                      </span>
+                    </li>
+
+                    <li className="flex gap-3">
+                      <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-xs text-foreground/55">
+                        5
+                      </span>
+                      <span>Reconnect again.</span>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </DialogContent>

@@ -43,6 +43,8 @@ import {
   AdbLogSavedDialog,
   AdbRecoveryGuideDialog,
   AdbUsbGuideDialog,
+  AdbSocketFailDialog,
+  AdbUsbDebugGuideDialog,
 } from "./_components/adb-dialogs";
 import { downloadRemoteFolderToDisk } from "./_lib/downloadRemoteFolder";
 import { getLogTimestamp } from "./_lib/getLogTimestamp";
@@ -73,6 +75,8 @@ export default function Page() {
   const [logSavedDialogOpen, setLogSavedDialogOpen] = React.useState(false);
   const [isLogcatRunning, setIsLogcatRunning] = React.useState(false);
   const [showUsbHint, setShowUsbHint] = React.useState(false);
+  const [usbDebugGuideOpen, setUsbDebugGuideOpen] = React.useState(false);
+  const [socketFailDialogOpen, setSocketFailDialogOpen] = React.useState(false);
   const [installStatus, setInstallStatus] = React.useState<
     "idle" | "uploading" | "installing" | "success" | "error"
   >("idle");
@@ -191,15 +195,23 @@ export default function Page() {
       appendConsole(`[device] Build Number: ${info.buildNumber}`);
       appendConsole(`[device] Model: ${info.customBuild}`);
     } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to connect device.";
+
       setStatus("disconnected");
       setAdbStatus("error");
-      setUsbGuideOpen(true);
 
-      appendConsole(
-        `[error] ${
-          error instanceof Error ? error.message : "Failed to connect device."
-        }`,
-      );
+      const normalizedMessage = message.toLowerCase();
+
+      if (normalizedMessage.includes("socket open fail")) {
+        setSocketFailDialogOpen(true);
+      } else if (normalizedMessage.includes("no device selected")) {
+        setUsbDebugGuideOpen(true);
+      } else {
+        setUsbGuideOpen(true);
+      }
+
+      appendConsole(`[error] ${message}`);
       console.error(error);
     }
   }
@@ -786,7 +798,7 @@ export default function Page() {
 
       appendConsole("[firmware] Full upgrade flow completed successfully.");
       setFirmwareStatus("success");
-      setFirmwareMessage("FW pushed SUCCESS. Please wait till device reboots.");
+      setFirmwareMessage("Uploaded SUCCESS. Wait till device reboots.");
     } finally {
       setIsUpgradingFirmware(false);
     }
@@ -803,19 +815,6 @@ export default function Page() {
               </PageTitle>
 
               <PageDescription className="max-w-3xl text-base leading-8 text-foreground/60">
-                Note: Unfortunately, this tool doesn't support{" "}
-                <strong>Financial POS</strong> (unless in Debug mode).
-                <br />
-                For Firmware upgrade in this case, Please refer to{" "}
-                <a
-                  href="https://cdn.patrick-shenzhen.org/urovo/manuals/How_to_upgrade_firmware-OS_UFS_SE.zip"
-                  target="_blank"
-                  className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
-                >
-                  HERE
-                </a>{" "}
-                <strong>(Check ADB approach)</strong>
-                <br />
                 You can also download{" "}
                 <a
                   href="https://developer.android.com/tools/releases/platform-tools"
@@ -1136,7 +1135,7 @@ export default function Page() {
                         isPushingFirmware ||
                         isTriggeringFirmware
                       }
-                      className="h-12 w-[220px] shrink-0 box-border"
+                      className="h-12 w-[200px] shrink-0 box-border"
                     />
                   </div>
 
@@ -1159,7 +1158,15 @@ export default function Page() {
                       <li className="flex items-start gap-1">
                         <span className="mt-3 size-1.5 shrink-0 rounded-full bg-blue-300/70" />
                         <span>
-                          <strong>Step 2:</strong> You might need to{" "}
+                          <strong>Step 2:</strong> Wait till the device reboots
+                          completely.
+                        </span>
+                      </li>
+
+                      <li className="flex items-start gap-1">
+                        <span className="mt-3 size-1.5 shrink-0 rounded-full bg-blue-300/70" />
+                        <span>
+                          <strong>Step 3:</strong> You might need to{" "}
                           <strong>Reset</strong> the device to make the upgrade
                           fully effective.
                         </span>
@@ -1284,11 +1291,20 @@ export default function Page() {
           open={recoveryGuideOpen}
           onOpenChange={setRecoveryGuideOpen}
         />
+
         <AdbUsbGuideDialog open={usbGuideOpen} onOpenChange={setUsbGuideOpen} />
         <AdbLogSavedDialog
           open={logSavedDialogOpen}
           onOpenChange={setLogSavedDialogOpen}
           onDownloadLogcat={handleDownloadLogcat}
+        />
+        <AdbSocketFailDialog
+          open={socketFailDialogOpen}
+          onOpenChange={setSocketFailDialogOpen}
+        />
+        <AdbUsbDebugGuideDialog
+          open={usbDebugGuideOpen}
+          onOpenChange={setUsbDebugGuideOpen}
         />
       </PageContainer>
     </PageShell>

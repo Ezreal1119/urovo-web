@@ -96,6 +96,11 @@ export default function LinksPage() {
                   description="Android SDK (including demo code and API document) for UROVO RFID module. [UHF_SDK_v2.5.1230]"
                 />
                 <ResourceItem
+                  title="K329"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/K329-SDK_20250626.zip"
+                  description="Android SDK (including demo code and API document) for UROVO RFID module. [UHF_SDK_v2.5.1230]"
+                />
+                <ResourceItem
                   title="K388Pro"
                   href="https://cdn.patrick-shenzhen.org/urovo/sdk/K388-Print.rar"
                   description="Android SDK (including demo code and API document) for UROVO K388Pro. [K388-Print]"
@@ -132,7 +137,7 @@ export default function LinksPage() {
               <div className="space-y-4">
                 <ResourceItem
                   title="PCTool"
-                  href="https://mega.nz/file/X5JxlKTS#HJX-lgUeLl1dhq0CQrCrt0WFz-CzbfTr-9N3T4PS-2M"
+                  href="https://cdn.patrick-shenzhen.org/urovo/tools/PCTool_ALL_IN_ONE.zip"
                   description="Windows tool for switching on debug mode and app signing. [PCTool_ALL_IN_ONE_V3.25.1216.1]"
                 />
                 <ResourceItem
