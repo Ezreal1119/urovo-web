@@ -920,20 +920,34 @@ export default async function DetailPage() {
                   5. Safe Mode
                 </PageSectionTitle>
 
-                <PageSectionDescription>Please note:</PageSectionDescription>
-
                 <div className="max-w-4xl text-sm leading-7 text-foreground/55">
-                  Only the terminal in{" "}
+                  Please note: Only the terminal in{" "}
                   <ZoomableTextLink
-                    href="/products/pos/i9100/safe_mode/trigger_yellow_interface.png"
+                    href="/products/pos/i9100/safe_mode/safe_mode_yellow_interface.jpg"
                     imageAlt="Yellow interface"
                   >
                     Yellow Safe Mode
                   </ZoomableTextLink>{" "}
-                  can be activated using an Activation Card. If the terminal is
-                  in{" "}
+                  can be activated using an{" "}
                   <ZoomableTextLink
-                    href="/products/pos/i9100/safe_mode/trigger_red_interface.png"
+                    href="/products/pos/others/activation_card.jpg"
+                    imageAlt="Activation Card"
+                  >
+                    Activation Card
+                  </ZoomableTextLink>{" "}
+                  You may refer to the tutorial video{" "}
+                  <a
+                    href="https://www.youtube.com/watch?v=tNz9JmlXrc8"
+                    target="_blank"
+                    className="font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                  >
+                    Here
+                  </a>{" "}
+                  .
+                  <br />
+                  If the terminal is in{" "}
+                  <ZoomableTextLink
+                    href="/products/pos/i9100/safe_mode/safe_mode_red_interface.jpg"
                     imageAlt="Red interface"
                   >
                     Red Safe Mode
@@ -959,395 +973,1117 @@ export default async function DetailPage() {
 
             <FaqSection
               id="qa"
-              title="Q&A"
+              title="6. Q&A"
               titleClassName={`text-5xl ${playfair.className}`}
               description={
                 <>
-                  Common questions about Urovo POS products (
-                  <strong>i9000s</strong> & <strong>i9100</strong>), including
-                  OS version selection, APK installation, signature
-                  requirements, storage access, developer mode, GMS
-                  availability, and version identification.
+                  Common questions about Urovo i9100, including OS version
+                  selection, APK installation, signature requirements, storage
+                  access, developer mode, GMS availability, and version
+                  identification, and etc.
                 </>
               }
-              codeBlockTitle="Q&A List About Financial Standard OS"
+              codeBlockTitle=""
               codeBlockDescription="Click any question below to expand the answer."
-              items={[
+              groups={[
                 {
-                  question:
-                    "What are the differences between the Financial version and the Non-Financial (Industrial) version?",
-                  answer: (
-                    <>
-                      <p>
-                        <strong>Financial version:</strong>
-                      </p>
-                      <ul>
-                        <li>
-                          • <strong>Product positioning:</strong> It can be used
-                          for financial transactions and is compliant with PCI
-                          standards.
-                        </li>
-                        <li>
-                          • <strong>Hardware:</strong> It includes a{" "}
-                          <strong>Security ChipSet</strong> to meet PCI security
-                          standards.
-                        </li>
-                        <li>
-                          • <strong>Hardware:</strong> It includes a Magnetic
-                          Card Reader, NFC Reader, and IC Card (SIM Card) Reader
-                          to process different kinds of transactions.
-                        </li>
-                        <li>
-                          • <strong>Hardware:</strong> The safe mode mechanism
-                          is enabled. If the terminal is disassembled or
-                          subjected to a physical attack, safe mode will be
-                          triggered, the terminal will be locked, and security
-                          data will be wiped.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> USB file transfer is not
-                          allowed under PCI standards.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> USB debugging (ADB) is
-                          restricted. Only <code>adb install</code> is allowed
-                          under PCI standards.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> Only signed applications
-                          can be installed under PCI regulations.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> Only "HardwareTest",
-                          "AppInstall", "Camera", and "Settings" are preserved
-                          in the app list. Other apps such as "Dialer",
-                          "Messages", and "File Explorer" are not included.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> Google Play Store is{" "}
-                          <strong>NOT</strong> supported. (GMS is supported.)
-                        </li>
-                      </ul>
+                  title: "1. General Questions:",
+                  items: [
+                    {
+                      question:
+                        "What platform is i9100 using? MTK or Qualcomm?",
+                      answer: (
+                        <p>
+                          It's using MTK's MT8766 CPU, which is Quad-core A53
+                          architecture.
+                        </p>
+                      ),
+                    },
+                    {
+                      question:
+                        "What are the differences between the Financial version and the Non-Financial (Industrial) version?",
+                      answer: (
+                        <>
+                          <p>
+                            <strong>Financial version:</strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • <strong>Product positioning:</strong> It can be
+                              used for financial transactions and is compliant
+                              with PCI standards.
+                            </li>
+                            <li>
+                              • <strong>Hardware:</strong> It includes a{" "}
+                              <strong>Security ChipSet</strong> to meet PCI
+                              security standards.
+                            </li>
+                            <li>
+                              • <strong>Hardware:</strong> It includes a
+                              Magnetic Card Reader, NFC Reader, and IC Card (SIM
+                              Card) Reader to process different kinds of
+                              transactions.
+                            </li>
+                            <li>
+                              • <strong>Hardware:</strong> The safe mode
+                              mechanism is enabled. If the terminal is
+                              disassembled or subjected to a physical attack,
+                              safe mode will be triggered, the terminal will be
+                              locked, and security data will be wiped.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> USB file transfer is
+                              not allowed under PCI standards.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> USB debugging (ADB)
+                              is restricted. Only <code>adb install</code> is
+                              allowed under PCI standards.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> Only signed
+                              applications can be installed under PCI
+                              regulations.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> Only "HardwareTest",
+                              "AppInstall", "Camera", and "Settings" are
+                              preserved in the app list. Other apps such as
+                              "Dialer", "Messages", and "File Explorer" are not
+                              included.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> Google Play Store is{" "}
+                              <strong>NOT</strong> supported. (GMS is
+                              supported.)
+                            </li>
+                          </ul>
 
-                      <br />
+                          <br />
 
-                      <p>
-                        <strong>Non-Financial (Industrial) version:</strong>
-                      </p>
-                      <ul>
-                        <li>
-                          • <strong>Product positioning:</strong> It can be used
-                          for SoftPOS or as an Android device with a printer. It
-                          can <strong>NOT</strong> be used for financial
-                          transactions.
-                        </li>
-                        <li>
-                          • <strong>Hardware:</strong> It does{" "}
-                          <strong>NOT</strong> include a{" "}
-                          <strong>Security ChipSet</strong> like the Financial
-                          terminal.
-                        </li>
-                        <li>
-                          • <strong>Hardware:</strong> It only includes an NFC
-                          Reader, with no Magnetic Card Reader or IC Card
-                          Reader.
-                        </li>
-                        <li>
-                          • <strong>Hardware:</strong> There is no safe mode
-                          mechanism.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> USB file transfer is
-                          allowed.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> USB debugging (ADB) is
-                          fully available.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> All legitimate APKs can
-                          be installed, and no signature is required.
-                        </li>
-                        <li>
-                          • <strong>Software:</strong> GMS and Google Play Store
-                          are supported.
-                        </li>
-                      </ul>
-                    </>
-                  ),
-                },
-                {
-                  question:
-                    "How can I know if a terminal is Financial version or Non-Financial(Industrial) version?",
-                  answer: (
-                    <>
-                      Please go to <strong>"Settings</strong> {"->"}{" "}
-                      <strong>"About device"</strong>: check the{" "}
-                      <strong>Build number</strong> at the bottom of the page.
-                      <br />
-                      <br />
-                      If the Build Number includes <strong>"FI"</strong>, means
-                      it's a Financial terminal.
-                      <br />• Example:{" "}
-                      <code> SQ29WR_EN_XX_WE_M1_DS_FI_S02_U_220528_01</code>
-                      <br />
-                      If the Build Number includes <strong>"IN"</strong>, means
-                      it's a Non-Financial(Industrial) terminal.
-                      <br />• Example:{" "}
-                      <code> SQ29WR_EN_XX_WE_M1_DS_IN_R02_U_220704_01</code>
-                    </>
-                  ),
-                },
-                {
-                  question:
-                    "Which one should I choose: the Financial version or the Non-Financial (Industrial) version?",
-                  answer: (
-                    <>
-                      <p>
-                        <strong>Choose the Financial version if:</strong>
-                      </p>
-                      <ul>
-                        <li>
-                          • You need the full capabilities required for
-                          financial transactions. (IcCard, Magnetic Strip Card,
-                          and NFC Bank Card)
-                        </li>
-                        <li>
-                          • Your terminal needs to handle bank card-related
-                          financial transactions, which require compliance with
-                          PCI standards.
-                        </li>
-                        <li>
-                          • You plan to use the financial POS in the market with
-                          an app that integrates our SDK and passes EMV L3
-                          certification.
-                        </li>
-                      </ul>
+                          <p>
+                            <strong>Non-Financial (Industrial) version:</strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • <strong>Product positioning:</strong> It can be
+                              used for SoftPOS or as an Android device with a
+                              printer. It can <strong>NOT</strong> be used for
+                              financial transactions.
+                            </li>
+                            <li>
+                              • <strong>Hardware:</strong> It does{" "}
+                              <strong>NOT</strong> include a{" "}
+                              <strong>Security ChipSet</strong> like the
+                              Financial terminal.
+                            </li>
+                            <li>
+                              • <strong>Hardware:</strong> It only includes an
+                              NFC Reader, with no Magnetic Card Reader or IC
+                              Card Reader.
+                            </li>
+                            <li>
+                              • <strong>Hardware:</strong> There is no safe mode
+                              mechanism.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> USB file transfer is
+                              allowed.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> USB debugging (ADB)
+                              is fully available.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> All legitimate APKs
+                              can be installed, and no signature is required.
+                            </li>
+                            <li>
+                              • <strong>Software:</strong> GMS and Google Play
+                              Store are supported.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "How can I know if a terminal is Financial version or Non-Financial(Industrial) version?",
+                      answer: (
+                        <>
+                          Please go to <strong>"Settings</strong> {"->"}{" "}
+                          <strong>"About device"</strong>: check the{" "}
+                          <strong>Build number</strong> at the bottom of the
+                          page.
+                          <br />
+                          <br />
+                          If the Build Number includes <strong>"FI"</strong>,
+                          means it's a Financial terminal.
+                          <br />• Example:{" "}
+                          <code> SQ29WR_EN_XX_WE_M1_DS_FI_S02_U_220528_01</code>
+                          <br />
+                          If the Build Number includes <strong>"IN"</strong>,
+                          means it's a Non-Financial(Industrial) terminal.
+                          <br />• Example:{" "}
+                          <code> SQ29WR_EN_XX_WE_M1_DS_IN_R02_U_220704_01</code>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "Which one should I choose: the Financial version or the Non-Financial (Industrial) version?",
+                      answer: (
+                        <>
+                          <p>
+                            <strong>Choose the Financial version if:</strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • You need the full capabilities required for
+                              financial transactions. (IcCard, Magnetic Strip
+                              Card, and NFC Bank Card)
+                            </li>
+                            <li>
+                              • Your terminal needs to handle bank card-related
+                              financial transactions, which require compliance
+                              with PCI standards.
+                            </li>
+                            <li>
+                              • You plan to use the financial POS in the market
+                              with an app that integrates our SDK and passes EMV
+                              L3 certification.
+                            </li>
+                          </ul>
 
-                      <br />
+                          <br />
 
-                      <p>
-                        <strong>
-                          Choose the Non-Financial (Industrial) version if:
-                        </strong>
-                      </p>
-                      <ul>
-                        <li>
-                          • You only need <strong>SoftPOS</strong> to handle
-                          NFC-based financial transactions, since SoftPOS has
-                          already implemented the transaction kernel.
-                        </li>
-                        <li>
-                          • In this SoftPOS case, the POS itself does not need
-                          to comply with PCI standards, but it still needs to be
-                          sent to the SoftPOS provider for verification before
-                          it can be properly used in the market.
-                        </li>
-                        <li>
-                          • The terminal does not need to handle any bank
-                          card-related financial transactions.
-                        </li>
-                        <li>
-                          • You want to install any app you need without the
-                          restrictions of the Financial version.
-                        </li>
-                      </ul>
-                    </>
-                  ),
+                          <p>
+                            <strong>
+                              Choose the Non-Financial (Industrial) version if:
+                            </strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • You only need <strong>SoftPOS</strong> to handle
+                              NFC-based financial transactions, since SoftPOS
+                              has already implemented the transaction kernel.
+                            </li>
+                            <li>
+                              • In this SoftPOS case, the POS itself does not
+                              need to comply with PCI standards, but it still
+                              needs to be sent to the SoftPOS provider for
+                              verification before it can be properly used in the
+                              market.
+                            </li>
+                            <li>
+                              • The terminal does not need to handle any bank
+                              card-related financial transactions.
+                            </li>
+                            <li>
+                              • You want to install any app you need without the
+                              restrictions of the Financial version.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "How do I check the Firmware version(Build Number)?",
+                      answer: (
+                        <>
+                          Please check the following path:
+                          <br />
+                          <strong>Settings → About Phone </strong>
+                          [Scroll down to the bottom]
+                          <br />
+                          <br />
+                          <strong>Build number</strong>: means the OS version.
+                          <br />
+                          <strong>Custom version / UFS</strong>: means custom
+                          firmware
+                          <br />
+                          <strong>SE</strong>: means the firmware version of
+                          Secure Element.
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "Can I downgrade or roll back to an older OS version?",
+                      answer: (
+                        <>
+                          No. OS version downgrade is technically not supported.
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "Why did my APK fail to install into the device?",
+                      answer: (
+                        <>
+                          APKs without a signature will fail to install into the
+                          financial terminal as per PCI standard. Please sign
+                          the APK before installing it.
+                        </>
+                      ),
+                    },
+                    {
+                      question: "How can I get my APKs signed?",
+                      answer: (
+                        <>
+                          <strong>
+                            You can use one of the following methods:
+                          </strong>
+                          <br />
+                          • Share the APK files with the Urovo team and ask for
+                          a quick signature.
+                          <br />
+                          • Apply for an online web signature account from
+                          Urovo, so you can sign the APKs by yourself.
+                          <br />• Use the{" "}
+                          <a
+                            href="https://cdn.patrick-shenzhen.org/urovo/tools/PCTool_ALL_IN_ONE.zip"
+                            target="_blank"
+                            className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                          >
+                            PCTool
+                          </a>{" "}
+                          and credentials(UKey/Digital Certificate) provided by
+                          Urovo. Check Tutorial{" "}
+                          <a
+                            href="https://www.youtube.com/watch?v=k6IvQ-Uh7jc"
+                            target="_blank"
+                            className="font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                          >
+                            Here
+                          </a>{" "}
+                          on how to use PCTool.
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "Why has USB MTP / File Transfer / Debugging(ADB) mode disappeared?",
+                      answer: (
+                        <>
+                          This is expected. The{" "}
+                          <strong>Standard version</strong> supports{" "}
+                          <strong>
+                            USB charging mode only & <code>adb install</code>
+                          </strong>{" "}
+                          in order to avoid internal storage access and further
+                          ensure data security.
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "I am a developer. How do I enable USB debugging(ADB) mode and use Android studio without any restriction?",
+                      answer: (
+                        <>
+                          Unlike regular Android device that you can switch on
+                          developer mode via Developer Options directly.
+                          <br />
+                          You need to switch on{" "}
+                          <ZoomableTextLink
+                            href="/products/pos/others/developer_mode.png"
+                            imageAlt="Developer mode"
+                          >
+                            Developer(Debug) Mode
+                          </ZoomableTextLink>{" "}
+                          using{" "}
+                          <a
+                            href="https://cdn.patrick-shenzhen.org/urovo/tools/PCTool_ALL_IN_ONE.zip"
+                            target="_blank"
+                            className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                          >
+                            PCTool
+                          </a>{" "}
+                          . Please contact Urovo for your
+                          credential(UKey/Digital Certificate) first. Check{" "}
+                          <a
+                            href="https://www.youtube.com/watch?v=k6IvQ-Uh7jc"
+                            target="_blank"
+                            className="font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                          >
+                            Here
+                          </a>{" "}
+                          for tutorial.
+                          <br />
+                          Please note, you need to send the SN to Urovo team
+                          before a financial terminal can be switched to
+                          developer(debug) mode.
+                          <br />
+                          (Sample might be in Developer(Debug) mode by default)
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "There is no File Explorer. How can I access the internal or external storage of the device?",
+                      answer: (
+                        <>
+                          In Financial terminals, only{" "}
+                          <strong>"HardwareTest"</strong>,{" "}
+                          <strong>"AppInstall"</strong>,
+                          <strong>"Camera"</strong>, and{" "}
+                          <strong>"Settings"</strong> are preserved in the app
+                          list.
+                          <br />
+                          The <strong>File Explorer</strong> app has been
+                          hidden. You can access the internal or external
+                          storage from:
+                          <br />
+                          <strong>
+                            Settings → Storage → Documents and others
+                          </strong>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "Is this model Google-certified? Why are Google Play Store and other Google apps or services not installed?",
+                      answer: (
+                        <>
+                          i9100 is Google-certified, meaning that it has the
+                          ability of using GMS. However, the{" "}
+                          <strong>GMS package</strong> is not installed by
+                          default for the <strong>Standard OS</strong> for
+                          security reason.
+                          <br />
+                          <br />
+                          If needed, you may request it before shipment, or ask
+                          the Urovo technical support team for a{" "}
+                          <strong>GMS UFS package</strong> and install it
+                          manually.
+                          <br />
+                          <br />
+                          Please note that the{" "}
+                          <strong>
+                            Google Play Store is not meaningful for the Standard
+                            OS
+                          </strong>
+                          , because apps downloaded directly from Google Play
+                          are not signed and will fail to install into the
+                          system. One of the reasons you might want to have GMS
+                          is accessing GMS-related services. For example,
+                          Network Provider of LocationManager.
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What's Google Key? What's the difference between Google Key and GMS?",
+                      answer: (
+                        <>
+                          <p>
+                            <strong>Google Key:</strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • Google Key is an essential component for using
+                              some authentication services of GMS, such as the{" "}
+                              <strong>Play Integrity API</strong>, which is
+                              required for some <strong>SoftPOS</strong>{" "}
+                              solutions.
+                            </li>
+                            <li>
+                              • However, some other GMS-related services, such
+                              as the network provider of{" "}
+                              <code>LocationManager</code>, do not require a
+                              Google Key.
+                            </li>
+                            <li>
+                              • Please check carefully whether the specific GMS
+                              service used in your project actually requires a
+                              Google Key.
+                            </li>
+                          </ul>
+
+                          <br />
+
+                          <p>
+                            <strong>GMS (Google Mobile Services):</strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • GMS is a firmware package that includes GMS,
+                              Google Play, Chrome, and other Google-related
+                              applications.
+                            </li>
+                            <li>
+                              • However, Google Play Store does not function as
+                              expected on a <strong>Financial terminal</strong>{" "}
+                              because of PCI standards.
+                            </li>
+                          </ul>
+
+                          <br />
+
+                          <p>
+                            <strong>
+                              Why is GMS not pre-installed by default?
+                            </strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • Because Google Play Store has no meaning in
+                              Financial terminal, since no application from Play
+                              Store is signed. Thus, no App from Play Store can
+                              be installed.
+                            </li>
+                            <li>
+                              • To ensure users of financial terminals can only
+                              access the applications they need for security
+                              reason.
+                            </li>
+                          </ul>
+
+                          <br />
+
+                          <p>
+                            <strong>
+                              Why is Google Key not preloaded by default?
+                            </strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • On its own, Google Key has no practical meaning
+                              without GMS, which is not preloaded by default.
+                            </li>
+                            <li>
+                              • It also involves additional cost.{" "}
+                              <strong>GMS is free of charge</strong>, but{" "}
+                              <strong>Google Key is not</strong>.
+                            </li>
+                          </ul>
+
+                          <br />
+
+                          <p>
+                            <strong>Recommendation:</strong>
+                          </p>
+                          <ul>
+                            <li>
+                              • Please check carefully whether you actually need{" "}
+                              <strong>GMS</strong> or even{" "}
+                              <strong>Google Key</strong> for your project
+                              before requesting them.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "Can I switch between Financial OS and Non-Financial (Industrial) OS?",
+                      answer: (
+                        <>
+                          No. You need to use{" "}
+                          <a
+                            href="https://cdn.patrick-shenzhen.org/urovo/tools/PCTool_ALL_IN_ONE.zip"
+                            target="_blank"
+                            className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                          >
+                            PCTool
+                          </a>{" "}
+                          and valid credentials (
+                          <strong>UKey / Digital Certificate</strong>) to
+                          achieve it.
+                        </>
+                      ),
+                    },
+                  ],
                 },
                 {
-                  question:
-                    "How do I check the Firmware version(Build Number)?",
-                  answer: (
-                    <>
-                      Please check the following path:
-                      <br />
-                      <strong>Settings → About Phone </strong>
-                      [Scroll down to the bottom]
-                      <br />
-                      <br />
-                      <strong>Build number</strong>: means the OS version.
-                      <br />
-                      <strong>Custom version / UFS</strong>: means custom
-                      firmware
-                      <br />
-                      <strong>SE</strong>: means the firmware version of Secure
-                      Element.
-                    </>
-                  ),
-                },
-                {
-                  question:
-                    "How can I install my APKs on a POS device with a Financial Standard OS version if USB supports only charging mode?",
-                  answer: (
-                    <>
-                      There are three common ways:
-                      <br />
-                      <br />
-                      <strong>
-                        1. Install from SD card and the AppInstall application
-                      </strong>
-                      <br />
-                      (1) Copy the signed APK files to an SD card and insert the
-                      SD card into the device.
-                      <br />
-                      (2) Start the device and open the{" "}
-                      <strong>AppInstall</strong> app on the home page.
-                      <br />
-                      (3) Select <strong>
-                        install from external storage
-                      </strong>{" "}
-                      and choose the APK files you need to install.
-                      <br />
-                      <br />
-                      <strong>2. Install via ADB command</strong>
-                      <br />
-                      (1) Prepare the ADB tool and your APK files on your
-                      Windows PC.
-                      <br />
-                      (2) Connect the POS device to the PC with a USB cable.
-                      <br />
-                      (3) Open Command Prompt and run:{" "}
-                      <code>adb install apkfilepath</code>
-                      <br />
-                      <br />
-                      <strong>
-                        3. Install from UMS AppMarket or another MDM platform
-                      </strong>
-                      <br />
-                      If you have purchased and installed UMS or another
-                      third-party MDM tool, you can also install the app from
-                      its app store.
-                    </>
-                  ),
-                },
-                {
-                  question: "Why did my APK fail to install into the device?",
-                  answer: (
-                    <>
-                      APKs without a signature will fail to install into the
-                      system. Please sign the APK before installing it.
-                    </>
-                  ),
-                },
-                {
-                  question: "How can I get my APKs signed?",
-                  answer: (
-                    <>
-                      You can use one of the following methods:
-                      <br />
-                      <br />
-                      (1) Share the APK files with the Urovo team and ask for a
-                      quick signature.
-                      <br />
-                      (2) Apply for an online web signature account from Urovo,
-                      so you can sign the APKs by yourself.
-                      <br />
-                      (3) Use the offline signature tool and UKey provided by
-                      Urovo.
-                    </>
-                  ),
-                },
-                {
-                  question: "Why has USB MTP / file transfer mode disappeared?",
-                  answer: (
-                    <>
-                      This is expected. The <strong>Standard version</strong>{" "}
-                      supports <strong>USB charging mode only</strong> in order
-                      to avoid internal storage access and further ensure data
-                      security.
-                    </>
-                  ),
-                },
-                {
-                  question:
-                    "How can I access the internal or external storage of the device?",
-                  answer: (
-                    <>
-                      The <strong>FileManager</strong> app has been hidden. You
-                      can access the internal or external storage from:
-                      <br />
-                      <strong>
-                        Settings → Storage → Internal shared storage → Files
-                      </strong>
-                    </>
-                  ),
-                },
-                {
-                  question:
-                    "How can I access Developer Options or switch to developer debugging mode?",
-                  answer: (
-                    <>
-                      On the <strong>Financial Standard OS</strong>, you are not
-                      able to access Developer Options directly.
-                      <br />
-                      <br />
-                      If the customer’s R&D team needs debugging access during
-                      development, you may:
-                      <br />
-                      (1) Purchase or apply for samples installed with a debug
-                      OS version from Urovo.
-                      <br />
-                      (2) Apply for the <strong>UKey</strong> tool, which can
-                      help switch the device to debug mode.
-                    </>
-                  ),
-                },
-                {
-                  question:
-                    "Why are Google Play Store and other Google apps or services not installed?",
-                  answer: (
-                    <>
-                      This is expected. The <strong>GMS package</strong> is not
-                      installed by default for the <strong>Standard OS</strong>.
-                      <br />
-                      <br />
-                      If needed, you may request it before shipment, or ask the
-                      Urovo technical support team for a{" "}
-                      <strong>GMS UFS package</strong> and install it manually.
-                      <br />
-                      <br />
-                      Please note that the{" "}
-                      <strong>
-                        Play Store is not meaningful for the Standard OS
-                      </strong>
-                      , because apps downloaded directly from Google Play are
-                      not signed and will fail to install into the system.
-                    </>
-                  ),
-                },
-                {
-                  question:
-                    "Why are File Manager, Dialer, Messages, and similar apps unavailable?",
-                  answer: (
-                    <>
-                      These apps are not available on the{" "}
-                      <strong>Standard OS</strong>.
-                      <br />
-                      <br />
-                      If some apps are required for your project or customer,
-                      please contact the Urovo team to discuss customization
-                      requirements.
-                    </>
-                  ),
-                },
-                {
-                  question:
-                    "Can I downgrade or roll back to an older OS version?",
-                  answer: (
-                    <>No. OS version downgrade is technically not supported.</>
-                  ),
-                },
-                {
-                  question:
-                    "Can I switch between Financial OS and Non-Financial (Industrial) OS?",
-                  answer: (
-                    <>
-                      No. You need to use <strong>PCTool</strong> and valid
-                      credentials (<strong>UKey / Digital Certificate</strong>)
-                      to achieve it.
-                    </>
-                  ),
+                  title: "2. After-sales Questions:",
+                  items: [
+                    {
+                      question: "How do I perform a factory reset?",
+                      answer: (
+                        <>
+                          <p>
+                            To perform a <strong>factory reset</strong>, please
+                            follow the path below:
+                          </p>
+                          <br />
+                          <strong>
+                            Settings → System → Reset options → Erase all data
+                            (factory reset) → Erase everything & Reboot
+                          </strong>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What should I do if the terminal cannot be powered on?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • Charge the terminal for{" "}
+                              <strong>30 minutes</strong> first, then check
+                              whether it can be powered on.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/battery.png"
+                                imageAlt="Battery"
+                              >
+                                Battery
+                              </ZoomableTextLink>{" "}
+                              <strong>ONLY</strong> and check again whether the
+                              terminal can be powered on.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/adapter.png"
+                                imageAlt="Adapter"
+                              >
+                                Adapter
+                              </ZoomableTextLink>{" "}
+                              and{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/cable.png"
+                                imageAlt="Cable"
+                              >
+                                Cable
+                              </ZoomableTextLink>{" "}
+                              with the original set <strong>ONLY</strong> and
+                              check again whether the terminal can be powered
+                              on.
+                            </li>
+                            <li>
+                              • Press and hold the <strong>Power button</strong>{" "}
+                              and the <strong>Volume Up button</strong> (the one
+                              on the right) to check whether the terminal can
+                              enter{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/others/recovery_mode.jpg"
+                                imageAlt="Recovery Mode"
+                              >
+                                Recovery Mode
+                              </ZoomableTextLink>{" "}
+                              . If it can, please contact the Urovo team for a
+                              firmware upgrade.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/mainboard_front.png"
+                                imageAlt="Mainboard"
+                              >
+                                Mainboard
+                              </ZoomableTextLink>{" "}
+                              <strong>ONLY</strong> and check again whether the
+                              terminal can be powered on.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What should I do if the terminal is not charging?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • Check whether the <strong>battery</strong>,{" "}
+                              <strong>power adapter</strong>, and{" "}
+                              <strong>USB cable</strong> are properly connected,
+                              and make sure there is no looseness.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/battery.png"
+                                imageAlt="Battery"
+                              >
+                                Battery
+                              </ZoomableTextLink>{" "}
+                              <strong>ONLY</strong> and check again whether the
+                              terminal can be powered on.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/adapter.png"
+                                imageAlt="Adapter"
+                              >
+                                Adapter
+                              </ZoomableTextLink>{" "}
+                              and{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/cable.png"
+                                imageAlt="Cable"
+                              >
+                                Cable
+                              </ZoomableTextLink>{" "}
+                              with the original set <strong>ONLY</strong> and
+                              check again whether the terminal can be powered
+                              on.
+                            </li>
+                            <li>
+                              • Check whether the <strong>USB port</strong> is
+                              damaged. If it is damaged, replace the USB port.
+                            </li>
+                            <li>
+                              • Press and hold the <strong>Power button</strong>{" "}
+                              and the <strong>Volume Up button</strong> (the one
+                              on the right) to check whether the terminal can
+                              enter{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/others/recovery_mode.jpg"
+                                imageAlt="Recovery Mode"
+                              >
+                                Recovery Mode
+                              </ZoomableTextLink>{" "}
+                              . If it can, please contact the Urovo team for a
+                              firmware upgrade.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/mainboard_front.png"
+                                imageAlt="Mainboard"
+                              >
+                                Mainboard
+                              </ZoomableTextLink>{" "}
+                              <strong>ONLY</strong> and check again whether the
+                              terminal can be powered on.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What should I do if the terminal does not use cellular data even though a SIM card is inserted?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • Perform a <strong>Factory Reset</strong>.
+                              <br />
+                              <strong>
+                                Settings → System → Reset options → Erase all
+                                data (factory reset) → Erase everything & Reboot
+                              </strong>
+                            </li>
+                            <li>
+                              • Replace the current SIM card with another SIM
+                              card that works on other terminals, to check
+                              whether the problem is caused by the SIM card
+                              itself.
+                            </li>
+                            <li>
+                              • Use the <strong>same SIM card</strong> on two
+                              terminals in the <strong>same location</strong>{" "}
+                              and compare the performance, to check whether the
+                              issue is caused by weak signal strength in that
+                              area.
+                            </li>
+                            <li>
+                              • If a good SIM card is inserted but{" "}
+                              <strong>no signal bars</strong> are shown at all,
+                              that usually means the{" "}
+                              <strong>SIM card slot is damaged</strong>.
+                            </li>
+                            <li>
+                              • If a good SIM card is inserted and a{" "}
+                              <strong>triangle signal icon</strong> is shown,
+                              but there is a{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/others/signal_bar_triangle_exclamation_mark.png"
+                                imageAlt="Developer mode"
+                              >
+                                Exclamation Mark
+                              </ZoomableTextLink>{" "}
+                              instead of a signal strength indicator, that means
+                              the terminal failed to complete network
+                              attachment. This may be because the signal
+                              strength is too weak, or because the SIM card is
+                              invalid and was rejected by the network provider.
+                              Please install this{" "}
+                              <a
+                                href="https://cdn.patrick-shenzhen.org/urovo/apk/Cellular-Z_20260126164952_signed.apk"
+                                target="_blank"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                APP
+                              </a>{" "}
+                              to check the terminal's signal strength.
+                            </li>
+                            <li>
+                              • If a good SIM card is inserted and a{" "}
+                              <strong>triangle signal icon</strong> is shown
+                              with <strong>decent signal strength</strong>, but
+                              there is still no internet connection, please
+                              check whether the <strong>APN settings</strong>{" "}
+                              are the same as those on terminals that do not
+                              have this problem.
+                            </li>
+                            <br />
+                            <li>
+                              You may record the Modem Log and send it to us for
+                              further analysis. Please refer to{" "}
+                              <Link
+                                href="/instructions/log_capture/mtk"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                Here
+                              </Link>{" "}
+                              for instructions on log recording.
+                              <br />
+                              • Recording process: Insert the SIM card → Start
+                              recording → Reboot the device → Wait until the
+                              terminal reboots → Continue recording for two more
+                              minutes before stop.
+                              <br />
+                              (The recording will resume automatically after
+                              reboot, so you do not need to do anything.)
+                              <br />
+                              • You need to extract the Modem Log from the
+                              terminal. You may refer to the second part of the
+                              Log Instruction.
+                              <br />
+                              (This requires the terminal to be in developer
+                              mode.)
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What should I do if the screen is not working properly?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • Restart the terminal first to check whether the
+                              problem can be fixed.
+                            </li>
+                            <li>
+                              • Perform a <strong>Factory Reset</strong> to
+                              check whether the problem can be fixed.
+                              <br />
+                              <strong>
+                                Settings → System → Reset options → Erase all
+                                data (factory reset) → Erase everything & Reboot
+                              </strong>
+                            </li>
+                            <li>
+                              • Perform a{" "}
+                              <Link
+                                href="/projects/pos/i9100/p9x4m2k8#upgrade"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                Firmware Upgrade
+                              </Link>{" "}
+                              to check whether the problem can be fixed.
+                            </li>
+                            <li>
+                              • If you have tried all the methods above and the
+                              problem still persists, replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/screen_case_front.png"
+                                imageAlt="Screen Case"
+                              >
+                                Screen Case
+                              </ZoomableTextLink>{" "}
+                              to check whether the problem can be fixed.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What should I do if the buzzer is not working properly?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • Check whether the <strong>buzzer</strong> is
+                              installed properly.
+                            </li>
+                            <li>
+                              • Check whether the <strong>wiring</strong> and
+                              the <strong>interface</strong> are damaged.
+                            </li>
+                            <li>
+                              • If necessary, replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/buzzer.png"
+                                imageAlt="Buzzer"
+                              >
+                                Buzzer
+                              </ZoomableTextLink>
+                              .
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What should I do if the Magnetic Card Reader is not working properly?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • Make sure there is nothing blocking the card
+                              slot, and clean it thoroughly.
+                            </li>
+                            <li>
+                              • Make sure the{" "}
+                              <strong>magnetic stripe card</strong> is not
+                              damaged.
+                            </li>
+                            <li>
+                              • Open the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/others/hardware_test_mag_reader.png"
+                                imageAlt="Hardware Test"
+                              >
+                                Hardware Test
+                              </ZoomableTextLink>{" "}
+                              app and select MagReader. Then use a good magnetic
+                              stripe card to swipe and check whether the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/others/hardware_test_mag_reader_detail.png"
+                                imageAlt="MagReader Page"
+                              >
+                                Track Information
+                              </ZoomableTextLink>{" "}
+                              is shown on the screen.
+                            </li>
+                            <li>
+                              • Restart the terminal to check whether the
+                              problem can be fixed.
+                            </li>
+                            <li>
+                              • Perform a <strong>Factory Reset</strong> to
+                              check whether the problem can be fixed.
+                              <br />
+                              <strong>
+                                Settings → System → Reset options → Erase all
+                                data (factory reset) → Erase everything & Reboot
+                              </strong>
+                            </li>
+                            <li>
+                              • Perform a{" "}
+                              <Link
+                                href="/projects/pos/i9100/p9x4m2k8#upgrade"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                Firmware Upgrade
+                              </Link>{" "}
+                              to check whether the problem can be fixed.
+                            </li>
+                            <li>
+                              •{" "}
+                              <Link
+                                href="/projects/pos/i9100/p9x4m2k8#log"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                Record the Log
+                              </Link>{" "}
+                              and send it to the Urovo team for further
+                              analysis.
+                              <br />
+                              <strong>Record process:</strong> Open{" "}
+                              <strong>Hardware Test</strong> and enter the{" "}
+                              <strong>MagReader</strong> section → Start
+                              recording → Swipe the magnetic stripe card → Stop
+                              recording
+                            </li>
+                            <li>
+                              • If you have tried all the methods above and the
+                              problem still persists, replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/mag_head.png"
+                                imageAlt="MagHead"
+                              >
+                                MagHead
+                              </ZoomableTextLink>{" "}
+                              to check whether the problem can be fixed.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What should I do if the Ic Card (SIM Card) Reader is not working properly?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • Make sure there is nothing blocking the card
+                              slot, and clean it thoroughly.
+                            </li>
+                            <li>
+                              • Make sure the <strong>Ic Card</strong> is not
+                              damaged.
+                            </li>
+                            <li>
+                              • Open the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/others/hardware_test_iccard_reader.png"
+                                imageAlt="Hardware Test"
+                              >
+                                Hardware Test
+                              </ZoomableTextLink>{" "}
+                              app and select IccReader. Then use a good Ic Card
+                              to insert and press "ACTIVATION" and "RESET" in
+                              order. After reset, you will see the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/others/hardware_test_iccard_reader_detail.png"
+                                imageAlt="IccReader Page"
+                              >
+                                ATR
+                              </ZoomableTextLink>{" "}
+                              is shown on the screen, which means the Ic Card is
+                              responding well.
+                            </li>
+                            <li>
+                              • Restart the terminal to check whether the
+                              problem can be fixed.
+                            </li>
+                            <li>
+                              • Perform a <strong>Factory Reset</strong> to
+                              check whether the problem can be fixed.
+                              <br />
+                              <strong>
+                                Settings → System → Reset options → Erase all
+                                data (factory reset) → Erase everything & Reboot
+                              </strong>
+                            </li>
+                            <li>
+                              • Perform a{" "}
+                              <Link
+                                href="/projects/pos/i9100/p9x4m2k8#upgrade"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                Firmware Upgrade
+                              </Link>{" "}
+                              to check whether the problem can be fixed.
+                            </li>
+                            <li>
+                              •{" "}
+                              <Link
+                                href="/projects/pos/i9100/p9x4m2k8#log"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                Record the Log
+                              </Link>{" "}
+                              and send it to the Urovo team for further
+                              analysis.
+                              <br />
+                              <strong>Record process:</strong> Open{" "}
+                              <strong>Hardware Test</strong> and enter the{" "}
+                              <strong>IccReader</strong> section → Start
+                              recording → Insert the IcCard and click
+                              "ACTIVATION" & "RESET" in order → Stop recording
+                            </li>
+                            <li>
+                              • If you have tried all the methods above and the
+                              problem still persists, replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/mainboard_front.png"
+                                imageAlt="Mainboard"
+                              >
+                                Mainboard
+                              </ZoomableTextLink>{" "}
+                              to check whether the problem can be fixed.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                    {
+                      question:
+                        "What should I do if the printer is not working properly?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • If the printer{" "}
+                              <strong>does not feed paper</strong>, check
+                              whether the printer is loaded properly, whether
+                              the roll paper is installed correctly, whether the
+                              paper compartment cover and roller are in the
+                              correct position, and whether the paper quality
+                              matches the specified roll paper.
+                            </li>
+                            <li>
+                              • If the printer <strong>prints blank</strong>,
+                              check whether the roll paper is installed
+                              correctly.
+                            </li>
+                            <li>
+                              • If the printer{" "}
+                              <strong>cannot print at all</strong>, first check
+                              for possible program or system issues and restart
+                              the device. Also check whether the printing paper
+                              is present and complete. If necessary, replace the
+                              printer with a normal one for comparison.
+                            </li>
+                            <li>
+                              • If the printer output <strong>stutters</strong>,
+                              the <strong>font is unclear</strong>, or the{" "}
+                              <strong>color is too light</strong>, check whether
+                              the printer roller gear and printer bracket gear
+                              are damaged, and check whether there are any
+                              foreign objects in the printer gear slot.
+                            </li>
+                            <li>
+                              • Check whether the{" "}
+                              <strong>paper compartment cover</strong> is
+                              deformed. You can remove the printer roller from
+                              the paper compartment cover and install it on the
+                              printer bracket for testing. If printing becomes
+                              normal, that means the paper compartment cover is
+                              deformed and should be replaced.
+                            </li>
+                            <li>
+                              • If the printing result is{" "}
+                              <strong>blurred</strong>, also check whether there
+                              is any foreign matter on the{" "}
+                              <strong>heating head</strong> of the printer.
+                            </li>
+                            <li>
+                              • Perform a{" "}
+                              <Link
+                                href="/projects/pos/i9100/p9x4m2k8#upgrade"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                Firmware Upgrade
+                              </Link>{" "}
+                              to check whether the problem can be fixed.
+                            </li>
+                            <li>
+                              • If you have checked the items above and the
+                              problem still persists, replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/printer.png"
+                                imageAlt="Printer Module"
+                              >
+                                Printer Module
+                              </ZoomableTextLink>{" "}
+                              for further verification.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                  ],
                 },
               ]}
             />

@@ -814,7 +814,7 @@ export default function Page() {
                 Web ADB Tool
               </PageTitle>
 
-              <PageDescription className="max-w-3xl text-base leading-8 text-foreground/60">
+              <PageDescription className="max-w-4xl text-base leading-8 text-foreground/60">
                 You can also download{" "}
                 <a
                   href="https://developer.android.com/tools/releases/platform-tools"
@@ -824,7 +824,15 @@ export default function Page() {
                   ADB
                 </a>{" "}
                 directly from Android official website, which is not needed for
-                this tool.
+                this tool. For Screen Casting, download{" "}
+                <a
+                  href="https://cdn.patrick-shenzhen.org/urovo/tools/scrcpy-win64-v3.3.4.zip"
+                  target="_blank"
+                  className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                >
+                  Scrcpy
+                </a>
+                .
               </PageDescription>
             </div>
           </PageHeaderContent>

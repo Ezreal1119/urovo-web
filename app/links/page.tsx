@@ -138,7 +138,19 @@ export default function LinksPage() {
                 <ResourceItem
                   title="PCTool"
                   href="https://cdn.patrick-shenzhen.org/urovo/tools/PCTool_ALL_IN_ONE.zip"
-                  description="Windows tool for switching on debug mode and app signing. [PCTool_ALL_IN_ONE_V3.25.1216.1]"
+                  description={
+                    <>
+                      Windows tool for switching on debug mode and app signing.
+                      [PCTool_ALL_IN_ONE_V3.25.1216.1]{" "}
+                      <a
+                        href="https://www.youtube.com/watch?v=k6IvQ-Uh7jc"
+                        target="_blank"
+                        className="font-medium text-pink-400 underline-offset-4 transition-colors hover:text-pink-300"
+                      >
+                        <strong>[Tutorial]</strong>
+                      </a>{" "}
+                    </>
+                  }
                 />
                 <ResourceItem
                   title="SNTool_MTK"
@@ -199,8 +211,8 @@ export default function LinksPage() {
 
               <div className="space-y-4">
                 <ResourceItem
-                  title="ADB"
-                  href="https://developer.android.com/tools/releases/platform-tools"
+                  title="[APK] LogHelper"
+                  href="https://cdn.patrick-shenzhen.org/urovo/apk/UrovoLogHelper_v1.7_signed.apk"
                   description="Android Debug Bridge, which is used for debugging Android devices. [platform-tools]"
                 />
               </div>
@@ -219,7 +231,7 @@ function ResourceItem({
 }: {
   title: string;
   href: string;
-  description: string;
+  description: React.ReactNode;
 }) {
   return (
     <div
@@ -237,6 +249,7 @@ function ResourceItem({
       <div className="flex flex-col gap-2">
         <Link
           href={href}
+          draggable="false"
           target="_blank"
           rel="noreferrer"
           className="
@@ -250,7 +263,9 @@ function ResourceItem({
           {title}
         </Link>
 
-        <p className="text-sm leading-6 text-foreground/60">{description}</p>
+        <div className="text-sm leading-6 text-foreground/60">
+          {description}
+        </div>
       </div>
     </div>
   );

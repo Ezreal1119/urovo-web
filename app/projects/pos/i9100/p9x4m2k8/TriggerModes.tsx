@@ -7491,18 +7491,24 @@ export const TriggerStateNotReleased = () => {
       message={
         <>
           • This code indicates that the physical issue has been resolved, and
-          the terminal is ready to be <strong>ACTIVATED</strong>. Please use an
-          Activation Card to activate the terminal.
+          the terminal is ready to be <strong>ACTIVATED</strong>. Please use an{" "}
+          <ZoomableTextLink
+            href="/products/pos/others/activation_card.jpg"
+            imageAlt="Yellow interface"
+          >
+            Activation Card
+          </ZoomableTextLink>{" "}
+          to activate the terminal.
           <br />• Please note that the interface now is{" "}
           <ZoomableTextLink
-            href="/products/pos/i9100/safe_mode/trigger_yellow_interface.png"
+            href="/products/pos/i9100/safe_mode/safe_mode_yellow_interface.jpg"
             imageAlt="Yellow interface"
           >
             Yellow
           </ZoomableTextLink>{" "}
           instead of{" "}
           <ZoomableTextLink
-            href="/products/pos/i9100/safe_mode/trigger_red_interface.png"
+            href="/products/pos/i9100/safe_mode/safe_mode_red_interface.jpg"
             imageAlt="Yellow interface"
           >
             Red
@@ -7518,10 +7524,25 @@ export const TriggerStateNotReleased = () => {
             Safe_Mode_Clear_Manual
           </a>{" "}
           and resolve it first before you activate the terminal.)
+          <div className="rounded-2xl border border-amber-500/20 bg-amber-500/[0.06] px-4 py-4 mt-4 text-sm leading-7 text-foreground/75">
+            <p className="font-medium text-amber-300">Important Note</p>
+            <p className="mt-2">
+              If you encounter <strong>0x73000002(Yellow Interface)</strong>{" "}
+              frequently on a terminal. That means the RTC is likely out of
+              power. Please replace{" "}
+              <ZoomableTextLink
+                href="/products/pos/i9100/safe_mode/rtc_board.png"
+                imageAlt="RTC board"
+              >
+                RTC board
+              </ZoomableTextLink>{" "}
+              .
+            </p>
+          </div>
           <div className="mt-6 w-full overflow-hidden rounded-2xl border border-white/10">
             <div className="aspect-video w-full">
               <iframe
-                src="https://www.youtube.com/embed/UtHbkkDFMsk"
+                src="https://www.youtube.com/embed/tNz9JmlXrc8"
                 title="UMS Remote Management Tutorial"
                 className="h-full w-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -38,30 +38,30 @@ const POS_PRODUCTS: PosProduct[] = [
       "High-security Android payment terminal designed for all-in-one payment scenarios, with reliable performance for retail and financial deployment.",
     image: "/products/pos/i9100/i9100.png",
   },
-  {
-    slug: "i9000S",
-    name: "i9000S",
-    eyebrow: "Smart POS Terminal",
-    description:
-      "High-security Android payment terminal designed for all-in-one payment scenarios, with reliable performance for retail and financial deployment.",
-    image: "/products/pos/i9000S/i9000S.png",
-  },
-  {
-    slug: "i5300",
-    name: "i5300",
-    eyebrow: "Compact POS",
-    description:
-      "A practical Android smart POS built for compact retail counters, fast deployment, and stable day-to-day transaction handling.",
-    image: "/products/pos/i5300/i5300.png",
-  },
-  {
-    slug: "i5300L",
-    name: "i5300L",
-    eyebrow: "Compact POS",
-    description:
-      "A practical Android smart POS built for compact retail counters, fast deployment, and stable day-to-day transaction handling.",
-    image: "/products/pos/i5300L/i5300L.png",
-  },
+  // {
+  //   slug: "i9000S",
+  //   name: "i9000S",
+  //   eyebrow: "Smart POS Terminal",
+  //   description:
+  //     "High-security Android payment terminal designed for all-in-one payment scenarios, with reliable performance for retail and financial deployment.",
+  //   image: "/products/pos/i9000S/i9000S.png",
+  // },
+  // {
+  //   slug: "i5300",
+  //   name: "i5300",
+  //   eyebrow: "Compact POS",
+  //   description:
+  //     "A practical Android smart POS built for compact retail counters, fast deployment, and stable day-to-day transaction handling.",
+  //   image: "/products/pos/i5300/i5300.png",
+  // },
+  // {
+  //   slug: "i5300L",
+  //   name: "i5300L",
+  //   eyebrow: "Compact POS",
+  //   description:
+  //     "A practical Android smart POS built for compact retail counters, fast deployment, and stable day-to-day transaction handling.",
+  //   image: "/products/pos/i5300L/i5300L.png",
+  // },
 ];
 
 function PosBattleCard({

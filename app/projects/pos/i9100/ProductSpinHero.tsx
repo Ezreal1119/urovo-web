@@ -135,6 +135,7 @@ export function ProductSpinHero({
 
               <Link
                 href="/projects/pos/i9100/p9x4m2k8"
+                draggable="false"
                 className="group mt-2 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500/80 to-purple-500/80 px-4 py-2 text-sm font-medium text-white shadow-[0_10px_30px_rgba(99,102,241,0.25)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_16px_40px_rgba(99,102,241,0.35)]"
               >
                 More

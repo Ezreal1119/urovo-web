@@ -294,8 +294,8 @@ export default function Page() {
                         <br />
                         Financial POS terminal has to be switched to{" "}
                         <ZoomableTextLink
-                          href="/log_capture/developer_mode.png"
-                          imageAlt="Yellow interface"
+                          href="/products/pos/others/developer_mode.png"
+                          imageAlt="Developer mode"
                         >
                           Developer(Debug) Mode
                         </ZoomableTextLink>{" "}
