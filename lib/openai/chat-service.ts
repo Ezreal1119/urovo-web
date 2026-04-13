@@ -1,10 +1,6 @@
 import OpenAI from "openai";
 import { conversationRepository } from "../repositories/conversation.repository";
 
-const apiKey = process.env.OPENAI_API_KEY;
-const baseURL = process.env.BASE_URL;
-const model = process.env.MODEL;
-
 const SYSTEM_PROMPT = `
 You are AI Patrick, a professional technical assistant from Urovo.
 
@@ -25,16 +21,6 @@ Context:
 - Topics: log capture, debugging, SDK usage
 `;
 
-if (!apiKey) {
-  throw new Error("Missing OPENAI_API_KEY");
-}
-
-if (!model) {
-  throw new Error("Missing MODEL");
-}
-
-const client = new OpenAI({ apiKey, baseURL });
-
 export type ChatResponse = {
   id: string;
   message: string;
@@ -45,6 +31,22 @@ export const chatService = {
     prompt: string,
     conversationId: string,
   ): Promise<ChatResponse> {
+    const apiKey = process.env.OPENAI_API_KEY;
+    const baseURL = process.env.BASE_URL;
+    const model = process.env.MODEL;
+
+    // ✅ runtime 才校验
+    if (!apiKey) {
+      throw new Error("Missing OPENAI_API_KEY");
+    }
+
+    if (!model) {
+      throw new Error("Missing MODEL");
+    }
+
+    // ✅ runtime 才创建 client
+    const client = new OpenAI({ apiKey, baseURL });
+
     const response = await client.responses.create({
       model,
       temperature: 0.2,
