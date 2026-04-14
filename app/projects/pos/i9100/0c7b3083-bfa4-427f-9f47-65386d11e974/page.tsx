@@ -61,7 +61,7 @@ export default async function DetailPage() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/products/pos/i9100/i9100_Scene.jpg')",
+              backgroundImage: `url("/products/pos/i9100/i9100_scene.jpg")`,
             }}
           />
 
@@ -1780,7 +1780,7 @@ export default async function DetailPage() {
                             <li>
                               • Perform a{" "}
                               <Link
-                                href="/projects/pos/i9100/p9x4m2k8#upgrade"
+                                href="/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#upgrade"
                                 className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
                               >
                                 Firmware Upgrade
@@ -1879,7 +1879,7 @@ export default async function DetailPage() {
                             <li>
                               • Perform a{" "}
                               <Link
-                                href="/projects/pos/i9100/p9x4m2k8#upgrade"
+                                href="/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#upgrade"
                                 className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
                               >
                                 Firmware Upgrade
@@ -1889,7 +1889,7 @@ export default async function DetailPage() {
                             <li>
                               •{" "}
                               <Link
-                                href="/projects/pos/i9100/p9x4m2k8#log"
+                                href="/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#log"
                                 className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
                               >
                                 Record the Log
@@ -1968,7 +1968,7 @@ export default async function DetailPage() {
                             <li>
                               • Perform a{" "}
                               <Link
-                                href="/projects/pos/i9100/p9x4m2k8#upgrade"
+                                href="/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#upgrade"
                                 className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
                               >
                                 Firmware Upgrade
@@ -1978,7 +1978,7 @@ export default async function DetailPage() {
                             <li>
                               •{" "}
                               <Link
-                                href="/projects/pos/i9100/p9x4m2k8#log"
+                                href="/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#log"
                                 className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
                               >
                                 Record the Log
@@ -2061,7 +2061,7 @@ export default async function DetailPage() {
                             <li>
                               • Perform a{" "}
                               <Link
-                                href="/projects/pos/i9100/p9x4m2k8#upgrade"
+                                href="/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#upgrade"
                                 className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
                               >
                                 Firmware Upgrade
