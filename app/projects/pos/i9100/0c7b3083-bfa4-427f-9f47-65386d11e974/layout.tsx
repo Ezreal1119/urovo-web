@@ -12,31 +12,31 @@ export default function Layout({
         items={[
           {
             label: "i9100 Overview",
-            href: "/projects/pos/i9100/p9x4m2k8#overview",
+            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#overview",
           },
           {
             label: "1. Firmware upgrade",
-            href: "/projects/pos/i9100/p9x4m2k8#upgrade",
+            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#upgrade",
           },
           {
             label: "2. Log Capture",
-            href: "/projects/pos/i9100/p9x4m2k8#log",
+            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#log",
           },
           {
             label: "3. Maintenance",
-            href: "/projects/pos/i9100/p9x4m2k8#maintenance",
+            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#maintenance",
           },
           {
             label: "4. Spare Parts",
-            href: "/projects/pos/i9100/p9x4m2k8#spare",
+            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#spare",
           },
           {
             label: "5. Safe Mode",
-            href: "/projects/pos/i9100/p9x4m2k8#safe_mode",
+            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#safe_mode",
           },
           {
             label: "6. Q&A",
-            href: "/projects/pos/i9100/p9x4m2k8#qa",
+            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#qa",
           },
         ]}
       />

@@ -61,7 +61,7 @@ export default async function DetailPage() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url("/products/pos/i9100/i9100_scene.jpg")`,
+              backgroundImage: `url("/products/pos/i9100/i9100_Scene.JPG")`,
             }}
           />
 

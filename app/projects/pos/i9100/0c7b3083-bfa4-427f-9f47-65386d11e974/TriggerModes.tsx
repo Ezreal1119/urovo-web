@@ -44,7 +44,7 @@ export const TriggerZero = () => {
             • You may upgrade the Firmware(OS/SE) to see the Current Error Code
             directly. Check Firmware Upgrade Instruction{" "}
             <Link
-              href="/projects/pos/i9100/p9x4m2k8#upgrade"
+              href="/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#upgrade"
               className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
             >
               HERE
@@ -7173,7 +7173,7 @@ export const SystemAndSECommunicationFailed = () => {
             • Please upgrade the Firmware(OS/SE) first. Check Firmware Upgrade
             Instruction{" "}
             <Link
-              href="/projects/pos/i9100/p9x4m2k8#upgrade"
+              href="/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#upgrade"
               className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
             >
               HERE.
