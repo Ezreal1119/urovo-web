@@ -449,7 +449,7 @@ export default function UmsPage() {
                   <div className="aspect-video w-full">
                     <iframe
                       src="https://www.youtube.com/embed/xLEUUJlfJdw"
-                      title="UMS Overview Video"
+                      title="UMS App Management Tutorial"
                       className="h-full w-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
