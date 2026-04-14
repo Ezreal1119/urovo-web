@@ -22,10 +22,10 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default async function DetailPage() {
-  await requireSignIn("/auth-required");
+  // await requireSignIn("/auth-required");
 
   return (
     <PageShell className="min-h-screen">

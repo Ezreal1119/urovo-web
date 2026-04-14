@@ -32,23 +32,23 @@ export function NavbarContactDialog({
       setIsSubmitting(true);
       setErrorMessage("");
 
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          content,
-          email,
-        }),
-      });
+      // const res = await fetch("/api/contact", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     title,
+      //     content,
+      //     email,
+      //   }),
+      // });
 
-      const data = await res.json();
+      // const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data?.error || "Failed to submit.");
-      }
+      // if (!res.ok) {
+      //   throw new Error(data?.error || "Failed to submit.");
+      // }
 
       setSubmitted(true);
 

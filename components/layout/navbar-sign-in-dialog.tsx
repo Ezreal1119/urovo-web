@@ -40,23 +40,23 @@ export function NavbarSignInDialog({
       setSubmitting(true);
       setError("");
 
-      const res = await fetch("/api/auth/sign-in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      });
+      // const res = await fetch("/api/auth/sign-in", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   credentials: "include",
+      //   body: JSON.stringify({
+      //     username,
+      //     password,
+      //   }),
+      // });
 
-      const data = await res.json();
+      // const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data?.error || "Sign in failed.");
-      }
+      // if (!res.ok) {
+      //   throw new Error(data?.error || "Sign in failed.");
+      // }
 
       toast.success("Signed in", {
         description: "Welcome back. " + username,

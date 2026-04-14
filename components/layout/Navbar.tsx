@@ -216,79 +216,79 @@ function NavbarDropdownLink({
   );
 }
 
-function NavbarUserMenu() {
-  async function handleSignOut() {
-    try {
-      await fetch("/api/auth/sign-out", {
-        method: "POST",
-        credentials: "include",
-      });
+// function NavbarUserMenu() {
+//   async function handleSignOut() {
+//     try {
+//       await fetch("/api/auth/sign-out", {
+//         method: "POST",
+//         credentials: "include",
+//       });
 
-      window.location.href = "/home";
-    } catch (error) {
-      console.error("Sign out failed:", error);
-    }
-  }
+//       window.location.href = "/home";
+//     } catch (error) {
+//       console.error("Sign out failed:", error);
+//     }
+//   }
 
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon-sm"
-          className="rounded-xl border border-white/10 bg-white/3 hover:bg-white/6 cursor-pointer"
-        >
-          <Avatar className="size-7">
-            <AvatarImage src="/patrick_selfie.png" alt="User avatar" />
-            <AvatarFallback className="bg-transparent text-xs text-foreground/80">
-              PX
-            </AvatarFallback>
-          </Avatar>
-        </Button>
-      </DropdownMenuTrigger>
+//   return (
+//     <DropdownMenu>
+//       <DropdownMenuTrigger asChild>
+//         <Button
+//           variant="ghost"
+//           size="icon-sm"
+//           className="rounded-xl border border-white/10 bg-white/3 hover:bg-white/6 cursor-pointer"
+//         >
+//           <Avatar className="size-7">
+//             <AvatarImage src="/patrick_selfie.png" alt="User avatar" />
+//             <AvatarFallback className="bg-transparent text-xs text-foreground/80">
+//               PX
+//             </AvatarFallback>
+//           </Avatar>
+//         </Button>
+//       </DropdownMenuTrigger>
 
-      <DropdownMenuContent
-        align="end"
-        className="w-56 rounded-2xl border border-white/10 bg-[rgba(16,16,22,0.9)] p-1.5 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl"
-      >
-        <div className="px-2.5 py-2">
-          <p className="text-sm font-medium text-foreground">Patrick Xu</p>
-        </div>
+//       <DropdownMenuContent
+//         align="end"
+//         className="w-56 rounded-2xl border border-white/10 bg-[rgba(16,16,22,0.9)] p-1.5 text-foreground shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+//       >
+//         <div className="px-2.5 py-2">
+//           <p className="text-sm font-medium text-foreground">Patrick Xu</p>
+//         </div>
 
-        <DropdownMenuSeparator className="bg-white/8" />
+//         <DropdownMenuSeparator className="bg-white/8" />
 
-        <div className="px-2.5 py-2 flex flex-col gap-1">
-          <p className="text-xs text-foreground/50">
-            <span className="font-bold">E-Mail</span>: patrick@urovo.com
-          </p>
-          <p className="text-xs text-foreground/50">
-            <span className="font-bold">Whatsapp</span>: +86 18807737955
-          </p>
-          <p className="text-xs text-foreground/50">
-            <span className="font-bold">Phone/Wechat</span>: 18807737955
-          </p>
-        </div>
+//         <div className="px-2.5 py-2 flex flex-col gap-1">
+//           <p className="text-xs text-foreground/50">
+//             <span className="font-bold">E-Mail</span>: patrick@urovo.com
+//           </p>
+//           <p className="text-xs text-foreground/50">
+//             <span className="font-bold">Whatsapp</span>: +86 18807737955
+//           </p>
+//           <p className="text-xs text-foreground/50">
+//             <span className="font-bold">Phone/Wechat</span>: 18807737955
+//           </p>
+//         </div>
 
-        <DropdownMenuSeparator className="bg-white/8" />
+//         <DropdownMenuSeparator className="bg-white/8" />
 
-        <button
-          type="button"
-          onClick={handleSignOut}
-          className="
-            flex w-full items-center rounded-xl px-2.5 py-2
-            text-sm text-foreground/70
-            transition-colors duration-200
-            hover:bg-white/6 hover:text-white
-            cursor-pointer
-            font-bold
-          "
-        >
-          Sign out
-        </button>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
+//         <button
+//           type="button"
+//           onClick={handleSignOut}
+//           className="
+//             flex w-full items-center rounded-xl px-2.5 py-2
+//             text-sm text-foreground/70
+//             transition-colors duration-200
+//             hover:bg-white/6 hover:text-white
+//             cursor-pointer
+//             font-bold
+//           "
+//         >
+//           Sign out
+//         </button>
+//       </DropdownMenuContent>
+//     </DropdownMenu>
+//   );
+// }
 
 export {
   Navbar,
@@ -304,5 +304,5 @@ export {
   NavbarDropdownLink,
   NavbarSearchButton,
   NavbarActions,
-  NavbarUserMenu,
+  // NavbarUserMenu,
 };

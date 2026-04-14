@@ -29,7 +29,6 @@ import {
   NavbarNav,
   NavbarRight,
   NavbarSearchButton,
-  NavbarUserMenu,
 } from "./Navbar";
 import { NavbarSignInDialog } from "./navbar-sign-in-dialog";
 
@@ -44,24 +43,24 @@ export function AppNavbar() {
   const [signInOpen, setSignInOpen] = React.useState(false);
   const [signedIn, setSignedIn] = React.useState<boolean | null>(null);
 
-  const checkAuthStatus = React.useCallback(async () => {
-    try {
-      const res = await fetch("/api/auth/me", {
-        method: "GET",
-        credentials: "include",
-        cache: "no-store",
-      });
+  // const checkAuthStatus = React.useCallback(async () => {
+  //   try {
+  //     const res = await fetch("/api/auth/me", {
+  //       method: "GET",
+  //       credentials: "include",
+  //       cache: "no-store",
+  //     });
 
-      const data = await res.json();
-      setSignedIn(Boolean(data?.signedIn));
-    } catch {
-      setSignedIn(false);
-    }
-  }, []);
+  //     const data = await res.json();
+  //     setSignedIn(Boolean(data?.signedIn));
+  //   } catch {
+  //     setSignedIn(false);
+  //   }
+  // }, []);
 
-  React.useEffect(() => {
-    void checkAuthStatus();
-  }, [checkAuthStatus]);
+  // React.useEffect(() => {
+  //   void checkAuthStatus();
+  // }, [checkAuthStatus]);
 
   return (
     <Navbar>
@@ -181,14 +180,14 @@ export function AppNavbar() {
               <span className="sr-only">Notifications</span>
             </Button> */}
 
-            <Button
+            {/* <Button
               className="hidden md:inline-flex cursor-pointer"
               onClick={() => setContactOpen(true)}
             >
               Contact
-            </Button>
+            </Button> */}
 
-            {signedIn ? (
+            {/* {signedIn ? (
               <NavbarUserMenu />
             ) : (
               <Button
@@ -197,11 +196,12 @@ export function AppNavbar() {
               >
                 Sign in
               </Button>
-            )}
+            )} */}
           </NavbarActions>
         </NavbarRight>
       </NavbarContainer>
       <NavbarSearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
+      {/* 
       <NavbarContactDialog open={contactOpen} onOpenChange={setContactOpen} />
       <NavbarSignInDialog
         open={signInOpen}
@@ -209,7 +209,7 @@ export function AppNavbar() {
         onSuccess={() => {
           void checkAuthStatus();
         }}
-      />
+      /> */}
     </Navbar>
   );
 }

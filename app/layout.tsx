@@ -4,8 +4,6 @@ import "./globals.css";
 
 import { AppNavbar } from "@/components/layout/app-navbar";
 import { PageShell } from "@/components/layout/PageContainer";
-import { AiChatDialog } from "./ai/AiChatDialog";
-import { Toaster } from "sonner";
 const inter = Inter({
   subsets: ["latin"],
 });
@@ -34,15 +32,15 @@ export default function RootLayout({
             </div>
           </div>
 
-          <AiChatDialog />
-          <Toaster
+          {/* <AiChatDialog /> */}
+          {/* <Toaster
             position="top-right"
             richColors
             toastOptions={{
               className:
                 "bg-[rgba(20,20,28,0.9)] border border-white/10 text-white backdrop-blur-xl",
             }}
-          />
+          /> */}
         </PageShell>
       </body>
     </html>

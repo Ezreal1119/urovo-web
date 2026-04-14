@@ -45,10 +45,10 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default async function DetailPage() {
-  await requireSignIn("/auth-required");
+  // await requireSignIn("/auth-required");
 
   return (
     <PageShell className="min-h-screen">
@@ -611,15 +611,15 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/mainboard_front.png",
                       alt: "Mainboard front",
                       description: "Front side",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                     {
                       src: "/products/pos/i9100/spare/mainboard_back.png",
                       alt: "Mainboard back",
                       description: "Back side",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                   ]}
                 />
@@ -631,15 +631,15 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/battery.png",
                       alt: "Battery",
                       description: "Battery",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                     {
                       src: "/products/pos/i9100/spare/battery_cover.png",
                       alt: "Battery Cover",
                       description: "Battery Cover",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                   ]}
                 />
@@ -653,15 +653,15 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/screen_case_front.png",
                       alt: "Screen case front",
                       description: "Front side",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                     {
                       src: "/products/pos/i9100/spare/screen_case_back.png",
                       alt: "Screen case back",
                       description: "Back side",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                   ]}
                 />
@@ -673,15 +673,15 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/back_case_front.png",
                       alt: "Back Case Front",
                       description: "Front side",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                     {
                       src: "/products/pos/i9100/spare/back_case_back.png",
                       alt: "Back Case Back",
                       description: "Back side",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                   ]}
                 />
@@ -695,15 +695,15 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/printer.png",
                       alt: "Printer",
                       description: "Printer",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                     {
                       src: "/products/pos/i9100/spare/printer_roller.png",
                       alt: "Printer Roller",
                       description: "Printer Roller",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                   ]}
                 />
@@ -715,15 +715,15 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/printer_bracket.png",
                       alt: "Printer Bracket",
                       description: "Printer Bracket",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                     {
                       src: "/products/pos/i9100/spare/printer_cover.png",
                       alt: "Printer Cover",
                       description: "Printer Cover",
-                      previewWidth: 280,
-                      previewHeight: 480,
+                      previewWidth: 200,
+                      previewHeight: 400,
                     },
                   ]}
                 />
@@ -737,14 +737,14 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/rtc_battery.png",
                       alt: "RTC Battery",
                       description: "RTC Battery",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                     {
                       src: "/products/pos/i9100/spare/pogopin_bracket.png",
                       alt: "PogoPin Bracket",
                       description: "PogoPin Bracket",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                   ]}
@@ -757,14 +757,14 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/front_camera.png",
                       alt: "Front Camera",
                       description: "Front Camera",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                     {
                       src: "/products/pos/i9100/spare/rear_camera.png",
                       alt: "Back Camera",
                       description: "Rear Camera",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                   ]}
@@ -779,14 +779,14 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/speaker.png",
                       alt: "Speaker",
                       description: "Speaker",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                     {
                       src: "/products/pos/i9100/spare/buzzer.png",
                       alt: "Buzzer",
                       description: "Buzzer",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                   ]}
@@ -799,14 +799,14 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/button_pad.png",
                       alt: "Button Pad",
                       description: "Button Pad",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                     {
                       src: "/products/pos/i9100/spare/button_pad_fpc.png",
                       alt: "Button Pad FPC",
                       description: "Button Pad FPC",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                   ]}
@@ -821,14 +821,14 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/mag_head.png",
                       alt: "MagCard Reader Head",
                       description: "MagCard Reader Head",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                     {
                       src: "/products/pos/i9100/spare/flashlight.png",
                       alt: "Flashlight",
                       description: "Flashlight",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                   ]}
@@ -841,14 +841,14 @@ export default async function DetailPage() {
                       src: "/products/pos/i9100/spare/adapter.png",
                       alt: "Adapter",
                       description: "Adapter",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                     {
                       src: "/products/pos/i9100/spare/cable.png",
                       alt: "Cable",
                       description: "Cable",
-                      previewWidth: 280,
+                      previewWidth: 200,
                       previewHeight: 200,
                     },
                   ]}
