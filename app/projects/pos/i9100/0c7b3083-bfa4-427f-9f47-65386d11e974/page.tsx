@@ -348,10 +348,7 @@ export default async function DetailPage() {
 
             <section id="upgrade" className="scroll-mt-20">
               <div className="space-y-2">
-                <PageSectionTitle
-                  id="upgrade"
-                  className={`text-5xl ${playfair.className}`}
-                >
+                <PageSectionTitle className={`text-5xl ${playfair.className}`}>
                   1. Firmware upgrade
                 </PageSectionTitle>
                 <PageSectionDescription>
@@ -459,10 +456,7 @@ export default async function DetailPage() {
 
             <section id="log" className="scroll-mt-20">
               <div className="space-y-2">
-                <PageSectionTitle
-                  id="upgrade"
-                  className={`text-5xl ${playfair.className}`}
-                >
+                <PageSectionTitle className={`text-5xl ${playfair.className}`}>
                   2. Log Capture
                 </PageSectionTitle>
                 <PageSectionDescription>
@@ -2066,7 +2060,7 @@ export default async function DetailPage() {
                               >
                                 Firmware Upgrade
                               </Link>{" "}
-                              to check whether the problem can be fixed.
+                              to check whether the problem can be fixed
                             </li>
                             <li>
                               • If you have checked the items above and the
