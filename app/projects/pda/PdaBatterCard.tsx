@@ -20,7 +20,7 @@ const PDA_PRODUCTS: PdaProduct[] = [
     eyebrow: "Premium PDA",
     description:
       "Revolutionizing Workstyles with Intelligent Enterprise Mobility。",
-    image: "/products/pda/dt630/dt630.png",
+    image: "/products/pda/dt630/DT630.png",
   },
 ];
 
