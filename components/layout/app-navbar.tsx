@@ -201,8 +201,9 @@ export function AppNavbar() {
         </NavbarRight>
       </NavbarContainer>
       <NavbarSearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
-      {/* 
       <NavbarContactDialog open={contactOpen} onOpenChange={setContactOpen} />
+      {/* 
+      
       <NavbarSignInDialog
         open={signInOpen}
         onOpenChange={setSignInOpen}
