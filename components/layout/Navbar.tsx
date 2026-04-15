@@ -137,6 +137,7 @@ function NavbarLink({
 }) {
   return (
     <Link
+      draggable="false"
       data-slot="navbar-link"
       data-active={active}
       className={cn(

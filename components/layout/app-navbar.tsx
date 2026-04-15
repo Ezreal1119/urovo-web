@@ -180,12 +180,12 @@ export function AppNavbar() {
               <span className="sr-only">Notifications</span>
             </Button> */}
 
-            {/* <Button
+            <Button
               className="hidden md:inline-flex cursor-pointer"
               onClick={() => setContactOpen(true)}
             >
               Contact
-            </Button> */}
+            </Button>
 
             {/* {signedIn ? (
               <NavbarUserMenu />
