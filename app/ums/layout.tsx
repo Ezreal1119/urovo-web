@@ -1,4 +1,5 @@
 import { FixedSidebar } from "@/components/layout/SideBar";
+import { AiChatDialog } from "@/components/ui/AiChatDialog";
 
 export default function Layout({
   children,
@@ -22,6 +23,7 @@ export default function Layout({
       <main className="ml-52 flex justify-center">
         <div className="w-full max-w-6xl px-8">{children}</div>
       </main>
+      <AiChatDialog scope="ums" />
     </div>
   );
 }

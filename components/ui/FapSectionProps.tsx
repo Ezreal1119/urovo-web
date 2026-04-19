@@ -16,9 +16,9 @@ type FaqGroup = {
 };
 
 type FaqSectionProps = {
-  id: string;
-  title: string;
-  description: React.ReactNode;
+  id?: string;
+  title?: string;
+  description?: React.ReactNode;
   codeBlockTitle: string;
   codeBlockDescription: string;
   groups: FaqGroup[];

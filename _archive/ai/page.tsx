@@ -1,5 +1,5 @@
 import React from "react";
-import { AiChatDialog } from "./AiChatDialog";
+import { AiChatDialog } from "../../components/ui/AiChatDialog";
 
 const page = () => {
   return (

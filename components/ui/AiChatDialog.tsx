@@ -18,12 +18,27 @@ type ChatMessage = {
   content: string;
 };
 
-type ChatResponse = {
-  id: string;
-  message: string;
+type ChatSource = {
+  id?: string;
+  score?: number;
+  source?: string | null;
+  chunkIndex?: number | null;
 };
 
-export function AiChatDialog() {
+type ChatResponse = {
+  id?: string;
+  answer?: string;
+  message?: string;
+  error?: string;
+  sources?: ChatSource[];
+  debug?: unknown;
+};
+
+export function AiChatDialog({
+  scope = "general",
+}: {
+  scope?: "ums" | "sdk" | "general";
+}) {
   const [input, setInput] = React.useState("");
   const [isSending, setIsSending] = React.useState(false);
   const [isComposing, setIsComposing] = React.useState(false);
@@ -112,16 +127,20 @@ export function AiChatDialog() {
     setIsSending(true);
 
     try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://ai-chat-worker.18807737955-70f.workers.dev",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            scope,
+            prompt: trimmed,
+            conversationId: conversationId.current,
+          }),
         },
-        body: JSON.stringify({
-          prompt: trimmed,
-          conversationId: conversationId.current,
-        }),
-      });
+      );
 
       if (!res.ok) {
         throw new Error("Request failed");
@@ -129,12 +148,16 @@ export function AiChatDialog() {
 
       const data: ChatResponse = await res.json();
 
+      console.log("worker response =", data);
+
+      const assistantText =
+        data.answer ?? data.message ?? data.error ?? "No response.";
       setMessages((prev) => [
         ...prev,
         {
-          id: data.id,
+          id: data.id ?? crypto.randomUUID(),
           role: "assistant",
-          content: data.message,
+          content: assistantText,
         },
       ]);
     } catch {
@@ -167,27 +190,32 @@ export function AiChatDialog() {
     setIsSending(true);
 
     try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://ai-chat-worker.18807737955-70f.workers.dev",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            scope,
+            prompt: trimmed,
+            conversationId: conversationId.current,
+          }),
         },
-        body: JSON.stringify({
-          prompt: trimmed,
-          conversationId: conversationId.current,
-        }),
-      });
+      );
 
       if (!res.ok) {
         throw new Error("Request failed");
       }
 
       const data: ChatResponse = await res.json();
+      console.log("worker response =", data);
 
       const assistantMessage: ChatMessage = {
-        id: data.id,
+        id: data.id ?? crypto.randomUUID(),
         role: "assistant",
-        content: data.message,
+        content: data.answer ?? data.message ?? data.error ?? "No response.",
       };
 
       setMessages((prev) => [...prev, assistantMessage]);

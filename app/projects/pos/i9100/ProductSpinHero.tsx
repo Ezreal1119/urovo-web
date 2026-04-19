@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { ProtectedMoreButton } from "@/components/ui/ProtectedMoreButton";
 
 type ViewKey =
   | "front"
@@ -21,6 +22,7 @@ type ProductSpinHeroProps = {
   title?: string;
   subtitle?: string;
   images: Record<ViewKey, string>;
+  scope?: string;
 };
 
 const VIEW_LABELS: Record<ViewKey, string> = {
@@ -40,6 +42,7 @@ export function ProductSpinHero({
   title = "Industrial Android Terminal",
   subtitle = "Pseudo-3D product showcase with lightweight interaction.",
   images,
+  scope = "i9100",
 }: ProductSpinHeroProps) {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -133,16 +136,7 @@ export function ProductSpinHero({
                 {title}
               </h2>
 
-              <Link
-                href="/projects/pos/i9100"
-                draggable="false"
-                className="group mt-2 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500/80 to-purple-500/80 px-4 py-2 text-sm font-medium text-white shadow-[0_10px_30px_rgba(99,102,241,0.25)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_16px_40px_rgba(99,102,241,0.35)]"
-              >
-                More
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
+              <ProtectedMoreButton scope={scope} />
             </div>
 
             {/* Subtitle */}

@@ -17,6 +17,8 @@ import Divider from "@/components/ui/divider";
 import { Database, Shield, Smartphone, Wrench } from "lucide-react";
 import { AiLink } from "@/components/ui/AiLink";
 import Link from "next/link";
+import ZoomableTextLink from "@/components/ui/ZoomableTextLink";
+import { FaqSection } from "@/components/ui/FapSectionProps";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -420,6 +422,157 @@ export default function UmsPage() {
                   </div>
                 </AppStoreBlock>
               </div>
+
+              <div className="mt-6" />
+
+              <FaqSection
+                titleClassName={`text-5xl ${playfair.className}`}
+                codeBlockTitle="Common Questions:"
+                codeBlockDescription="Click any question below to expand the answer."
+                groups={[
+                  {
+                    title: "",
+                    items: [
+                      {
+                        question: "What's the benefit of Group Management?",
+                        answer: (
+                          <p>
+                            You can <strong>Execute Tasks</strong> or{" "}
+                            <strong>Push Configuration</strong> to a group of
+                            terminals, so all terminals in that group will can
+                            execute the same task or have the same
+                            configuration.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I bind terminal(s) to my UMS account by myself?",
+                        answer: (
+                          <>
+                            {" "}
+                            <p>
+                              UMS doesn't support users binding terminals to UMS
+                              account by themselves currently. Please fill in
+                              this{" "}
+                              <a
+                                href="https://cdn.patrick-shenzhen.org/urovo/mdm/ums/device_import_template.xlsx"
+                                target="_blank"
+                                className="inline cursor-pointer font-medium text-pink-400 underline underline-offset-4 transition-colors hover:text-pink-300"
+                              >
+                                Form
+                              </a>{" "}
+                              and send to UROVO's responsible Sales. (Only UTMS
+                              supports that)
+                            </p>
+                          </>
+                        ),
+                      },
+                      {
+                        question: "How do I create groups or sub-groups?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>One by One: </strong> Click "+" Icon on
+                              the right of "All Groups".
+                            </li>
+                            <li>
+                              • <strong>In Batch: </strong> Click "Import"
+                              button on the top-left corner, then fill the
+                              template table and upload it.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I bind terminal(s) with a group that I created?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>One by One: </strong> Click the Group
+                              Name first. Then click "Bound Devices", and enter
+                              the Serial Number One by One.
+                            </li>
+                            <li>
+                              • <strong>In Batch: </strong> Click "Import
+                              Devices" button on the top-left corner, then fill
+                              the template table and upload it.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "How do I change the grouping of terminals?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>One by One: </strong> Go to "Remote
+                              Management" → "Remote Management". Then select One
+                              or More terminals. Then click "Operate in Batches"
+                              → "Move to", and select the new group.
+                            </li>
+                            <li>
+                              • <strong>In Batch: </strong> Click "Import"
+                              button on the top-left corner, then fill the
+                              template table and upload it.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "How do I unbind terminals from its group?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>One by One: </strong> Go to "Remote
+                              Management" → "Remote Management". Then select One
+                              or More terminals. Then click "Operate in Batches"
+                              → "Move to", and select the "Ungrouped Devices".
+                            </li>
+                            <li>
+                              • <strong>In Batch: </strong> Click "Import"
+                              button on the top-left corner, then fill the
+                              template table with the group as "Ungrouped
+                              Devices" and upload it.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I check all the bound terminals of a group?",
+                        answer: (
+                          <p>
+                            "Group Management" → "Group Management" → "Bind
+                            Device"
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I check all published Apps(the ones shown on the App Market) of a group?",
+                        answer: (
+                          <p>
+                            "Group Management" → "Group Management" → "Shelf
+                            App"
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I check all deployed Apps of a group?",
+                        answer: (
+                          <p>
+                            "Group Management" → "Group Management" → "Deploy
+                            App"
+                          </p>
+                        ),
+                      },
+                    ],
+                  },
+                ]}
+              />
             </section>
 
             <Divider />
@@ -1000,6 +1153,108 @@ export default function UmsPage() {
                 </a>
               </div>
             </PageSection>
+
+            <Divider />
+
+            <FaqSection
+              title="6. Q&A"
+              titleClassName={`text-5xl ${playfair.className}`}
+              description={<>Common questions about UMS / UTMS.</>}
+              codeBlockTitle=""
+              codeBlockDescription="Click any question below to expand the answer."
+              groups={[
+                {
+                  title: "1. General Questions:",
+                  items: [
+                    {
+                      question:
+                        "What platform is i9100 using? MTK or Qualcomm?",
+                      answer: (
+                        <p>
+                          It's using MTK's MT8766 CPU, which is Quad-core A53
+                          architecture.
+                        </p>
+                      ),
+                    },
+                  ],
+                },
+                {
+                  title: "2. After-sales Questions:",
+                  items: [
+                    {
+                      question:
+                        "What should I do if the terminal cannot be powered on?",
+                      answer: (
+                        <>
+                          <ul>
+                            <li>
+                              • Charge the terminal for{" "}
+                              <strong>30 minutes</strong> first, then check
+                              whether it can be powered on.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/battery.png"
+                                imageAlt="Battery"
+                              >
+                                Battery
+                              </ZoomableTextLink>{" "}
+                              <strong>ONLY</strong> and check again whether the
+                              terminal can be powered on.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/adapter.png"
+                                imageAlt="Adapter"
+                              >
+                                Adapter
+                              </ZoomableTextLink>{" "}
+                              and{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/cable.png"
+                                imageAlt="Cable"
+                              >
+                                Cable
+                              </ZoomableTextLink>{" "}
+                              with the original set <strong>ONLY</strong> and
+                              check again whether the terminal can be powered
+                              on.
+                            </li>
+                            <li>
+                              • Press and hold the <strong>Power button</strong>{" "}
+                              and the <strong>Volume Up button</strong> (the one
+                              on the right) to check whether the terminal can
+                              enter{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/others/recovery_mode.jpg"
+                                imageAlt="Recovery Mode"
+                              >
+                                Recovery Mode
+                              </ZoomableTextLink>{" "}
+                              . If it can, please contact the Urovo team for a
+                              firmware upgrade.
+                            </li>
+                            <li>
+                              • Replace the{" "}
+                              <ZoomableTextLink
+                                href="/products/pos/i9100/spare/mainboard_front.png"
+                                imageAlt="Mainboard"
+                              >
+                                Mainboard
+                              </ZoomableTextLink>{" "}
+                              <strong>ONLY</strong> and check again whether the
+                              terminal can be powered on.
+                            </li>
+                          </ul>
+                        </>
+                      ),
+                    },
+                  ],
+                },
+              ]}
+            />
           </PageStack>
         </PageMain>
       </PageContainer>
