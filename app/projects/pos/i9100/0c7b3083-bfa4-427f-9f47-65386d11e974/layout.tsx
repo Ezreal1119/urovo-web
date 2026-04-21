@@ -35,8 +35,8 @@ export default function Layout({
             href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#safe_mode",
           },
           {
-            label: "6. Q&A",
-            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#qa",
+            label: "6. FAQ",
+            href: "/projects/pos/i9100/0c7b3083-bfa4-427f-9f47-65386d11e974#faq",
           },
         ]}
       />

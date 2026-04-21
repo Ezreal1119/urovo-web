@@ -1,0 +1,6 @@
+export type AiScope = "ums" | "sdk" | "general";
+
+export type OpenAiChatDetail = {
+  prompt?: string;
+  scope?: AiScope;
+};

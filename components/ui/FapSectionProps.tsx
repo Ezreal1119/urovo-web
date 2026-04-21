@@ -4,6 +4,7 @@ import {
   PageSectionTitle,
 } from "@/components/layout/PageContainer";
 import { CodeBlock } from "./CodeBlock";
+import { AiScope } from "./AiLink";
 
 type FaqItem = {
   question: string;
@@ -23,6 +24,8 @@ type FaqSectionProps = {
   codeBlockDescription: string;
   groups: FaqGroup[];
   titleClassName?: string;
+  askAiPrompt?: string;
+  askAiScope?: AiScope;
 };
 
 export function FaqSection({
@@ -33,6 +36,8 @@ export function FaqSection({
   codeBlockDescription,
   groups,
   titleClassName,
+  askAiPrompt,
+  askAiScope,
 }: FaqSectionProps) {
   return (
     <section id={id} className="scroll-mt-20">
@@ -43,7 +48,12 @@ export function FaqSection({
 
         <PageSectionDescription>{description}</PageSectionDescription>
 
-        <CodeBlock title={codeBlockTitle} description={codeBlockDescription}>
+        <CodeBlock
+          title={codeBlockTitle}
+          description={codeBlockDescription}
+          askAiPrompt={askAiPrompt}
+          askAiScope={askAiScope}
+        >
           <div className="space-y-6">
             {groups.map((group) => (
               <div key={group.title} className="space-y-3">

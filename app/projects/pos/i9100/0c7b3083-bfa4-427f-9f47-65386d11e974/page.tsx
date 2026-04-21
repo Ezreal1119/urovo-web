@@ -966,8 +966,8 @@ export default async function DetailPage() {
             <Divider />
 
             <FaqSection
-              id="qa"
-              title="6. Q&A"
+              id="faq"
+              title="6. FAQ"
               titleClassName={`text-5xl ${playfair.className}`}
               description={
                 <>

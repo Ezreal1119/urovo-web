@@ -39,6 +39,7 @@ export function AiChatDialog({
 }: {
   scope?: "ums" | "sdk" | "general";
 }) {
+  const [activeScope, setActiveScope] = React.useState(scope);
   const [input, setInput] = React.useState("");
   const [isSending, setIsSending] = React.useState(false);
   const [isComposing, setIsComposing] = React.useState(false);
@@ -89,18 +90,28 @@ export function AiChatDialog({
   }, [open]);
   React.useEffect(() => {
     function handleOpenAI(e: Event) {
-      const customEvent = e as CustomEvent<{ prompt?: string }>;
-      const prompt = customEvent.detail?.prompt;
+      const customEvent = e as CustomEvent<{
+        prompt?: string;
+        scope?: "ums" | "sdk" | "general";
+      }>;
 
-      if (!prompt) return;
+      const prompt = customEvent.detail?.prompt;
+      const nextScope = customEvent.detail?.scope;
 
       suppressAutoFocusRef.current = true;
 
-      setInput("");
+      if (nextScope) {
+        setActiveScope(nextScope);
+      }
+
       setOpen(true);
 
+      if (!prompt) return;
+
+      setInput("");
+
       requestAnimationFrame(() => {
-        void handleSendWithPrompt(prompt);
+        void handleSendWithPrompt(prompt, nextScope ?? activeScope);
       });
     }
 
@@ -111,9 +122,14 @@ export function AiChatDialog({
     };
   }, []);
 
-  async function handleSendWithPrompt(prompt: string) {
+  async function handleSendWithPrompt(
+    prompt: string,
+    overrideScope?: "ums" | "sdk" | "general",
+  ) {
     const trimmed = prompt.trim();
     if (!trimmed || isSending) return;
+
+    const requestScope = overrideScope ?? activeScope;
 
     setInput("");
 
@@ -135,7 +151,7 @@ export function AiChatDialog({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            scope,
+            scope: requestScope,
             prompt: trimmed,
             conversationId: conversationId.current,
           }),
@@ -148,10 +164,9 @@ export function AiChatDialog({
 
       const data: ChatResponse = await res.json();
 
-      console.log("worker response =", data);
-
       const assistantText =
         data.answer ?? data.message ?? data.error ?? "No response.";
+
       setMessages((prev) => [
         ...prev,
         {
@@ -198,7 +213,7 @@ export function AiChatDialog({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            scope,
+            scope: activeScope,
             prompt: trimmed,
             conversationId: conversationId.current,
           }),

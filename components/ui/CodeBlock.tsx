@@ -1,6 +1,6 @@
 import React from "react";
-
 import { cn } from "@/lib/utils";
+import { AiLink, type AiScope } from "./AiLink";
 
 export function CodeBlock({
   title,
@@ -8,12 +8,16 @@ export function CodeBlock({
   children,
   titleClassName,
   titleStyle,
+  askAiPrompt,
+  askAiScope,
 }: {
   title: string;
   description: string;
   children: React.ReactNode;
   titleClassName?: string;
   titleStyle?: React.CSSProperties;
+  askAiPrompt?: string;
+  askAiScope?: AiScope;
 }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 md:px-6 md:py-6">
@@ -27,7 +31,14 @@ export function CodeBlock({
         >
           {title}
         </h3>
-        <p className="text-sm leading-7 text-foreground/55">{description}</p>
+        <p className="text-sm leading-7 text-foreground/55">
+          {description}{" "}
+          {(askAiPrompt || askAiScope) && (
+            <AiLink prompt={askAiPrompt} scope={askAiScope}>
+              Ask AI.
+            </AiLink>
+          )}
+        </p>
       </div>
 
       <div className="mt-5">{children}</div>

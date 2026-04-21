@@ -426,9 +426,9 @@ export default function UmsPage() {
               <div className="mt-6" />
 
               <FaqSection
-                titleClassName={`text-5xl ${playfair.className}`}
-                codeBlockTitle="Common Questions:"
+                codeBlockTitle="Frequently Asked Questions:"
                 codeBlockDescription="Click any question below to expand the answer."
+                askAiScope="ums"
                 groups={[
                   {
                     title: "",
@@ -543,30 +543,45 @@ export default function UmsPage() {
                         question:
                           "How do I check all the bound terminals of a group?",
                         answer: (
-                          <p>
-                            "Group Management" → "Group Management" → "Bind
-                            Device"
-                          </p>
+                          <div>
+                            "Group Management" → "Group Management" →{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/group/group_bind_device.png"
+                              imageAlt="Bind Device"
+                            >
+                              "Bind Device"
+                            </ZoomableTextLink>{" "}
+                          </div>
                         ),
                       },
                       {
                         question:
                           "How do I check all published Apps(the ones shown on the App Market) of a group?",
                         answer: (
-                          <p>
-                            "Group Management" → "Group Management" → "Shelf
-                            App"
-                          </p>
+                          <div>
+                            "Group Management" → "Group Management" →{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/group/group_shelf_app.png"
+                              imageAlt="Shelf App"
+                            >
+                              "Shelf App"
+                            </ZoomableTextLink>{" "}
+                          </div>
                         ),
                       },
                       {
                         question:
                           "How do I check all deployed Apps of a group?",
                         answer: (
-                          <p>
-                            "Group Management" → "Group Management" → "Deploy
-                            App"
-                          </p>
+                          <div>
+                            "Group Management" → "Group Management" →{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/group/group_deploy_app.png"
+                              imageAlt="Deploy App"
+                            >
+                              "Deploy App"
+                            </ZoomableTextLink>{" "}
+                          </div>
                         ),
                       },
                     ],
@@ -715,13 +730,7 @@ export default function UmsPage() {
                       <ul className="pl-3 space-y-1 mt-1">
                         <li>
                           ◦ This is only effective in PDA product. POS products
-                          use signature mechanism to{" "}
-                          <AiLink
-                            prompt="What's Application signture in Android POS product? Can an App be installed without the specified signature as per PCI?"
-                            className="font-bold"
-                          >
-                            achieve this.
-                          </AiLink>
+                          use signature mechanism to achieve this.
                         </li>
                         <li>
                           ◦ After the application whitelist is enabled,
@@ -747,6 +756,744 @@ export default function UmsPage() {
                   </div>
                 </AppStoreBlock>
               </div>
+
+              <div className="mt-6" />
+
+              <FaqSection
+                codeBlockTitle="Frequently Asked Questions:"
+                codeBlockDescription="Click any question below to expand the answer."
+                askAiScope="ums"
+                groups={[
+                  {
+                    title: "",
+                    items: [
+                      {
+                        question: "How do I upload an APK in UMS?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "App Store" →{" "}
+                                <ZoomableTextLink
+                                  href="/products/ums/app/app_app_upload.png"
+                                  imageAlt="App Upload"
+                                >
+                                  "App Upload"
+                                </ZoomableTextLink>{" "}
+                              </strong>
+                              .
+                            </li>
+                            <li>• Click to upload the APK.</li>
+                            <li>
+                              • Fill in the{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_app_information.png"
+                                imageAlt="App Information"
+                              >
+                                Application Information
+                              </ZoomableTextLink>
+                              , such as <strong>Application Name</strong>,{" "}
+                              <strong>Application Description</strong>,{" "}
+                              <strong>Catalog</strong>, description image, and{" "}
+                              <strong>Application Signature</strong>.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I modify app information after uploading?",
+                        answer: (
+                          <p>
+                            Yes. After uploading an application, you can modify
+                            its information at any time, such as the app
+                            description and other metadata.
+                          </p>
+                        ),
+                      },
+                      {
+                        question: "What are the 3 app upload types in UMS?",
+                        answer: (
+                          <ul>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_coverage_upgrade.png"
+                                imageAlt="Coverage Upgrade"
+                              >
+                                <strong>Coverage Upgrade</strong>
+                              </ZoomableTextLink>{" "}
+                              upgrades the official version of the app.
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_multiversion_upload.png"
+                                imageAlt="Multi-version Upload"
+                              >
+                                <strong>Multi-version Upload</strong>
+                              </ZoomableTextLink>{" "}
+                              adds another version without changing the official
+                              version.
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_grayscale_upgrade.png"
+                                imageAlt="Grayscale Upgrade"
+                              >
+                                <strong>Grayscale Upgrade</strong>
+                              </ZoomableTextLink>{" "}
+                              releases the app only to selected devices or
+                              groups first.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "What is Coverage Upgrade?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to <strong>"Normal Upgrade"</strong> first.
+                            </li>
+                            <li>
+                              • Then select{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_coverage_upgrade.png"
+                                imageAlt="Coverage Upgrade"
+                              >
+                                <strong>Coverage Upgrade</strong>
+                              </ZoomableTextLink>{" "}
+                              .
+                            </li>
+                            <li>
+                              • Upload a new APK to upgrade the{" "}
+                              <strong>official version</strong> of the app.
+                            </li>
+                            <li>
+                              • The version must be <strong>higher</strong> than
+                              the current official version.
+                            </li>
+                            <li>
+                              • The signature must remain{" "}
+                              <strong>the same</strong>.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "What is the official version of an app?",
+                        answer: (
+                          <div>
+                            The official version is the version shown on the{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/app/app_app_market_home.png"
+                              imageAlt="Home Page of App Market"
+                            >
+                              <strong>Home Page of App Market</strong>
+                            </ZoomableTextLink>{" "}
+                            . It is the main public version users will see
+                            first.
+                          </div>
+                        ),
+                      },
+                      {
+                        question: "What is Multi-version Upload?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to <strong>"Normal Upgrade"</strong>.
+                            </li>
+                            <li>
+                              • Select{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_multiversion_upload.png"
+                                imageAlt="Upload Multiple versions"
+                              >
+                                <strong>Upload Multiple versions</strong>
+                              </ZoomableTextLink>{" "}
+                              .
+                            </li>
+                            <li>
+                              • Upload another APK version without changing the
+                              current official version.
+                            </li>
+                            <li>
+                              • This version can still be downloaded from the{" "}
+                              <strong>App Detail</strong> page.
+                            </li>
+                            <li>
+                              • It has <strong>no restriction</strong> on
+                              version number or signature.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can Multi-version Upload become the official version directly?",
+                        answer: (
+                          <p>
+                            No. A multi-version cannot be turned into the
+                            official version directly. You must delete that
+                            multi-version first, then use{" "}
+                            <strong>Coverage Upgrade</strong> to publish it as
+                            the official version.
+                          </p>
+                        ),
+                      },
+                      {
+                        question: "What is GrayScale Upgrade?",
+                        answer: (
+                          <ul>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_grayscale_detail.png"
+                                imageAlt="Grayscale Upgrade"
+                              >
+                                <strong>Grayscale Upgrade</strong>
+                              </ZoomableTextLink>{" "}
+                              is similar to Coverage Upgrade.
+                            </li>
+                            <li>
+                              • It only takes effect on{" "}
+                              <strong>selected devices/groups</strong>.
+                            </li>
+                            <li>
+                              • The app signature must be{" "}
+                              <strong>the same</strong>.
+                            </li>
+                            <li>
+                              • You can later turn it into the{" "}
+                              <strong>official version</strong> if the test
+                              result is good.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "Can I adjust or pause a grayscale upgrade?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Yes, you can adjust the grayscale range by
+                              adding new SNs or removing existing SNs.
+                            </li>
+                            <li>
+                              • You can also <strong>pause</strong> the
+                              grayscale upgrade to stop its effect temporarily.
+                            </li>
+                            <li>
+                              • Later, you can <strong>restore</strong> it
+                              whenever needed.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I publish uploaded apps to the App Market?",
+                        answer: (
+                          <>
+                            <p>
+                              In the{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_app_list.png"
+                                imageAlt="App List"
+                              >
+                                <strong>"App List"</strong>
+                              </ZoomableTextLink>{" "}
+                              section, apps on the right side are uploaded but
+                              not yet published. You can publish them to the{" "}
+                              <strong>App Market</strong> when needed.
+                            </p>
+                            <div>
+                              This can be done via two approaches:{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_add_apps.png"
+                                imageAlt="Add Apps"
+                              >
+                                "Add Apps"
+                              </ZoomableTextLink>{" "}
+                              &{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_group_shelf.png"
+                                imageAlt="Group Shelf"
+                              >
+                                "Group Shelf"
+                              </ZoomableTextLink>{" "}
+                            </div>
+                          </>
+                        ),
+                      },
+                      {
+                        question:
+                          'What\'s the difference between publishing an uploaded app by "Add Apps" and by "Group Shelf"?',
+                        answer: (
+                          <ul>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_add_apps.png"
+                                imageAlt="Add Apps"
+                              >
+                                <strong>Add Apps</strong>
+                              </ZoomableTextLink>{" "}
+                              publishes the uploaded app to{" "}
+                              <strong>all groups</strong>.
+                            </li>
+                            <li>
+                              === With <strong>Add Apps</strong>, you cannot
+                              later restrict or adjust the target groups.
+                            </li>
+                            <li>
+                              === If new groups are created later, those groups
+                              will also be able to download the app from{" "}
+                              <strong>App Market</strong>.
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_group_shelf.png"
+                                imageAlt="Group Shelf"
+                              >
+                                <strong>Group Shelf</strong>
+                              </ZoomableTextLink>{" "}
+                              publishes the uploaded app only to the{" "}
+                              <strong>selected groups</strong>.
+                            </li>
+                            <li>
+                              === With <strong>Group Shelf</strong>, you can
+                              later click <strong>"Adjust"</strong> in the{" "}
+                              <strong>Published App List</strong> to modify the
+                              target groups.
+                            </li>
+                            <li>
+                              === Only terminals in the selected groups can
+                              download the app from <strong>App Market</strong>.
+                            </li>
+                            <li>
+                              === If new groups are created later, they will not
+                              see this app in <strong>App Market</strong> unless
+                              you adjust the group scope.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What is the difference between the published Apps(left side) and uploaded Apps(right side) in App List?",
+                        answer: (
+                          <ul>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_published_apps.png"
+                                imageAlt="Published Apps"
+                              >
+                                <strong>Published Apps: </strong>
+                              </ZoomableTextLink>{" "}
+                              apps that have already been published and can be
+                              downloaded directly from the App Market.
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_uploaded_apps.png"
+                                imageAlt="Uploaded Apps"
+                              >
+                                <strong>Uploaded Apps: </strong>
+                              </ZoomableTextLink>{" "}
+                              apps that have been uploaded but are not yet
+                              published.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I remove a published app from the App Market?",
+                        answer: (
+                          <p>
+                            Yes. In the App List section, you can{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/app/app_remove_app.png"
+                              imageAlt="Remove App"
+                            >
+                              remove
+                            </ZoomableTextLink>{" "}
+                            an app from the published list whenever needed.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I decide which group of terminals can download an app from App Market?",
+                        answer: (
+                          <p>
+                            Yes. You can control app visibility and availability
+                            by using{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/app/app_adjust_group.png"
+                              imageAlt="Adjust grouping"
+                            >
+                              <strong>"Adjust"</strong>
+                            </ZoomableTextLink>{" "}
+                            to set the grouping, so only selected terminal
+                            groups can download the app from the App Market.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I lock a particular app version and make other versions unavailable?",
+                        answer: (
+                          <p>
+                            Yes. You can fix a particular version and make other
+                            versions inaccessible by adjusting the published
+                            Apps. Click "Details" → "More versions" → Select the
+                            version you want to fix and set its effective group
+                            via "Adjust Shelf Group"
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I deploy applications to terminals remotely?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "Remote Management" → "Application Management"
+                              </strong>
+                              .
+                            </li>
+                            <li>
+                              • Create an{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_app_deployment.png"
+                                imageAlt="Application Deployment"
+                              >
+                                <strong>Application Deployment</strong>
+                              </ZoomableTextLink>{" "}
+                              rule.
+                            </li>
+                            <li>
+                              • Add one or more applications into the rule.
+                            </li>
+                            <li>
+                              • Choose deployment mode and deployment time.
+                            </li>
+                            <li>
+                              • Click <strong>"Push"</strong>, select the target
+                              group, and confirm.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What apps can be selected in an Application Deployment rule?",
+                        answer: (
+                          <p>
+                            You can only select applications that have already
+                            been <strong>published</strong>. (Existing rules
+                            won't be affected.)
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "What deployment modes are available in Application Deployment?",
+                        answer: (
+                          <ul>
+                            <li>
+                              {" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_deploy_mode.png"
+                                imageAlt="App Deploy Modes"
+                              >
+                                <strong>Two Deploy Modes: </strong>
+                              </ZoomableTextLink>{" "}
+                            </li>
+                            <li>
+                              • <strong>Silent Installation: </strong>The
+                              application will be silently downloaded and
+                              installed in the background.
+                            </li>
+                            <li>
+                              • <strong>Download and Prompt: </strong>The
+                              application will be automatically downloaded. But
+                              a prompt will pop to ask user whether to install
+                              that application.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I choose when the deployment takes place?",
+                        answer: (
+                          <div>
+                            Yes. You can deploy <strong>immediately</strong> or{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/app/app_deploy_time.png"
+                              imageAlt="App Deploy Time"
+                            >
+                              Select another time
+                            </ZoomableTextLink>{" "}
+                            based on your needs. The time is based on terminal's
+                            time, not UMS's time
+                          </div>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I start the app automatically after deploying/pushing the App?",
+                        answer: (
+                          <div>
+                            Yes. You can set{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/app/app_default_boot.png"
+                              imageAlt="Default Boot"
+                            >
+                              "Default Boot"
+                            </ZoomableTextLink>{" "}
+                            to "Yes" when adding a Deployment rule to achieve
+                            that.
+                          </div>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I update apps already included in an Application Deployment rule?",
+                        answer: (
+                          <p>
+                            If you upgrade the official version of an app
+                            already included in the rule, an{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/app/app_deploy_update.png"
+                              imageAlt="Update App"
+                            >
+                              "Update App"
+                            </ZoomableTextLink>{" "}
+                            button will appear. You can push the update simply
+                            by clicking it.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I prevent malicious applications from being installed? (App Whitelist)",
+                        answer: (
+                          <div>
+                            Yes. You can configure an{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/app/app_app_whitelist.png"
+                              imageAlt="App Whitelist"
+                            >
+                              App Whitelist
+                            </ZoomableTextLink>{" "}
+                            to prevent attacks from malicious applications and
+                            allow only approved apps.
+                            <p>
+                              Note: the deployed apps will be automatically
+                              included in the whitelist.
+                            </p>
+                          </div>
+                        ),
+                      },
+                      {
+                        question:
+                          "Does Application Whitelist work on both POS and PDA?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • No, it only works on <strong>PDA</strong>.
+                            </li>
+                            <li>
+                              • POS uses <strong>APK signature control</strong>.
+                            </li>
+                            <li>
+                              • Only APKs signed with authorized certificates
+                              can be installed.
+                            </li>
+                            <li>
+                              • (Except <strong>Non-financial POS</strong>)
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What happens to already installed apps after enabling App Whitelist?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Apps NOT in the whitelist will be{" "}
+                              <strong>uninstalled after reboot</strong>.
+                            </li>
+                            <li>• Please use this feature carefully.</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What happens if I install an app NOT in the whitelist?",
+                        answer: (
+                          <p>
+                            Installation will fail with:
+                            <br />
+                            <code>
+                              Failure [INSTALL_FAILED_INVALID_APK: Scanning
+                              Failed.: VerifyInernalSign failed]
+                            </code>
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I block app installation from sources outside App Market?",
+                        answer: (
+                          <p>
+                            Yes. Go to{" "}
+                            <strong>
+                              "Remote Management" → "Configuration Deployment" →
+                              "Function Settings"
+                            </strong>{" "}
+                            and set{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/app/app_disable_third_party.png"
+                              imageAlt="Disable third party app"
+                            >
+                              "ThirdPartyApplication Installation Disable"
+                            </ZoomableTextLink>{" "}
+                            to <strong>Yes</strong>.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "What happens if I install third-party apps after disabling it?",
+                        answer: (
+                          <p>
+                            Installation will fail with:
+                            <br />
+                            <code>
+                              Failure [INSTALL_FAILED_INVALID_APK: not allow to
+                              install third part app]
+                            </code>
+                          </p>
+                        ),
+                      },
+                      {
+                        question: "Can I uninstall an app remotely?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to <strong>"Remote Management"</strong>.
+                            </li>
+                            <li>
+                              • Enter the{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_uninstall_app.png"
+                                imageAlt="Uninstall App"
+                              >
+                                <strong>Package Name / App Name</strong>
+                              </ZoomableTextLink>{" "}
+                              of the application.
+                            </li>
+                            <li>• Execute the uninstall action remotely.</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "What is the Banner used for?",
+                        answer: (
+                          <ul>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_banner.png"
+                                imageAlt="App banner"
+                              >
+                                Banner
+                              </ZoomableTextLink>{" "}
+                              is an image displayed on the{" "}
+                              <strong>App Market Home Page</strong>.
+                            </li>
+                            <li>• It supports a hyperlink.</li>
+                            <li>
+                              • You can customize it to any URL (e.g. business
+                              website).
+                            </li>
+                            <li>
+                              • Users will be redirected once they click the
+                              banner.
+                            </li>
+                            <li>
+                              (Note: This requires any browser installed in
+                              terminal. e.g. Chrome or U-Browser)
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "How can I remotely configure an App?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • It is recommended to implement{" "}
+                              <strong>FileObserver</strong> in your app.
+                            </li>
+                            <li>
+                              • Use{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_file_distribution.png"
+                                imageAlt="File Distribution"
+                              >
+                                File Distribution
+                              </ZoomableTextLink>{" "}
+                              in UMS to push config files.
+                            </li>
+                            <li>
+                              • The app detects file changes and updates
+                              configuration automatically.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "How to deploy a web-based app?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Use <strong>UStage</strong> and{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_configuration_management.png"
+                                imageAlt="Configuration Management"
+                              >
+                                Configuration Management
+                              </ZoomableTextLink>{" "}
+                            </li>
+                            <li>
+                              • Push a <strong>shortcut</strong> to Enterprise
+                              Launcher.
+                            </li>
+                            <li>
+                              • This allows launching web apps like native apps.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                    ],
+                  },
+                ]}
+              />
             </section>
 
             <Divider />
@@ -869,6 +1616,331 @@ export default function UmsPage() {
                   </ul>
                 </AppStoreBlock>
               </div>
+              <FaqSection
+                codeBlockTitle="Frequently Asked Questions:"
+                codeBlockDescription="Click any question below to expand the answer."
+                askAiScope="ums"
+                groups={[
+                  {
+                    title: "",
+                    items: [
+                      {
+                        question:
+                          "What can I see in the Remote Management page?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • You can view the online status of terminals.
+                            </li>
+                            <li>
+                              • You can also check their network status and
+                              battery status.
+                            </li>
+                            <li>
+                              • You can filter terminals by <strong>SN</strong>{" "}
+                              or <strong>terminal model</strong>.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I check detailed information of a terminal?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to <strong>"Remote Management"</strong>.
+                            </li>
+                            <li>
+                              • Click <strong>"Device Information"</strong> on
+                              the right side of the target terminal.
+                            </li>
+                            <li>
+                              • You can then view firmware version, current
+                              location, memory usage, storage usage, network
+                              information, and application information.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I export device information in batch?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Click <strong>"Batch Manage"</strong>.
+                            </li>
+                            <li>• Select the target group.</li>
+                            <li>
+                              • Choose <strong>"Export Device Info"</strong>.
+                            </li>
+                            <li>
+                              • Click <strong>"Next"</strong>.
+                            </li>
+                            <li>
+                              • The file will be downloaded automatically in the
+                              browser.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I execute remote operations on terminals?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>Manual selection:</strong> check the
+                              target terminals, then click{" "}
+                              <strong>"Operate in Batches"</strong>.
+                            </li>
+                            <li>
+                              • <strong>By group:</strong> click{" "}
+                              <strong>"Batch Manage"</strong>, then select the
+                              operation and the target group.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What remote operations are supported in UMS?",
+                        answer: (
+                          <ul>
+                            <li>• Freeze or unfreeze device</li>
+                            <li>• Send message or file</li>
+                            <li>• Uninstall application</li>
+                            <li>• Move devices to another group</li>
+                            <li>• Extract system log</li>
+                            <li>• Restart device</li>
+                            <li>• Shut down device</li>
+                            <li>• Ring device</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I check whether a remote task succeeded or failed?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to <strong>"Remote Log"</strong>.
+                            </li>
+                            <li>
+                              • Click <strong>"Details"</strong> to check the
+                              task status.
+                            </li>
+                            <li>
+                              • You can see whether the task is still running,
+                              has succeeded, or has failed.
+                            </li>
+                            <li>• You can also export the report if needed.</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "What is Device Restore used for?",
+                        answer: (
+                          <ul>
+                            <li>• You can reset a terminal if needed.</li>
+                            <li>
+                              • You can also delete the lock password if it was
+                              forgotten.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I remotely extract logs or files from a terminal?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to <strong>"Log Management"</strong>.
+                            </li>
+                            <li>
+                              • Click <strong>"Add Log Task"</strong>.
+                            </li>
+                            <li>• Select the target terminal.</li>
+                            <li>
+                              • Choose <strong>UMS log</strong>,{" "}
+                              <strong>System log</strong>, or{" "}
+                              <strong>Specified File</strong>.
+                            </li>
+                            <li>
+                              • If you choose <strong>"Specified File"</strong>,
+                              enter the file path.
+                            </li>
+                            <li>
+                              • After the terminal uploads the file, you can
+                              download it from the page anytime.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "Can I push WiFi settings remotely?",
+                        answer: (
+                          <p>
+                            Yes. In <strong>"Configuration Deployment"</strong>,
+                            you can push the WiFi SSID and password to terminals
+                            so they connect to that WiFi automatically.
+                          </p>
+                        ),
+                      },
+                      {
+                        question: "What is WiFi Whitelist used for?",
+                        answer: (
+                          <p>
+                            WiFi Whitelist is used to restrict the terminal’s
+                            WiFi options to only the SSIDs that you set.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "What basic device settings can I deploy remotely?",
+                        answer: (
+                          <ul>
+                            <li>• Disable buttons</li>
+                            <li>• Disable Bluetooth</li>
+                            <li>• Disable WiFi</li>
+                            <li>• Disable third-party installation</li>
+                            <li>• And more</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "Can I deploy APN settings remotely?",
+                        answer: (
+                          <p>
+                            Yes. UMS supports deploying{" "}
+                            <strong>APN configuration</strong> to terminals
+                            remotely.
+                          </p>
+                        ),
+                      },
+                      {
+                        question: "Can I send Android intents through UMS?",
+                        answer: (
+                          <p>
+                            Yes. UMS supports sending{" "}
+                            <strong>Android intents</strong> when needed.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I deploy applications remotely in Remote Management?",
+                        answer: (
+                          <p>
+                            Yes. In <strong>"Application Management"</strong>,
+                            you can deploy applications and also set the{" "}
+                            <strong>App whitelist</strong>.
+                          </p>
+                        ),
+                      },
+                      {
+                        question: "Does UMS support geofencing?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Yes. UMS supports geofencing in{" "}
+                              <strong>"Location Management"</strong>.
+                            </li>
+                            <li>• You can monitor terminal locations.</li>
+                            <li>
+                              • You can lock terminals remotely when they go out
+                              of the allowed area.
+                            </li>
+                            <li>
+                              • You will also receive email notifications when
+                              that happens.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "What is Device Configuration used for?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • You can choose an existing device configuration
+                              or use a custom one.
+                            </li>
+                            <li>
+                              • This controls how terminals communicate with the
+                              UMS server and how logs are handled.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "What does polling time mean?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Polling time means how often terminals send HTTP
+                              requests to the UMS server.
+                            </li>
+                            <li>
+                              • If you want <strong>less data usage</strong>,
+                              increase the polling time.
+                            </li>
+                            <li>
+                              • If you want{" "}
+                              <strong>more frequent updates</strong>, decrease
+                              the polling time.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "What does device log retention time mean?",
+                        answer: (
+                          <p>
+                            Device log retention time means how long the UMS log
+                            is stored on the terminal before being deleted.
+                          </p>
+                        ),
+                      },
+                      {
+                        question: "What is Stage Management used for?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>Stage Management</strong> only works
+                              with <strong>U Stage</strong>.
+                            </li>
+                            <li>
+                              • U Stage is a specialized configuration app
+                              developed by UROVO.
+                            </li>
+                            <li>
+                              • It allows you to push many kinds of
+                              configurations beyond the standard options already
+                              covered in UMS.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What can I customize in System Customization?",
+                        answer: (
+                          <ul>
+                            <li>• Boot animation</li>
+                            <li>• Kiosk application</li>
+                            <li>• Auto-start application</li>
+                            <li>• Default launcher</li>
+                          </ul>
+                        ),
+                      },
+                    ],
+                  },
+                ]}
+              />
             </section>
 
             <Divider />
@@ -1155,106 +2227,6 @@ export default function UmsPage() {
             </PageSection>
 
             <Divider />
-
-            <FaqSection
-              title="6. Q&A"
-              titleClassName={`text-5xl ${playfair.className}`}
-              description={<>Common questions about UMS / UTMS.</>}
-              codeBlockTitle=""
-              codeBlockDescription="Click any question below to expand the answer."
-              groups={[
-                {
-                  title: "1. General Questions:",
-                  items: [
-                    {
-                      question:
-                        "What platform is i9100 using? MTK or Qualcomm?",
-                      answer: (
-                        <p>
-                          It's using MTK's MT8766 CPU, which is Quad-core A53
-                          architecture.
-                        </p>
-                      ),
-                    },
-                  ],
-                },
-                {
-                  title: "2. After-sales Questions:",
-                  items: [
-                    {
-                      question:
-                        "What should I do if the terminal cannot be powered on?",
-                      answer: (
-                        <>
-                          <ul>
-                            <li>
-                              • Charge the terminal for{" "}
-                              <strong>30 minutes</strong> first, then check
-                              whether it can be powered on.
-                            </li>
-                            <li>
-                              • Replace the{" "}
-                              <ZoomableTextLink
-                                href="/products/pos/i9100/spare/battery.png"
-                                imageAlt="Battery"
-                              >
-                                Battery
-                              </ZoomableTextLink>{" "}
-                              <strong>ONLY</strong> and check again whether the
-                              terminal can be powered on.
-                            </li>
-                            <li>
-                              • Replace the{" "}
-                              <ZoomableTextLink
-                                href="/products/pos/i9100/spare/adapter.png"
-                                imageAlt="Adapter"
-                              >
-                                Adapter
-                              </ZoomableTextLink>{" "}
-                              and{" "}
-                              <ZoomableTextLink
-                                href="/products/pos/i9100/spare/cable.png"
-                                imageAlt="Cable"
-                              >
-                                Cable
-                              </ZoomableTextLink>{" "}
-                              with the original set <strong>ONLY</strong> and
-                              check again whether the terminal can be powered
-                              on.
-                            </li>
-                            <li>
-                              • Press and hold the <strong>Power button</strong>{" "}
-                              and the <strong>Volume Up button</strong> (the one
-                              on the right) to check whether the terminal can
-                              enter{" "}
-                              <ZoomableTextLink
-                                href="/products/pos/others/recovery_mode.jpg"
-                                imageAlt="Recovery Mode"
-                              >
-                                Recovery Mode
-                              </ZoomableTextLink>{" "}
-                              . If it can, please contact the Urovo team for a
-                              firmware upgrade.
-                            </li>
-                            <li>
-                              • Replace the{" "}
-                              <ZoomableTextLink
-                                href="/products/pos/i9100/spare/mainboard_front.png"
-                                imageAlt="Mainboard"
-                              >
-                                Mainboard
-                              </ZoomableTextLink>{" "}
-                              <strong>ONLY</strong> and check again whether the
-                              terminal can be powered on.
-                            </li>
-                          </ul>
-                        </>
-                      ),
-                    },
-                  ],
-                },
-              ]}
-            />
           </PageStack>
         </PageMain>
       </PageContainer>

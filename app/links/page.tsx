@@ -120,6 +120,16 @@ export default function LinksPage() {
                   href="https://cdn.patrick-shenzhen.org/urovo/sdk/D81R-RFID_2412.zip"
                   description="Android SDK (including demo code and API document) for UROVO D81R. [D81R-RFID_2412]"
                 />
+                <ResourceItem
+                  title="FR1000"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/FR1000_SDK.rar"
+                  description="Android SDK (including demo code and API document) for UROVO FR1000. [FR1000_SDK_260421.rar]"
+                />
+                <ResourceItem
+                  title="FR7000"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/FR7000_SDK.rar"
+                  description="SDK (including demo code and API document) for UROVO FR7000. [FR7000_SDK_260421.rar]"
+                />
               </div>
             </PageSection>
 

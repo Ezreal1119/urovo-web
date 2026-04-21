@@ -3,19 +3,23 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+export type AiScope = "ums" | "sdk" | "general";
+
 export function AiLink({
   prompt,
+  scope,
   children,
   className,
 }: {
-  prompt: string;
+  prompt?: string;
+  scope?: AiScope;
   children: React.ReactNode;
   className?: string;
 }) {
   function handleClick() {
     window.dispatchEvent(
       new CustomEvent("open-ai-chat", {
-        detail: { prompt },
+        detail: { prompt, scope },
       }),
     );
   }
