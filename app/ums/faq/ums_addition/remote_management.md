@@ -6,7 +6,7 @@ Click any question below to expand the answer.
 
 In the **Remote Management** page, you can view the status of terminals, including:
 
-- Online status
+- Online status (This is the status of MQTT, which is the Push Service of UMS)
 - Network status
 - Battery status
 
@@ -67,7 +67,7 @@ UMS supports operations such as:
 - Freeze device
 - Unfreeze device
 - Send message
-- Send file
+- Send/Push/Distribute file
 - Uninstall application
 - Move device to another group
 - Extract system log
@@ -141,9 +141,15 @@ WiFi Whitelist is used to restrict the terminal’s available WiFi options to on
 
 In **Configuration Deployment**, you can deploy settings such as:
 
-- Disable buttons
+- Disable Home Button
+- Disable Dropdown Menu(Status Bar)
+- Disable Input Input
+- Disable third-party installation
+- Disable USB
+- Disable ADB(USB debugging)
 - Disable Bluetooth
 - Disable WiFi
+- Disable App Uninstall
 - Disable third-party installation
 
 And more.
@@ -162,7 +168,27 @@ UMS supports deploying **APN configuration** to terminals remotely.
 
 Yes.
 
-UMS supports sending **Android intents** when needed.
+UMS supports sending **Android intents(Activity, Service, Broadcast)** when needed.
+
+---
+
+## What's the difference between Operation and Deployment Rules?
+
+They are different in **execution behavior** and **persistence**.
+
+### Operation
+
+- Operation is a **one-time task**
+- The device executes it once, and then the task is finished
+- It will **not be executed again automatically**
+
+### Deployment Rules
+
+- Deployment Rules represent the **desired configuration state** of a device
+- The device will continuously ensure its configuration matches the pushed rule
+- If the device changes its group, it will:
+  - Stop following the old group configuration
+  - Automatically apply the **new group's configuration**
 
 ---
 
@@ -177,17 +203,22 @@ In **Application Management**, you can:
 
 ---
 
-## Does UMS support geofencing?
+## Does UMS support GPS locationing of terminals or geofencing?
 
 Yes.
 
-In **Location Management**, UMS supports geofencing for terminals.
+In **Location Management**, UMS supports GPS locationing of terminals and geofencing for terminals.
 
 This helps you:
 
 - Monitor terminal locations
-- Lock terminals remotely when they go out of the allowed area
-- Receive email notifications when that happens
+- You can set geofencing rule remotely, including
+  - Fench Range,
+  - Actions(Disable Network, Freeze Device, Ring Device) to be done when out of range,
+  - E-Mail that receives notification when out of range.
+- You can view all the geofencing warning records in the "Fench Warning Record" page.
+
+Note: the current minimal Fence Radius can be set is 50 meters.
 
 ---
 
@@ -225,7 +256,7 @@ Device log retention time means:
 
 ## What is Stage Management used for?
 
-**Stage Management** only works with **U Stage**, which is a specialized configuration app developed by UROVO.
+**Stage Management** only works with **U-Stage**, which is a specialized configuration app developed by UROVO.
 
 Using this feature, you can push many kinds of configurations beyond the standard options already covered in UMS.
 
@@ -239,3 +270,14 @@ In **System Customization**, you can remotely set:
 - Kiosk application
 - Auto-start application
 - Default launcher
+
+---
+
+## Does UMS support Remote Desktop?
+
+Yes.
+
+UMS supports **Remote Desktop based on Awesun**.
+
+- The built-in remote desktop capability is based on **Awesun**
+- If you want to integrate a **third-party Remote Desktop service**, adaptation is required

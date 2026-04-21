@@ -556,6 +556,47 @@ export default function UmsPage() {
                       },
                       {
                         question:
+                          'What\'s the difference between "Activation Time" and "Shipment Time" in Bind Device?',
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>Activation Time:</strong> is the time
+                              when the device is{" "}
+                              <strong>first seen ONLINE in UMS</strong>.
+                            </li>
+                            <li>
+                              • It represents when the device is{" "}
+                              <strong>first activated and connected</strong> to
+                              the platform.
+                            </li>
+                            <li>
+                              • <strong>Shipment Time:</strong> is the time when
+                              the device is{" "}
+                              <strong>
+                                first registered (bound) to your account
+                              </strong>
+                              .
+                            </li>
+                            <li>
+                              • It represents when the device is{" "}
+                              <strong>assigned or imported</strong> into your
+                              UMS account.
+                            </li>
+                            <li>
+                              • 👉 <strong>In short:</strong>
+                            </li>
+                            <li>
+                              • Activation Time = first time device goes online
+                            </li>
+                            <li>
+                              • Shipment Time = first time device is bound to
+                              your account
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
                           "How do I check all published Apps(the ones shown on the App Market) of a group?",
                         answer: (
                           <div>
@@ -1616,6 +1657,9 @@ export default function UmsPage() {
                   </ul>
                 </AppStoreBlock>
               </div>
+
+              <div className="mt-6" />
+
               <FaqSection
                 codeBlockTitle="Frequently Asked Questions:"
                 codeBlockDescription="Click any question below to expand the answer."
@@ -1631,6 +1675,8 @@ export default function UmsPage() {
                           <ul>
                             <li>
                               • You can view the online status of terminals.
+                              (This is the status of MQTT, which is the Push
+                              Service of UMS)
                             </li>
                             <li>
                               • You can also check their network status and
@@ -1652,13 +1698,20 @@ export default function UmsPage() {
                               • Go to <strong>"Remote Management"</strong>.
                             </li>
                             <li>
-                              • Click <strong>"Device Information"</strong> on
-                              the right side of the target terminal.
+                              • Click{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_terminal_details.png"
+                                imageAlt="Device information"
+                              >
+                                <strong>Device Information</strong>
+                              </ZoomableTextLink>{" "}
+                              on the right side of the target terminal.
                             </li>
                             <li>
                               • You can then view firmware version, current
                               location, memory usage, storage usage, network
-                              information, and application information.
+                              information, and application information(AppName,
+                              AppVersion, AppSize).
                             </li>
                           </ul>
                         ),
@@ -1669,7 +1722,14 @@ export default function UmsPage() {
                         answer: (
                           <ul>
                             <li>
-                              • Click <strong>"Batch Manage"</strong>.
+                              • Click{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_export_in_batch.png"
+                                imageAlt="Batch Manage"
+                              >
+                                "Batch Manage"
+                              </ZoomableTextLink>{" "}
+                              .
                             </li>
                             <li>• Select the target group.</li>
                             <li>
@@ -1691,14 +1751,26 @@ export default function UmsPage() {
                         answer: (
                           <ul>
                             <li>
-                              • <strong>Manual selection:</strong> check the
-                              target terminals, then click{" "}
-                              <strong>"Operate in Batches"</strong>.
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_operate_single.png"
+                                imageAlt="Manual Selection"
+                              >
+                                <strong>Manual Selection: </strong>
+                              </ZoomableTextLink>{" "}
+                              check the target terminals, then click Operate in
+                              Batches .
                             </li>
                             <li>
-                              • <strong>By group:</strong> click{" "}
-                              <strong>"Batch Manage"</strong>, then select the
-                              operation and the target group.
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_operate_in_batch.png"
+                                imageAlt="Operate in Batches"
+                              >
+                                <strong>By Group: </strong>
+                              </ZoomableTextLink>{" "}
+                              click <strong>"Batch Manage"</strong>, then select
+                              the operation and the target group.
                             </li>
                           </ul>
                         ),
@@ -1708,11 +1780,56 @@ export default function UmsPage() {
                           "What remote operations are supported in UMS?",
                         answer: (
                           <ul>
-                            <li>• Freeze or unfreeze device</li>
-                            <li>• Send message or file</li>
-                            <li>• Uninstall application</li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_freeze_device.png"
+                                imageAlt="Freeze device"
+                              >
+                                Freeze
+                              </ZoomableTextLink>{" "}
+                              or unfreeze device
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_push_message.png"
+                                imageAlt="Send message"
+                              >
+                                Send a message
+                              </ZoomableTextLink>{" "}
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_file_distribution.png"
+                                imageAlt="Push/Distribute/Send a file"
+                              >
+                                Push/Distribute/Send a file
+                              </ZoomableTextLink>{" "}
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/app/app_uninstall_app.png"
+                                imageAlt="Uninstall Application"
+                              >
+                                Uninstall Application
+                              </ZoomableTextLink>{" "}
+                            </li>
                             <li>• Move devices to another group</li>
-                            <li>• Extract system log</li>
+                            <li>
+                              • Extract system log: only very recent(several
+                              minutes) logcat will be recorded. You can download
+                              the log{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_remote_log_download.png"
+                                imageAlt="Remote Log Download"
+                              >
+                                Here
+                              </ZoomableTextLink>
+                              .
+                            </li>
                             <li>• Restart device</li>
                             <li>• Shut down device</li>
                             <li>• Ring device</li>
@@ -1725,7 +1842,14 @@ export default function UmsPage() {
                         answer: (
                           <ul>
                             <li>
-                              • Go to <strong>"Remote Log"</strong>.
+                              • Go to{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_operate_log.png"
+                                imageAlt="Remote Log"
+                              >
+                                <strong>"Remote Log"</strong>
+                              </ZoomableTextLink>
+                              .
                             </li>
                             <li>
                               • Click <strong>"Details"</strong> to check the
@@ -1743,10 +1867,23 @@ export default function UmsPage() {
                         question: "What is Device Restore used for?",
                         answer: (
                           <ul>
-                            <li>• You can reset a terminal if needed.</li>
                             <li>
-                              • You can also delete the lock password if it was
-                              forgotten.
+                              {" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_device_restore.png"
+                                imageAlt="Device Restore"
+                              >
+                                <strong>Device Restore: </strong>
+                              </ZoomableTextLink>
+                            </li>
+                            <li>
+                              • You can <strong>Factory Reset / Wipe</strong> a
+                              terminal if needed.
+                            </li>
+                            <li>
+                              • You can also{" "}
+                              <strong>Delete the Lock password</strong> if it
+                              was forgotten.
                             </li>
                           </ul>
                         ),
@@ -1762,40 +1899,106 @@ export default function UmsPage() {
                             <li>
                               • Click <strong>"Add Log Task"</strong>.
                             </li>
-                            <li>• Select the target terminal.</li>
+                            <li>
+                              • Select the{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_log_select_sn.png"
+                                imageAlt="Log Target Terminals"
+                              >
+                                Target Terminals
+                              </ZoomableTextLink>
+                              .
+                            </li>
                             <li>
                               • Choose <strong>UMS log</strong>,{" "}
                               <strong>System log</strong>, or{" "}
                               <strong>Specified File</strong>.
                             </li>
                             <li>
-                              • If you choose <strong>"Specified File"</strong>,
-                              enter the file path.
+                              ==={" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_ums_log.png"
+                                imageAlt="UMS Log"
+                              >
+                                UMS Log
+                              </ZoomableTextLink>
+                              : The Log of UMS with the retention time specified
+                              in "Remote Management" → "Device Configuration" →
+                              "Device log retention time". This Log is helpful
+                              for analysis of UMS-related problems.
+                            </li>
+                            <li>
+                              ==={" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_system_log.png"
+                                imageAlt="System Log"
+                              >
+                                System Log
+                              </ZoomableTextLink>
+                              : You can specify the starting time of the System
+                              Log Recording, as well as how long will the System
+                              Log Recording be. This Log is helpful for analysis
+                              of System-related problems.
+                            </li>
+                            <li>
+                              ==={" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_specified_file.png"
+                                imageAlt="Specified File"
+                              >
+                                Specified File
+                              </ZoomableTextLink>
+                              : You can extract any specified folder from the
+                              terminal(Only whole folder) using this approach.
+                              e.g., Log file of your own App.
                             </li>
                             <li>
                               • After the terminal uploads the file, you can
-                              download it from the page anytime.
+                              download it from the{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_download_log.png"
+                                imageAlt="Download Log"
+                              >
+                                Here
+                              </ZoomableTextLink>{" "}
+                              anytime.
                             </li>
                           </ul>
                         ),
                       },
                       {
-                        question: "Can I push WiFi settings remotely?",
+                        question:
+                          "Can I push WiFi settings(e.g. Wifi Name/SSID, and password) remotely?",
                         answer: (
-                          <p>
+                          <div>
                             Yes. In <strong>"Configuration Deployment"</strong>,
-                            you can push the WiFi SSID and password to terminals
-                            so they connect to that WiFi automatically.
-                          </p>
+                            you can push the WiFi SSID and password to terminals{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/remote/remote_wifi_settings.png"
+                              imageAlt="WiFi settings"
+                            >
+                              Here
+                            </ZoomableTextLink>{" "}
+                            so they will connect to that WiFi automatically.
+                          </div>
                         ),
                       },
                       {
                         question: "What is WiFi Whitelist used for?",
                         answer: (
-                          <p>
+                          <div>
                             WiFi Whitelist is used to restrict the terminal’s
-                            WiFi options to only the SSIDs that you set.
-                          </p>
+                            WiFi options to only the WiFi Names(SSIDs) that you
+                            set{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/remote/remote_wifi_whitelist.png"
+                              imageAlt="WiFi Whitelist"
+                            >
+                              Here
+                            </ZoomableTextLink>{" "}
+                            . (Pushed WiFi settings will be included
+                            automatically)
+                          </div>
                         ),
                       },
                       {
@@ -1803,9 +2006,25 @@ export default function UmsPage() {
                           "What basic device settings can I deploy remotely?",
                         answer: (
                           <ul>
-                            <li>• Disable buttons</li>
+                            <li>
+                              You can deploy in "Remote Management" →
+                              "Configuration Deployment" →{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_function_settings.png"
+                                imageAlt="Function Settings"
+                              >
+                                "Function Settings"
+                              </ZoomableTextLink>{" "}
+                            </li>
+                            <li>• Disable Home Button</li>
+                            <li>• Disable Dropdown Menu(Status Bar)</li>
+                            <li>• Disable Input Method</li>
+                            <li>• Disable third-party installation</li>
+                            <li>• Disable USB</li>
+                            <li>• Disable ADB(USB debugging)</li>
                             <li>• Disable Bluetooth</li>
                             <li>• Disable WiFi</li>
+                            <li>• Disable App Uninstall</li>
                             <li>• Disable third-party installation</li>
                             <li>• And more</li>
                           </ul>
@@ -1816,8 +2035,13 @@ export default function UmsPage() {
                         answer: (
                           <p>
                             Yes. UMS supports deploying{" "}
-                            <strong>APN configuration</strong> to terminals
-                            remotely.
+                            <ZoomableTextLink
+                              href="/products/ums/remote/remote_apn_settings.png"
+                              imageAlt="APN Configuration"
+                            >
+                              APN Configuration
+                            </ZoomableTextLink>{" "}
+                            to terminals remotely.
                           </p>
                         ),
                       },
@@ -1826,37 +2050,112 @@ export default function UmsPage() {
                         answer: (
                           <p>
                             Yes. UMS supports sending{" "}
-                            <strong>Android intents</strong> when needed.
+                            <ZoomableTextLink
+                              href="/products/ums/remote/remote_send_script.png"
+                              imageAlt="Android Intents"
+                            >
+                              Android Intents(Activity, Service, Broadcast)
+                            </ZoomableTextLink>{" "}
+                            when needed. ("Remote Management" → "Configuration
+                            Deployment" → "Send Script")
                           </p>
                         ),
                       },
                       {
                         question:
-                          "Can I deploy applications remotely in Remote Management?",
+                          "What's the difference between Operation and Deployment Rules?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>Operation:</strong> is a{" "}
+                              <strong>one-time task</strong>.
+                            </li>
+                            <li>
+                              === The device executes it once, and the task is
+                              completed.
+                            </li>
+                            <li>
+                              === It will{" "}
+                              <strong>not run again automatically</strong>.
+                            </li>
+                            <li>
+                              • <strong>Deployment Rules:</strong> represent the{" "}
+                              <strong>desired configuration state</strong> of a
+                              device.
+                            </li>
+                            <li>
+                              === The device will continuously ensure its
+                              configuration matches the pushed rule.
+                            </li>
+                            <li>
+                              === If the device changes its group, it will stop
+                              following the old configuration and apply the{" "}
+                              <strong>new group's configuration</strong>.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I deploy applications remotely or set application whitelist in Remote Management?",
                         answer: (
                           <p>
-                            Yes. In <strong>"Application Management"</strong>,
-                            you can deploy applications and also set the{" "}
-                            <strong>App whitelist</strong>.
+                            Yes. In{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/remote/remote_app_management.png"
+                              imageAlt="Application Management"
+                            >
+                              "Application Management"
+                            </ZoomableTextLink>{" "}
+                            , you can <strong>Deploy Applications</strong> and
+                            also set the <strong>App whitelist</strong>.
                           </p>
                         ),
                       },
                       {
-                        question: "Does UMS support geofencing?",
+                        question:
+                          "Does UMS support GPS locationing of terminals or geofencing?",
                         answer: (
                           <ul>
                             <li>
-                              • Yes. UMS supports geofencing in{" "}
-                              <strong>"Location Management"</strong>.
+                              • Yes. UMS supports GPS locationing of terminals
+                              and geofencing in{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_location_management.png"
+                                imageAlt="Location Management"
+                              >
+                                "Location Management"
+                              </ZoomableTextLink>{" "}
+                              .
                             </li>
                             <li>• You can monitor terminal locations.</li>
                             <li>
-                              • You can lock terminals remotely when they go out
-                              of the allowed area.
+                              • You can set geofencing rule remotely, including
+                              Fench Range, Actions(Disable Network,{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_geofencing_lock.png"
+                                imageAlt="Geofencing Lock"
+                              >
+                                "Freeze Device"
+                              </ZoomableTextLink>
+                              , Ring Device) to be done when out of range,
+                              E-Mail that receives notification when out of
+                              range.
                             </li>
                             <li>
-                              • You will also receive email notifications when
-                              that happens.
+                              • You can view all the geofencing warning records
+                              in the{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_geofencing_warning_records.png"
+                                imageAlt="Fench Warning Record"
+                              >
+                                "Fench Warning Record"
+                              </ZoomableTextLink>{" "}
+                              page.
+                            </li>
+                            <li>
+                              (Note: the current minimal Fence Radius can be set
+                              is 50 meters)
                             </li>
                           </ul>
                         ),
@@ -1866,8 +2165,21 @@ export default function UmsPage() {
                         answer: (
                           <ul>
                             <li>
-                              • You can choose an existing device configuration
-                              or use a custom one.
+                              • You can choose an existing{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_device_configuration.png"
+                                imageAlt="Device Configuration"
+                              >
+                                Device Configuration
+                              </ZoomableTextLink>{" "}
+                              or use a{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_device_configuration_custom.png"
+                                imageAlt="Device Configuration Custom"
+                              >
+                                Custom one
+                              </ZoomableTextLink>
+                              .
                             </li>
                             <li>
                               • This controls how terminals communicate with the
@@ -1881,17 +2193,24 @@ export default function UmsPage() {
                         answer: (
                           <ul>
                             <li>
-                              • Polling time means how often terminals send HTTP
-                              requests to the UMS server.
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_polling_time.png"
+                                imageAlt="Polling time"
+                              >
+                                Polling time
+                              </ZoomableTextLink>{" "}
+                              means how often terminals send polling
+                              requests(https) to the UMS server.
                             </li>
                             <li>
                               • If you want <strong>less data usage</strong>,
-                              increase the polling time.
+                              increase the polling time. (Minimum is 60 minutes)
                             </li>
                             <li>
                               • If you want{" "}
                               <strong>more frequent updates</strong>, decrease
-                              the polling time.
+                              the polling time. (Maximum is 1440 minutes)
                             </li>
                           </ul>
                         ),
@@ -1899,10 +2218,16 @@ export default function UmsPage() {
                       {
                         question: "What does device log retention time mean?",
                         answer: (
-                          <p>
-                            Device log retention time means how long the UMS log
-                            is stored on the terminal before being deleted.
-                          </p>
+                          <div>
+                            <ZoomableTextLink
+                              href="/products/ums/remote/remote_ums_log_retention_time.png"
+                              imageAlt="Device log retention time"
+                            >
+                              Device log retention time
+                            </ZoomableTextLink>{" "}
+                            means how long the UMS log is stored on the terminal
+                            before being deleted.
+                          </div>
                         ),
                       },
                       {
@@ -1910,17 +2235,24 @@ export default function UmsPage() {
                         answer: (
                           <ul>
                             <li>
-                              • <strong>Stage Management</strong> only works
-                              with <strong>U Stage</strong>.
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_configuration_management.png"
+                                imageAlt="Stage Management"
+                              >
+                                Stage Management
+                              </ZoomableTextLink>{" "}
+                              only works with <strong>U-Stage</strong>.
                             </li>
                             <li>
-                              • U Stage is a specialized configuration app
+                              • U-Stage is a specialized configuration app
                               developed by UROVO.
                             </li>
                             <li>
                               • It allows you to push many kinds of
                               configurations beyond the standard options already
-                              covered in UMS.
+                              covered in UMS. (e.g., Settings, Scanner Settings,
+                              and etc.)
                             </li>
                           </ul>
                         ),
@@ -1930,10 +2262,96 @@ export default function UmsPage() {
                           "What can I customize in System Customization?",
                         answer: (
                           <ul>
-                            <li>• Boot animation</li>
-                            <li>• Kiosk application</li>
-                            <li>• Auto-start application</li>
-                            <li>• Default launcher</li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_boot_animation.png"
+                                imageAlt="Boot animation"
+                              >
+                                Boot animation
+                              </ZoomableTextLink>{" "}
+                              : You need to upload the animation that is of the
+                              correct resolution.
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_kiosk_mode.png"
+                                imageAlt="Kiosk Mode"
+                              >
+                                Kiosk Mode
+                              </ZoomableTextLink>{" "}
+                              : This is used to set a certain App in Kiosk
+                              Mode.(Meaning can't exit that App without
+                              password)
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_auto_start_application.png"
+                                imageAlt="Auto-start application"
+                              >
+                                Auto-start application
+                              </ZoomableTextLink>{" "}
+                              : This is used to set a certain App to start
+                              automatically when device boots up.
+                            </li>
+                            <li>
+                              • Default launcher: This is used to set an
+                              Application as the launcher of the device.
+                            </li>
+                            <li>
+                              ==={" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_custom_desktop.png"
+                                imageAlt="Custom Template"
+                              >
+                                Custom Template
+                              </ZoomableTextLink>{" "}
+                              : You can upload an Apk which will be set as the
+                              default launcher.
+                            </li>
+                            <li>
+                              === Standard Template: This requires the presence
+                              of Urovo's Enterprise Launcher. You can upload the
+                              configuration file(
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_standard_desktop_file_upload.png"
+                                imageAlt="Configuration File Upload"
+                              >
+                                Configuration File Upload
+                              </ZoomableTextLink>
+                              ) or use the default template(
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_standard_desktop_standard.png"
+                                imageAlt="Standard Configuration"
+                              >
+                                Standard Configuration
+                              </ZoomableTextLink>
+                              ) to remotely configure it.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "Does UMS support Remote Desktop?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Yes, UMS supports{" "}
+                              <strong>Remote Desktop</strong>.
+                            </li>
+                            <li>
+                              • The built-in remote desktop capability is based
+                              on <strong>Awesun</strong>.
+                            </li>
+                            <li>
+                              • If you want to integrate a{" "}
+                              <strong>
+                                third-party Remote Desktop service
+                              </strong>
+                              , adaptation is required.
+                            </li>
                           </ul>
                         ),
                       },
@@ -2068,6 +2486,525 @@ export default function UmsPage() {
                   </ul>
                 </AppStoreBlock>
               </div>
+
+              <div className="mt-6" />
+
+              <FaqSection
+                codeBlockTitle="Frequently Asked Questions:"
+                codeBlockDescription="Click any question below to expand the answer."
+                askAiScope="ums"
+                groups={[
+                  {
+                    title: "",
+                    items: [
+                      {
+                        question: "What is Authorization Control used for?",
+                        answer: (
+                          <ul>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_authorization_control.png"
+                                imageAlt="Authorization Control"
+                              >
+                                Authorization Control
+                              </ZoomableTextLink>{" "}
+                              is used to create and manage{" "}
+                              <strong>operator accounts</strong> for your
+                              organization.
+                            </li>
+                            <li>
+                              • It allows multiple people to work together in
+                              the same UMS organization.
+                            </li>
+                            <li>
+                              • You can also adjust permissions, transfer
+                              administrator permission, and remove unused
+                              operator accounts.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "How do I create an operator account in UMS?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "Account Center" → "Authorization Control"
+                              </strong>
+                              .
+                            </li>
+                            <li>
+                              • Click <strong>"Add"</strong>.
+                            </li>
+                            <li>• Enter the new email address.</li>
+                            <li>
+                              • Click{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_add_operator.png"
+                                imageAlt="Add Operator"
+                              >
+                                "Confirm"
+                              </ZoomableTextLink>{" "}
+                              .
+                            </li>
+                            <li>
+                              • The account will be activated after the user
+                              confirms registration from the email.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I change the permissions of an operator account?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Yes, you can adjust the{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_operator_permissions.png"
+                                imageAlt="Operator Permission"
+                              >
+                                Permission
+                              </ZoomableTextLink>{" "}
+                              setup of an operator account at any time.
+                            </li>
+                            <li>
+                              • It is recommended to grant only the permissions
+                              that are necessary in order to reduce security
+                              risks.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I transfer administrator permission to another account?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Yes, you can{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_transfer_admin.png"
+                                imageAlt="transfer administrator permission"
+                              >
+                                transfer administrator permission
+                              </ZoomableTextLink>{" "}
+                              to any operator account if needed.
+                            </li>
+                            <li>
+                              • After transfer, your current account will lose
+                              administrator permission.
+                            </li>
+                            <li>
+                              • Please be <strong>CAREFUL</strong> before
+                              performing this action.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "Can I delete an operator account?",
+                        answer: (
+                          <p>
+                            Yes. If an operator account is no longer needed, you
+                            can delete it anytime by clicking the{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/account/account_remove_operator.png"
+                              imageAlt="Remove Operator"
+                            >
+                              "Remove"
+                            </ZoomableTextLink>{" "}
+                            button on the right side.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "What is the difference between an operator account and a sub-account?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>Operator account:</strong> belongs to
+                              the same organization and helps multiple users
+                              work together in the same UMS account.
+                            </li>
+                            <li>
+                              • <strong>Sub-account:</strong> represents another
+                              organization and can only manage terminals
+                              distributed to that sub-organization.
+                            </li>
+                            <li>
+                              === A sub-account cannot access terminals
+                              belonging to other organizations.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "What is a sub-account used for?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • A sub-account is used when you want to
+                              distribute terminals to another organization and
+                              let their people manage those terminals in UMS.
+                            </li>
+                            <li>
+                              • This ensures each organization can only manage
+                              its own terminals.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "How do I create a sub-account?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "Sub-account" →{" "}
+                                <ZoomableTextLink
+                                  href="/products/ums/account/account_create_sub_accounts.png"
+                                  imageAlt="Create sub-accounts"
+                                >
+                                  "Sub-Account Brief"
+                                </ZoomableTextLink>
+                              </strong>
+                            </li>
+                            <li>
+                              • Then create either a{" "}
+                              <strong>controlled sub-account</strong> or an{" "}
+                              <strong>independent sub-account</strong>.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How do I distribute terminals to a sub-account?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "Device Manager" → "Distribute Device"
+                              </strong>
+                              .
+                            </li>
+                            <li>
+                              • You can distribute terminals either{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_distribute_device_manually.png"
+                                imageAlt="Distribute device manually"
+                              >
+                                manually
+                              </ZoomableTextLink>{" "}
+                              one by one or{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_distribute_device_in_batch.png"
+                                imageAlt="Distribute devices in batch"
+                              >
+                                in batch
+                              </ZoomableTextLink>
+                              .
+                            </li>
+                            <li>
+                              • For batch distribution, download the template,
+                              fill in the table, and upload it.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I change the sub-account owner of a terminal after distribution?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Yes. Click{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_distribute_device_replace.png"
+                                imageAlt="Replace device"
+                              >
+                                "Replace the Sub-account"
+                              </ZoomableTextLink>
+                              .
+                            </li>
+                            <li>• Select the new sub-organization.</li>
+                            <li>
+                              • Click <strong>"Distribute"</strong>.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can I revoke terminal distribution from a sub-account?",
+                        answer: (
+                          <p>
+                            Yes. You can revoke the distribution of a terminal
+                            by clicking{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/account/account_distribute_device_unbind.png"
+                              imageAlt="Unbind device"
+                            >
+                              "Unbind"
+                            </ZoomableTextLink>
+                            . This applies to both controlled and independent
+                            sub-accounts.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "What is the difference between a controlled sub-account and an independent sub-account?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • The main difference is whether the parent
+                              account can still access and manage the
+                              sub-account platform.
+                            </li>
+                            <li>
+                              • For a{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_controlled_to_manage.png"
+                                imageAlt="Controlled Sub-account To Manage"
+                              >
+                                Controlled Sub-account
+                              </ZoomableTextLink>
+                              , the parent account can click{" "}
+                              <strong>"To Manage"</strong> and enter the
+                              platform.
+                            </li>
+                            <li>
+                              • For an{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_independent_no_operate.png"
+                                imageAlt="Independent Sub-account No Operate"
+                              >
+                                Independent Sub-account
+                              </ZoomableTextLink>
+                              , there is no <strong>"To Manage"</strong> option,
+                              so the parent account cannot enter the platform.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can a controlled sub-account upload applications?",
+                        answer: (
+                          <p>
+                            No. A controlled sub-account cannot upload
+                            applications freely. For example, there is{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/account/account_controlled_no_app_upload.png"
+                              imageAlt="Controlled No App Upload.png"
+                            >
+                              <strong>NO</strong> "App Upload"
+                            </ZoomableTextLink>{" "}
+                            option in its platform.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can an independent sub-account upload and publish applications?",
+                        answer: (
+                          <p>
+                            Yes. An independent sub-account can upload and
+                            publish applications freely.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "What is the difference in account creation between controlled and independent sub-accounts?",
+                        answer: (
+                          <ul>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_create_independent_account.png"
+                                imageAlt="Independent Sub-account No Operate"
+                              >
+                                Independent Sub-account:
+                              </ZoomableTextLink>{" "}
+                              you must enter an email address during creation.
+                            </li>
+                            <li>
+                              •{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_create_controlled_account.png"
+                                imageAlt="Controlled Sub-account To Manage"
+                              >
+                                Controlled Sub-account:
+                              </ZoomableTextLink>{" "}
+                              there is no email field during creation.
+                            </li>
+                            <li>
+                              • If login access is needed for a controlled
+                              sub-account, you must enter that platform and
+                              create an{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/account/account_controlled_create_operator.png"
+                                imageAlt="Controlled Create Operator"
+                              >
+                                Operator Account
+                              </ZoomableTextLink>{" "}
+                              there.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can the parent account access a controlled sub-account directly?",
+                        answer: (
+                          <p>
+                            Yes. For a controlled sub-account, the parent
+                            account can click{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/account/account_controlled_to_manage.png"
+                              imageAlt="Controlled Sub-account To Manage"
+                            >
+                              "To Manage"
+                            </ZoomableTextLink>{" "}
+                            to enter its platform and perform operations there.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Can the parent account access an independent sub-account directly?",
+                        answer: (
+                          <p>
+                            No. For an independent sub-account, the parent
+                            account cannot enter its platform, because there is{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/account/account_independent_no_operate.png"
+                              imageAlt="Independent Sub-account No Operate"
+                            >
+                              <strong>NO</strong> "To Manage"
+                            </ZoomableTextLink>{" "}
+                            option.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Are there different types of controlled sub-accounts?",
+                        answer: (
+                          <p>
+                            Yes. There are{" "}
+                            <ZoomableTextLink
+                              href="/products/ums/account/account_controlled_four_types.png"
+                              imageAlt="Four types Controlled Sub-account"
+                            >
+                              four types of controlled accounts
+                            </ZoomableTextLink>{" "}
+                            . Although none of them can upload applications like
+                            an independent account, their permissions regarding
+                            application publishing are different.
+                          </p>
+                        ),
+                      },
+                      {
+                        question:
+                          'What is the "Completely independent and free App market"(first) controlled-account application mode?',
+                        answer: (
+                          <ul>
+                            <li>
+                              • The sub-account can freely choose which
+                              applications to publish to App Market.
+                            </li>
+                            <li>
+                              • The selectable range is the{" "}
+                              <strong>full uploaded application list</strong> in
+                              the parent account.
+                            </li>
+                            <li>
+                              • The sub-account still cannot upload new
+                              applications.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          'What is the "Clone the Apps of the parent account"(second) controlled-account application mode?',
+                        answer: (
+                          <ul>
+                            <li>
+                              • The published application list of the
+                              sub-account is exactly the same as the parent
+                              account.
+                            </li>
+                            <li>
+                              • It updates automatically when the parent updates
+                              its publish list.
+                            </li>
+                            <li>• The sub-account cannot change it.</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          'What is the "Select from the App market of the parent account"(third) controlled-account application mode?',
+                        answer: (
+                          <ul>
+                            <li>
+                              • The sub-account can customize its published
+                              application list.
+                            </li>
+                            <li>
+                              • But the selectable range is not the full
+                              uploaded application list of the parent account.
+                            </li>
+                            <li>
+                              • The selectable range is only the{" "}
+                              <strong>
+                                published applications of the parent account
+                              </strong>
+                              .
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          'What is the "Parent account sets up Apps for sub-account"(fourth) controlled-account application mode?',
+                        answer: (
+                          <ul>
+                            <li>
+                              • The published application list is fully
+                              controlled by the parent account.
+                            </li>
+                            <li>• The sub-account cannot change it at all.</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What is the default controlled-account application mode?",
+                        answer: (
+                          <p>
+                            The <strong>fourth mode</strong> is the default
+                            option. You can still change it later and choose the
+                            most suitable mode for each sub-organization.
+                          </p>
+                        ),
+                      },
+                    ],
+                  },
+                ]}
+              />
             </section>
 
             <Divider />

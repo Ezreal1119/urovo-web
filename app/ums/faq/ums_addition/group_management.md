@@ -35,6 +35,25 @@ UMS doesn't currently support users binding terminals to a UMS account by themse
 
 **"Group Management" → "Group Management" → "Bind Device"**
 
+## What's the difference between "Activation Time" and "Shipment Time" in Bind Device?
+
+They represent **two different lifecycle stages** of a device.
+
+### Activation Time
+
+- The time when the device is **first seen ONLINE in UMS**
+- Indicates when the device is **first activated and connected to the platform**
+
+### Shipment Time
+
+- The time when the device is **first registered (bound) to the account**
+- Indicates when the device is **assigned/imported into your UMS account**
+
+👉 In short:
+
+- Activation Time = first time device goes online
+- Shipment Time = first time device is bound to your account
+
 ## How do I check all published Apps (the ones shown on the App Market) of a group?
 
 **"Group Management" → "Group Management" → "Shelf App"**

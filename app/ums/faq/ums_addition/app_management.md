@@ -271,7 +271,7 @@ Recommended approach:
 
 You can:
 
-- Use **UStage**
+- Use **UStage** and **Configuration Management**
 - Push a **shortcut** to Enterprise Launcher
 
 This allows launching web apps like native apps
