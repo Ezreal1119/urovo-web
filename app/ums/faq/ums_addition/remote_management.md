@@ -273,6 +273,20 @@ In **System Customization**, you can remotely set:
 
 ---
 
+## Why does my app not take effect after setting it as Customized Desktop?
+
+This is usually because the required intent categories are not declared in the APK.
+
+To work as a Customized Desktop (Launcher), your app **must declare the following in the AndroidManifest.xml**:
+
+```xml
+<category android:name="android.intent.category.LAUNCHER" />
+<category android:name="android.intent.category.HOME" />
+<category android:name="android.intent.category.DEFAULT" />
+```
+
+---
+
 ## Does UMS support Remote Desktop?
 
 Yes.
@@ -281,3 +295,19 @@ UMS supports **Remote Desktop based on Awesun**.
 
 - The built-in remote desktop capability is based on **Awesun**
 - If you want to integrate a **third-party Remote Desktop service**, adaptation is required
+
+---
+
+## Does UMS support OTA Firmware Upgrade?
+
+No.
+
+UMS does not support OTA Firmware Upgrade.
+
+However, **UTMS (Private Deployment of UMS)** supports OTA Firmware Upgrade.
+
+👉 In short:
+
+- UMS (Public Cloud): ❌ Not supported
+
+- UTMS (Private Deployment): ✅ Supported

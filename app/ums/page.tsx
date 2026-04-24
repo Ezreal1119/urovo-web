@@ -2334,6 +2334,37 @@ export default function UmsPage() {
                         ),
                       },
                       {
+                        question:
+                          "Why does my app not take effect after setting it as Customized Desktop?",
+
+                        answer: (
+                          <ul>
+                            <li>
+                              • This is usually because the required intent
+                              categories are not declared in the APK.
+                            </li>
+                            <li>
+                              • To work as a{" "}
+                              <strong>Customized Desktop (Launcher)</strong>,
+                              your app must declare the following in the
+                              AndroidManifest.xml:
+                            </li>
+                            <li>
+                              <pre className="mt-2 rounded-lg bg-black/40 p-3 text-xs text-white/80 overflow-x-auto">
+                                {`<category android:name="android.intent.category.LAUNCHER" />
+<category android:name="android.intent.category.HOME" />
+<category android:name="android.intent.category.DEFAULT" />`}
+                              </pre>
+                            </li>
+                            <li>
+                              • If any of these are missing, the system will not
+                              recognize your app as a valid desktop (launcher),
+                              and the setting will not take effect.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
                         question: "Does UMS support Remote Desktop?",
                         answer: (
                           <ul>
@@ -2351,6 +2382,22 @@ export default function UmsPage() {
                                 third-party Remote Desktop service
                               </strong>
                               , adaptation is required.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question: "Does UMS support OTA Firmware Upgrade?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • No, <strong>UMS(Public Cloud)</strong> does NOT
+                              support OTA Firmware Upgrade. ❌
+                            </li>
+                            <li>
+                              • However,{" "}
+                              <strong>UTMS (Private Deployment of UMS)</strong>{" "}
+                              supports OTA Firmware Upgrade. ✅
                             </li>
                           </ul>
                         ),
@@ -3012,7 +3059,7 @@ export default function UmsPage() {
             <section id="utms" className="scroll-mt-20">
               <div className="space-y-2">
                 <PageSectionTitle className={`text-5xl ${playfair.className}`}>
-                  5. UTMS (Private UMS)
+                  5. UTMS (Private Deploy UMS)
                 </PageSectionTitle>
               </div>
             </section>

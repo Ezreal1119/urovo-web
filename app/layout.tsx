@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Urovo-Tech",
-  description: "Demo layout built with custom layout primitives",
+  description: "Welcome to Urovo-Tech Web.",
   icons: {
     icon: "/patrick.png",
   },

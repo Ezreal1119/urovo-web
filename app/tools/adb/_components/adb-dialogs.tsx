@@ -118,7 +118,7 @@ export function AdbRecoveryGuideDialog({
                     <li className="flex items-center gap-2">
                       <span className="size-1 rounded-full bg-white/40" />
                       <span className="font-mono text-white">
-                        - + - + - - - -
+                        - + - + - - + +
                       </span>
                       <span className="text-foreground/40">
                         (try this if the first fails)

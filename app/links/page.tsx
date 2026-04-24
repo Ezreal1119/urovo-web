@@ -126,6 +126,11 @@ export default function LinksPage() {
                   description="Android SDK (including demo code and API document) for UROVO FR1000. [FR1000_SDK_260421.rar]"
                 />
                 <ResourceItem
+                  title="FR2000"
+                  href="https://cdn.patrick-shenzhen.org/urovo/sdk/FR2000_SDK_251219.zip"
+                  description="Android SDK (including demo code and API document) for UROVO FR1000. [FR2000_SDK_251219.zip]"
+                />
+                <ResourceItem
                   title="FR7000"
                   href="https://cdn.patrick-shenzhen.org/urovo/sdk/FR7000_SDK.rar"
                   description="SDK (including demo code and API document) for UROVO FR7000. [FR7000_SDK_260421.rar]"
