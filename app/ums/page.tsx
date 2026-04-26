@@ -2489,8 +2489,8 @@ export default function UmsPage() {
                               automatically when device boots up.
                             </li>
                             <li>
-                              • Default launcher: This is used to set an
-                              Application as the launcher of the device.
+                              • Customized Desktop: This is used to set an
+                              Application as the default launcher of the device.
                             </li>
                             <li>
                               ==={" "}

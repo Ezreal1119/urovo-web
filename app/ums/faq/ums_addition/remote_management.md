@@ -379,7 +379,7 @@ System Customization allows you to configure key system-level behaviors and UI e
 
 - Set an application to **launch automatically when the device boots**
 
-#### Default Launcher
+#### Customized Launcher
 
 - Set an application as the **device launcher (home screen)**
 
