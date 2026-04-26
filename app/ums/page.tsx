@@ -2541,7 +2541,13 @@ export default function UmsPage() {
 
                             <ul>
                               <li>
-                                • <strong>Custom Template: </strong>
+                                •{" "}
+                                <ZoomableTextLink
+                                  href="/products/ums/remote/remote_custom_desktop.png"
+                                  imageAlt="Custom Template"
+                                >
+                                  <strong>Custom Template</strong>
+                                </ZoomableTextLink>{" "}
                                 You can upload an APK, which will be set as the
                                 default launcher directly.
                               </li>
@@ -2553,12 +2559,24 @@ export default function UmsPage() {
                                 You can either:
                                 <ul className="mt-1">
                                   <li>
-                                    – Upload a configuration file (Configuration
-                                    File Upload), or
+                                    – Upload a configuration file ({" "}
+                                    <ZoomableTextLink
+                                      href="/products/ums/remote/remote_standard_desktop_file_upload.png"
+                                      imageAlt="Configuration File Upload"
+                                    >
+                                      Configuration File Upload
+                                    </ZoomableTextLink>
+                                    ), or
                                   </li>
                                   <li>
-                                    – Use the default template (Standard
-                                    Configuration)
+                                    – Use the default template ({" "}
+                                    <ZoomableTextLink
+                                      href="/products/ums/remote/remote_standard_desktop_standard.png"
+                                      imageAlt="Standard Configuration"
+                                    >
+                                      Standard Configuration
+                                    </ZoomableTextLink>
+                                    )
                                   </li>
                                 </ul>
                                 to remotely configure the launcher behavior.
