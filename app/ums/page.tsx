@@ -2526,6 +2526,48 @@ export default function UmsPage() {
                         ),
                       },
                       {
+                        question: "What is Customized Desktop used for?",
+                        answer: (
+                          <div>
+                            <p>
+                              <strong>Customized Desktop</strong> is used to set
+                              an application as the default launcher of the
+                              device.
+                            </p>
+
+                            <p className="mt-2">
+                              There are two types of templates available:
+                            </p>
+
+                            <ul>
+                              <li>
+                                • <strong>Custom Template: </strong>
+                                You can upload an APK, which will be set as the
+                                default launcher directly.
+                              </li>
+                              <li>
+                                • <strong>Standard Template: </strong>
+                                This requires Urovo's Enterprise Launcher to be
+                                installed on the device.
+                                <br />
+                                You can either:
+                                <ul className="mt-1">
+                                  <li>
+                                    – Upload a configuration file (Configuration
+                                    File Upload), or
+                                  </li>
+                                  <li>
+                                    – Use the default template (Standard
+                                    Configuration)
+                                  </li>
+                                </ul>
+                                to remotely configure the launcher behavior.
+                              </li>
+                            </ul>
+                          </div>
+                        ),
+                      },
+                      {
                         question:
                           "Why does my app not take effect after setting it as Customized Desktop?",
 

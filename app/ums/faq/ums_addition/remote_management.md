@@ -403,6 +403,24 @@ System Customization is used for **boot behavior, app control, and launcher cust
 
 ---
 
+## What is Customized Desktop used for?
+
+Customized Desktop is used to set an application as the default launcher of the device.
+
+There are two types of templates available:
+
+- **Custom Template:**
+  You can upload an APK, which will be set as the default launcher directly.
+
+- **Standard Template:**
+  This requires Urovo's Enterprise Launcher to be installed on the device.
+  You can either:
+  - Upload a configuration file (Configuration File Upload), or
+  - Use the default template (Standard Configuration)  
+    to remotely configure the launcher behavior.
+
+---
+
 ## Why does my app not take effect after setting it as Customized Desktop?
 
 This is usually because the required intent categories are not declared in the APK.
