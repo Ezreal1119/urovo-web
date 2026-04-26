@@ -190,6 +190,21 @@ An independent sub-account can upload and publish applications freely.
 
 ---
 
+## Does an independent sub-account see parent uploaded apps?
+
+Yes.
+
+### Details:
+
+- The uploaded app list of an **independent sub-account** includes:
+  - Apps uploaded by itself
+  - Apps uploaded by the **parent account**
+
+👉 In short:
+Independent sub-accounts can access both their own and parent-uploaded apps
+
+---
+
 ## What is the difference in account creation between controlled and independent sub-accounts?
 
 ### Independent sub-account

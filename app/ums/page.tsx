@@ -1203,6 +1203,60 @@ export default function UmsPage() {
                       },
                       {
                         question:
+                          'Why do I get "Network error! http response code is 404 or 5xx!" when downloading apps from App Market?',
+                        answer: (
+                          <ul>
+                            <li>
+                              • This is caused by{" "}
+                              <strong>UMS download rate limiting</strong>.
+                            </li>
+                            <li>
+                              • A single device can download the same app up to{" "}
+                              <strong>5 times per day</strong>.
+                            </li>
+                            <li>
+                              • This mechanism is designed to prevent excessive{" "}
+                              <strong>data usage</strong>.
+                            </li>
+                            <li>
+                              • The restriction will be lifted automatically
+                              after <strong>24 hours</strong>.
+                            </li>
+                            <li>
+                              • If needed, please contact the{" "}
+                              <strong>UMS team</strong> to remove or adjust the
+                              limitation.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Why do I get [INSTALL_FAILED_INVALID_APK: UMS install fail] when upgrading an app?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • This error is caused by a{" "}
+                              <strong>UMS signature mismatch</strong>.
+                            </li>
+                            <li>
+                              • The installed app on the device has a different
+                              signature from the new APK.
+                            </li>
+                            <li>
+                              • UMS requires consistent signing certificates for
+                              upgrade.
+                            </li>
+                            <li>
+                              • <strong>Solution:</strong>
+                            </li>
+                            <li>• 1. Uninstall the existing app</li>
+                            <li>• 2. Install the new APK again</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
                           "How do I deploy applications to terminals remotely?",
                         answer: (
                           <ul>
@@ -1307,6 +1361,17 @@ export default function UmsPage() {
                             to "Yes" when adding a Deployment rule to achieve
                             that.
                           </div>
+                        ),
+                      },
+                      {
+                        question: "Does UMS support XAPK deployment?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • No, UMS does{" "}
+                              <strong>NOT support XAPK deployment</strong>.
+                            </li>
+                          </ul>
                         ),
                       },
                       {
@@ -1691,6 +1756,80 @@ export default function UmsPage() {
                       },
                       {
                         question:
+                          "How does the device communicate with the UMS backend?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>HTTP Polling:</strong>
+                            </li>
+                            <li>
+                              • Periodically checks unfinished tasks (GET)
+                            </li>
+                            <li>• Retrieves configuration deployment (GET)</li>
+                            <li>• Reports device information (POST)</li>
+                            <li>
+                              • <strong>MQTT Push:</strong>
+                            </li>
+                            <li>
+                              • UMS pushes tasks/configurations instantly via
+                              MQTT
+                            </li>
+                            <li>• Device responds immediately</li>
+                            <li>
+                              • 👉 In short: HTTP = periodic sync, MQTT =
+                              real-time push
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "Will deleting a configuration take effect immediately?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • No. Deleting a configuration will{" "}
+                              <strong>NOT trigger MQTT push</strong>.
+                            </li>
+                            <li>
+                              • Therefore, it will{" "}
+                              <strong>NOT take effect immediately</strong>.
+                            </li>
+                            <li>
+                              • The change will only be applied during the next{" "}
+                              <strong>HTTP polling cycle</strong>.
+                            </li>
+                            <li>
+                              • 👉 In short: deletion depends on polling, not
+                              real-time push.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How can I force a configuration update after deleting it?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • You need to <strong>restart the device</strong>.
+                            </li>
+                            <li>
+                              • After reboot and reconnecting to the internet,
+                              the device will immediately perform{" "}
+                              <strong>HTTP polling</strong>.
+                            </li>
+                            <li>
+                              • The latest configuration will then be applied.
+                            </li>
+                            <li>
+                              • 👉 Restart is the fastest way to force sync.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
                           "How do I check detailed information of a terminal?",
                         answer: (
                           <ul>
@@ -1712,6 +1851,36 @@ export default function UmsPage() {
                               location, memory usage, storage usage, network
                               information, and application information(AppName,
                               AppVersion, AppSize).
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What should I do if the device shows offline?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Ensure the device has a stable network
+                              connection.
+                            </li>
+                            <li>• Restart the device.</li>
+                            <li>
+                              • If still offline, extract the{" "}
+                              <strong>UMS Log</strong> and send it to the UMS
+                              team.
+                            </li>
+                            <li>
+                              • <strong>Note:</strong> Online status reflects
+                              the MQTT connection state.
+                            </li>
+                            <li>
+                              • MQTT connects when the device first goes online
+                              after boot.
+                            </li>
+                            <li>
+                              • If disconnected, it retries several times and
+                              then stops until reboot.
                             </li>
                           </ul>
                         ),
@@ -2189,6 +2358,29 @@ export default function UmsPage() {
                         ),
                       },
                       {
+                        question: "What does push setting mean?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • <strong>Enabled:</strong>
+                            </li>
+                            <li>• Tasks/configurations are pushed via MQTT</li>
+                            <li>• Device responds immediately</li>
+                            <li>
+                              • <strong>Disabled:</strong>
+                            </li>
+                            <li>• No real-time push</li>
+                            <li>
+                              • Device retrieves tasks during HTTP polling
+                            </li>
+                            <li>
+                              • 👉 In short: ON = real-time, OFF = periodic
+                              check
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
                         question: "What does polling time mean?",
                         answer: (
                           <ul>
@@ -2365,6 +2557,30 @@ export default function UmsPage() {
                         ),
                       },
                       {
+                        question:
+                          "What happens if I enable Kiosk Mode, Customized Desktop, and Auto-start Application at the same time?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • You should only use{" "}
+                              <strong>one of these features at a time</strong>.
+                            </li>
+                            <li>
+                              • These features are{" "}
+                              <strong>mutually conflicting</strong>.
+                            </li>
+                            <li>
+                              • Enabling them together may cause{" "}
+                              <strong>unexpected behavior</strong>.
+                            </li>
+                            <li>
+                              • 👉 Recommendation: choose only one mode based on
+                              your use case.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
                         question: "Does UMS support Remote Desktop?",
                         answer: (
                           <ul>
@@ -2398,6 +2614,175 @@ export default function UmsPage() {
                               • However,{" "}
                               <strong>UTMS (Private Deployment of UMS)</strong>{" "}
                               supports OTA Firmware Upgrade. ✅
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "From which section can I monitor device information and data in UMS?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • You can monitor device information and data from
+                              the <strong>Data Center</strong> section.
+                            </li>
+                            <li>
+                              • It includes device location, installed apps, and
+                              data usage.
+                            </li>
+                            <li>
+                              • You can also check activation time and shipment
+                              time of devices.
+                            </li>
+                            <li>• All pages support search by SN.</li>
+                            <li>• Excel export is supported on each page.</li>
+                            <li>
+                              • 👉 In short: Data Center is used for device
+                              monitoring and analytics.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How can I view the device location distribution?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "Data Center" →{" "}
+                                <ZoomableTextLink
+                                  href="/products/ums/remote/remote_device_map.png"
+                                  imageAlt="Device Map"
+                                >
+                                  "Device Map"
+                                </ZoomableTextLink>
+                              </strong>
+                              .
+                            </li>
+                            <li>• You can filter devices by account or SN.</li>
+                            <li>
+                              • Device locations will be displayed on the map.
+                            </li>
+                            <li>• You can also export the data if needed.</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How can I check which apps are installed on a device?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "Data Center" →{" "}
+                                <ZoomableTextLink
+                                  href="/products/ums/remote/remote_application_brief.png"
+                                  imageAlt="Application Brief"
+                                >
+                                  "Application Brief"
+                                </ZoomableTextLink>
+                              </strong>
+                              .
+                            </li>
+                            <li>
+                              • You can view <strong>App Name</strong> and{" "}
+                              <strong>App Version</strong>.
+                            </li>
+                            <li>• Data export is also supported.</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How can I check the app data usage of a device?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "Data Center" →{" "}
+                                <ZoomableTextLink
+                                  href="/products/ums/remote/remote_flow_management.png"
+                                  imageAlt="Flow Management"
+                                >
+                                  "Flow Management"
+                                </ZoomableTextLink>
+                              </strong>
+                              .
+                            </li>
+                            <li>• You can view data usage charts.</li>
+                            <li>
+                              • You can see application data usage ranking.
+                            </li>
+                            <li>• You can check data usage alert records.</li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "What should I do if UMS consumes too much data?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Check whether there are data-heavy operations
+                              such as large-scale app deployment.
+                            </li>
+                            <li>
+                              • UMS itself consumes very little traffic (each
+                              HTTP polling is only a few hundred KB).
+                            </li>
+                            <li>
+                              • You can reduce traffic usage by increasing the{" "}
+                              <strong>polling time</strong>.
+                            </li>
+                            <li>
+                              • Maximum polling interval is{" "}
+                              <strong>1440 minutes</strong>.
+                            </li>
+                            <li>• 👉 Less polling = less data usage.</li>
+                            <li>
+                              You can also pull the UMS log("Remote Management →{" "}
+                              <ZoomableTextLink
+                                href="/products/ums/remote/remote_ums_log.png"
+                                imageAlt="UMS Log"
+                              >
+                                Log Management
+                              </ZoomableTextLink>
+                              ") from the terminal and send to UMS team for
+                              further analysis.
+                            </li>
+                          </ul>
+                        ),
+                      },
+                      {
+                        question:
+                          "How can I check a device’s activation time and shipment time?",
+                        answer: (
+                          <ul>
+                            <li>
+                              • Go to{" "}
+                              <strong>
+                                "Data Center" →{" "}
+                                <ZoomableTextLink
+                                  href="/products/ums/remote/remote_device_lifecycle.png"
+                                  imageAlt="Device Lifecycle"
+                                >
+                                  "Device Lifecycle"
+                                </ZoomableTextLink>
+                              </strong>
+                              .
+                            </li>
+                            <li>
+                              • <strong>Shipment Date:</strong> the time when
+                              the device is imported into UMS.
+                            </li>
+                            <li>
+                              • <strong>Activation Time:</strong> the time when
+                              the device is first detected online in UMS.
                             </li>
                           </ul>
                         ),
@@ -2868,6 +3253,28 @@ export default function UmsPage() {
                             Yes. An independent sub-account can upload and
                             publish applications freely.
                           </p>
+                        ),
+                      },
+                      {
+                        question:
+                          "Does an independent sub-account see parent uploaded apps?",
+                        answer: (
+                          <ul>
+                            <li>• Yes.</li>
+                            <li>
+                              • The uploaded app list of an{" "}
+                              <strong>independent sub-account</strong> includes:
+                            </li>
+                            <li>• Apps uploaded by itself</li>
+                            <li>
+                              • Apps uploaded by the{" "}
+                              <strong>parent account</strong>
+                            </li>
+                            <li>
+                              • 👉 Independent sub-accounts can access both sets
+                              of apps.
+                            </li>
+                          </ul>
                         ),
                       },
                       {

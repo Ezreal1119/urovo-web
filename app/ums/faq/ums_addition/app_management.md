@@ -136,6 +136,45 @@ You can:
 
 ---
 
+## Why do I get "Network error! http response code is 404 or 5xx!" when downloading apps from App Market?
+
+This is caused by **UMS download rate limiting**.
+
+### Reason:
+
+- A single device cannot download the **same app more than 5 times per day**
+
+### Purpose:
+
+- Prevent excessive **data usage**
+
+### Solution:
+
+- Wait for **24 hours** → restriction will be lifted automatically
+- Or contact **UMS team** to:
+  - Remove restriction
+  - Disable this mechanism if necessary
+
+---
+
+## Why do I get [INSTALL_FAILED_INVALID_APK: UMS install fail] when upgrading an app?
+
+This happens due to a **UMS signature mismatch**.
+
+### Reason:
+
+- The installed app on the device has a **different signature**
+- The new APK has a **different signing certificate**
+
+### Solution:
+
+1. Uninstall the existing app from the device
+2. Install the new APK again
+
+👉 UMS enforces UMS signature consistency during installation
+
+---
+
 ## How do I deploy applications to devices?
 
 Go to:
@@ -159,6 +198,80 @@ Steps:
 
 - App is **automatically downloaded and installed** on devices
 - Execution depends on device status
+
+---
+
+## What apps can be selected in an Application Deployment rule?
+
+You can only select applications that have already been **published**.
+
+### Notes:
+
+- Only apps available in the **App Market (published apps)** can be selected
+- Existing deployment rules will **NOT be affected** even if app status changes later
+
+---
+
+## What deployment modes are available in Application Deployment?
+
+There are two deployment modes:
+
+### 1. Silent Installation
+
+- The application will be:
+  - Automatically downloaded
+  - Installed in the background
+- No user interaction is required
+
+### 2. Download and Prompt
+
+- The application will be:
+  - Automatically downloaded
+  - A prompt will pop up asking the user whether to install
+
+👉 Use this when user confirmation is needed
+
+---
+
+## Can I choose when the deployment takes place?
+
+Yes.
+
+You can choose:
+
+- **Deploy immediately**
+- **Schedule deployment for a specific time**
+
+### Important:
+
+- The scheduled time is based on the **terminal’s local time**
+- Not based on the UMS server time
+
+👉 Make sure terminal time is correct
+
+---
+
+## Can I start the app automatically after deployment?
+
+Yes.
+
+You can enable **"Default Boot"** when creating the deployment rule.
+
+### Result:
+
+- The application will:
+  - Automatically start after installation
+  - Or launch when the device boots (depending on configuration)
+
+👉 Useful for kiosk-style or dedicated app scenarios
+
+---
+
+## Does UMS support XAPK deployment?
+
+No.
+
+UMS currently does **NOT support XAPK deployment**.
 
 ---
 
