@@ -109,6 +109,34 @@ export default function UmsPage() {
             <section className="space-y-3 pb-5">
               <div className="space-y-2">
                 <PageSectionTitle className="font-bold">
+                  UMS Promotion Video
+                </PageSectionTitle>
+                <PageSectionDescription>
+                  A quick visual introduction to the UMS platform.
+                </PageSectionDescription>
+              </div>
+
+              <div className="w-full overflow-hidden rounded-2xl border border-white/10">
+                <div className="aspect-video w-full">
+                  <iframe
+                    src="https://www.youtube.com/embed/zZrJykTKMBU"
+                    title="UMS Promotion Video"
+                    className="h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <p className="text-xs text-foreground/40">
+                Note: You can enable subtitles by going to "Settings" →
+                "Captions" → "Auto-translate", then selecting your preferred
+                language.
+              </p>
+            </section>
+
+            <section className="space-y-3 pb-5">
+              <div className="space-y-2">
+                <PageSectionTitle className="font-bold">
                   UMS Overview Video
                 </PageSectionTitle>
                 <PageSectionDescription>
@@ -166,7 +194,7 @@ export default function UmsPage() {
                 </a>
 
                 <a
-                  href="https://cdn.patrick-shenzhen.org/urovo/mdm/ums/Introduction_to_UMS_20251208192518.pdf"
+                  href="https://ums-ppt.patrick-shenzhen.org/"
                   target="_blank"
                   className="
                     group flex items-center justify-between
