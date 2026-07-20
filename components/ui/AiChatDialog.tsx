@@ -144,7 +144,7 @@ export function AiChatDialog({
 
     try {
       const res = await fetch(
-        "https://ai-chat-worker.18807737955-70f.workers.dev",
+        "https://urovo-tech.patrick-shenzhen.org/api/ai-chat",
         {
           method: "POST",
           headers: {
@@ -206,7 +206,7 @@ export function AiChatDialog({
 
     try {
       const res = await fetch(
-        "https://ai-chat-worker.18807737955-70f.workers.dev",
+        "https://urovo-tech.patrick-shenzhen.org/api/ai-chat",
         {
           method: "POST",
           headers: {
